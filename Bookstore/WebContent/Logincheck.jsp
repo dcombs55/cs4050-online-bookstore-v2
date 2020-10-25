@@ -129,7 +129,7 @@
 		</table>
 
 		<div style="text-align:center;"><a href="#" class="catalog">View Full Catalog</a></div>
-	<main>
+	</main>
 
         </body>
 
