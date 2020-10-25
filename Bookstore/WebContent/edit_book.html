@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Book</title>
+	<style>
+		body{
+			font-family: Arial, Verdana, Helvetica;
+			background-color: #030303;
+			background-image: linear-gradient(to right, rgba(40,40,40,0), rgba(40,40,40,0.25));
+		}
+		#header {
+			background-color: #BBBBBB;
+			margin: 0px;
+			padding: 4px;
+		}
+		.navbar{
+			background-color: #BBBBBB;
+			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
+			color: #FFFFFF;
+			margin: auto;
+			margin-bottom: 50px;
+			overflow: hidden;
+		}
+		.navbar a {
+			float: left;
+			display: block;
+			text-align: center;
+			padding: 15px 15px;
+			text-decoration: none;
+			color: black;
+		}
+		h1{
+			margin-left: 5px;
+			color: #8A8A8A;
+			text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
+			opacity: 0.3;
+			font-size: 36px;
+		}
+		main{
+			width: 45%;
+			margin: auto;
+			background: black;
+			border: 5px solid #202020;
+			color:white
+			padding: 2.5px;
+		}
+		h2, #userOptions{
+			text-align: center;
+			color:white;
+		}
+		button{
+			color: #FFFFFF;
+			padding: 15px 32px;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			cursor: pointer;
+			margin: 0px 40px;
+		}
+		label, input{
+			display: block;
+		}
+		input{
+			margin-top: 2px;
+			width: 100%;
+			height: 25px;
+			padding-left: 7.5px;
+		}
+		label{
+			margin-bottom: 12.5px;
+		}
+		form{
+			margin-left: 10%;
+			margin-right: 10%;
+			background: black;
+			color:white;
+		}
+		.navbar a:hover{
+			background-color: #ACACAC;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="header">
+		<h1>EDIT BOOK</h1>
+	</div>
+	<div class="navbar">
+		<a href = "admin_hp.html">HOME</a>
+		<a href = "managebooks.html">BACK</a>
+		</div>
+	<main>
+		<div>
+			<h2>Edit Book</h2>
+			<p style="color:#999; text-align:center">Blank entries will not be overwritten.</p>
+			<form>
+				<label>
+					Book Title
+					<input type="text" placeholder="Enter book title">
+				</label>
+				
+				<label>
+					Author Name
+					<input type="text" placeholder="Enter author name">
+				</label>
+				
+				<label>
+					ISBN
+					<input type="text" placeholder="Enter ISBN (no dashes)">
+				</label>
+				
+				<label>
+					Price
+					<input type="text" placeholder="Enter price as $xx.xx">
+				</label>
+				
+				<label>
+					# of Copies
+					<input type="text" placeholder="Enter number of copies">
+				</label>
+				
+				<label>
+					Book Description
+					<input type="text" placeholder="Enter book description">
+				</label>
+				
+				<details>
+					<summary>Current Information</summary>
+					<p>Title: Book Title<br>
+					Author: Author<br>
+					ISBN: xxx-x-xx-xxxxxx-x<br>
+					Price: $xx.xx<br>
+					# of Copies: x<br>
+					Book Description: xxxxxx
+					</p>
+				</details>
+			</form>
+		</div>
+
+		<br>
+		<div id="userOptions">
+			<button style="background-color: #10FF30;background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 150%)">Save Changes</button>
+			<button style="background-color: #FF1030;background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 150%)">Delete Book</button>
+			<p><a style="color:white" href="managebooks.html">Cancel</a></p>
+		</div>
+	<main>
+
+</body>
+</html>

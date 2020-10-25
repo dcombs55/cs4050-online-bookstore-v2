@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	header {
+  		text-align: center;
+  		font-size: 35px;
+  		height: 25px;
+  		color: #000000;
+  		margin-bottom: 75px;
+  		font-family:verdana;
+	}
+	#book {
+			height: 600px;
+			width: 375px;
+			margin: 10px;
+			background: black;
+			float:left;
+	}
+	details{
+		font-size: 20px;
+  		color: #000000;
+  		font-family:verdana;
+  		margin:50px;
+  		float:below;
+  		padding-bottom:100px;
+	}
+	body{
+		background-image: url('book.jpg');
+	}
+	button{
+		background-color: #000000;
+		color: #FFFFFF;
+		padding: 15px 32px;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+	}
+</style>
+</head>
+<body>
+	<header>
+	<h1>Book Details Example</h1>
+	</header>
+	<p style = "text-align: center"><i>NOTE: This example only uses book1, but will be spread beyond just that single book.</i></p>
+	<book id="book"><img border="0" src="feat1.jpg" width="375" height="600"></book>
+	<details>
+		<d1>Title: Book1</d1><br>
+		<d1>Author: Author</d1><br>
+		<d1>Description: Insert Description Here...</d1><br>
+		<d1>Price: $9.99</d1><br>
+	</details>
+	<a href = "homepage.html"><button type = "button">Back</button></a>
+	<a href = "book1_cart.html"><button type = "button">Add to Cart</button></a>
+	<button>Checkout</button>
+</body>
+</html>
