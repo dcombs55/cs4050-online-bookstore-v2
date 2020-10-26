@@ -15,7 +15,7 @@ public class LoginDao {
 	        Class.forName("com.mysql.jdbc.Driver");
 
 	        try (Connection connection = DriverManager
-	            .getConnection("jdbc:mysql://localhost:3306/Bookstore?serverTimezone=UTC", "root", "");
+	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
 	            // Step 2:Create a statement using connection object
 	            PreparedStatement preparedStatement = connection

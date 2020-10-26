@@ -1,12 +1,108 @@
-%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
     <%@page import="database.*"%>
         <!DOCTYPE html>
         <html>
 
         <head>
+        <title>Washington T. Bookstore</title>
+	<style>
+		body{
+			font-family: Arial, Verdana, Helvetica;
+		}
+		.navbar{
+			background-color: #000000;
+			background-image: linear-gradient(to top, rgba(255,255,255,0.5), rgba(255,255,255,0) 50%);
+			color: #FFFFFF;
+			margin: auto;
+			margin-bottom: 50px;
+			overflow: hidden;
+		}
+		.navbar a {
+			float: left;
+			display: block;
+			text-align: center;
+			padding: 15px 15px;
+			text-decoration: none;
+			color: white;
+		}
+		.navbar a.active {
+			background-color: lightgrey;
+			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
+			color: black;
+		}
+		.navbar input[type=text] {
+			padding: 10px;
+			border: none;
+		}
+		.navbar .search {
+			float: right;
+			padding-top: 6px;
+		}
+		.navbar .search button {
+			float: right;
+			margin-right: 5px;
+			cursor: pointer;
+			height: 36px;
+			width: 36px;
+			background-color: #EFEFEF;
+			border: none;
+		}
+		.navbar .search button:hover {
+			background-color: #DFDFDF;
+		}
+		h1{
+			margin-left: 5px;
+		}
+		#feat {
+			background-image: linear-gradient(to left, rgba(80,80,80,0), rgba(80,80,80,1));
+			height: 25px;
+			width: 200px;
+			padding: 5px 10px 5px;
+			margin: 15px;
+			margin-left: 0px;
+			font-size:20px;
+			font-weight:bold
+		}
+		#book {
+			height: 200px;
+			width: 125px;
+			margin: 10px;
+			background: black;
+		}
+		#bookDisplay {
+			width: 95%;
+			margin-left: 75px;
+			text-overflow: ellipsis;
+		}
+		#booktitle {
+			font-weight: bold;
+		}
+		#author {
+			color:#424242
+		}
+		#isbn {
+			font-size: 10px;
+			font-style: italic;
+			color:grey;
+		}
+		a:hover{
+			background-color: #DCDCDC;
+		}
+		.catalog{
+			background-color: black;
+			background-image: linear-gradient(to top, rgba(65,40,255,0.5), rgba(65,40,255,0) 150%);
+  			color: white;
+  			cursor: pointer;
+  			display: inline-block;
+  			font-size: 20px;
+  			margin-top: 50px;
+  			padding: 20px 40px;
+  			text-align: center;
+  			text-decoration: none;
+		}
+	</style>
             <meta charset="ISO-8859-1">
-            <title>Insert title here</title>
         </head>
 
         <body>
@@ -19,7 +115,7 @@
   LoginDao loginDao = new LoginDao();
    boolean status = loginDao.validate(login);
    if (status) {
-           out.print("<h1>You have logged in successfully" + login.getUsername() + "</h1>");
+           out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
    }
    else{
 	   out.print("<h1> Login unsuccessful. Please try again!");
