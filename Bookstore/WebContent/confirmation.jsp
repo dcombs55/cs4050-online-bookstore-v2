@@ -1,7 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
+pageEncoding="ISO-8859-1"%>
+<%@page import="database.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Registration Page</title>
+	<title>Registration Confirmation</title>
 	<style>
 		body{
 			font-family: Arial, Verdana, Helvetica;
@@ -37,9 +40,9 @@
 			width: 45%;
 			margin: auto;
 			background-color: #DCDCDC;
-			padding: 2.5px;
+			padding: 2.5px 2.5px 8px 2.5px;
 		}
-		h2, #userOptions{
+		h2, #confirm{
 			text-align: center;
 		}
 		button{
@@ -54,6 +57,9 @@
 		div{
 			width: 100%;
 		}
+		#confirmationDialog{
+			text-align: center;
+		}
 		label, input{
 			display: block;
 		}
@@ -62,13 +68,6 @@
 			width: 100%;
 			height: 25px;
 			padding-left: 7.5px;
-		}
-		label{
-			margin-bottom: 12.5px;
-		}
-		form{
-			margin-left: 10%;
-			margin-right: 10%;
 		}
 		
 	</style>
@@ -79,52 +78,19 @@
 	<div class="navbar">
 		<a href = "homepage.html">HOME</a>
 		<a href = "login.html">LOGIN</a>
-		<a class ="active" href = "registration.html">REGISTER</a>
+		<a class ="active" href = "registration.jsp">REGISTER</a>
 		<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
 	</div>
 	<main>
-		<div id = "accountInfoForm">
-			<h2>Create an Account </h2>
-			<form>
-				<label>
-					First Name
-					<input type="text" placeholder="Enter First Name">
-				</label>
-				
-				
-				<label>
-					Last Name
-					<input type="text" placeholder="Enter Last Name">
-				</label>
-				
-				<label>
-					Email
-					<input type="text" placeholder="Enter Email">
-				</label>
-				
-				<label>
-					Password
-					<input type="text" placeholder="Enter Password">
-				</label>
-				
-				<details>
-					<summary>Requirements</summary>
-					<p>Password must be at least 8 characters long and include at least one uppercase
-					letter, lower case letter and number.</p>
-				</details>
-				
-				<br>
-				<label>
-					Confirm Password
-					<input type="text" placeholder="Re-enter Password">
-				</label>
-			</form>
+		<div id = "confirmationDialog">
+			<h1>User successfully registered!</h1>
+			<h2>Thank you for creating an account with Washington T. Bookstore!</h2>
+			<p>To finish setting up your account, you just need to confirm the email that was sent to you.</p>
 		</div>
 
 		<br>
-		<div id="userOptions">
-			<a href = "confirmation.html"><button>Create Account</button></a>
-			<p><a style="color:black" href="homepage.html">Cancel</a></p>
+		<div id="confirm">
+			<button>Confirm Email</button>
 		</div>
 	<main>
 
