@@ -117,6 +117,9 @@
    if (status) {
        	out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
    }
+   if(status && login.getUsername().equals("admin") && login.getPassword().equals("admin")){
+	   response.sendRedirect("admin_hp.html");
+   }
    else{
 	   response.sendRedirect("invalid.jsp");
    }
