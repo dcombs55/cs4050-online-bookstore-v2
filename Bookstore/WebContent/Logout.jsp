@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
     <%@page import="database.*"%>
-        <!DOCTYPE html>
-        <html>
-
-        <head>
-        <title>Washington T. Bookstore</title>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Washington T. Bookstore</title>
 	<style>
 		body{
 			font-family: Arial, Verdana, Helvetica;
@@ -102,33 +101,24 @@
   			text-decoration: none;
 		}
 	</style>
-            <meta charset="ISO-8859-1">
-        </head>
-
-        <body>
-
-            <jsp:useBean id="login" class="bean.LoginBean" />
+<meta charset="UTF-8">
+</head>
+<body>
+ <jsp:useBean id="login" class="bean.LoginBean" />
 
             <jsp:setProperty property="*" name="login" />
-
-            <%
-  LoginDao loginDao = new LoginDao();
-   boolean status = loginDao.validate(login);
-   if (status) {
-       	out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
-   }
-   else{
-	   response.sendRedirect("invalid.jsp");
-   }
- %>
- <h1>WASHINGTON T. BOOKSTORE</h1>
+<%
+login.setUsername("");
+login.setPassword("");
+%>
+<h1>You have been logged out!</h1>
+<h1>WASHINGTON T. BOOKSTORE</h1>
 	<main>
 		<div class="navbar">
 			<a class ="active" href = "homepage.html">HOME</a>
 			<a href = "login.html">LOGIN</a>
 			<a href = "registration.html">REGISTER</a>
 			<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
-			<a href = "Logout.jsp">LOGOUT</a>
 			<div class ="search">
 				<form action="/booksearch.php">	
 					<input type="text" placeholder="Search for books..." name="search">
@@ -226,8 +216,6 @@
 		</table>
 
 		<div style="text-align:center;"><a href="#" class="catalog">View Full Catalog</a></div>
-	</main>
-
-        </body>
-
-        </html>
+	<main>
+</body>
+</html>

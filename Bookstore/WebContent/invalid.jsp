@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ pageEncoding="ISO-8859-1"%>
+    <%@page import="database.*"%>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Login</title>
@@ -74,6 +77,7 @@ body {
 </head>
 
 <body>
+<h1>Invalid Login! Please try again!</h1>
 	<nav>
 		<a>Welcome to the Washington T. Bookstore</a>
 	</nav>
@@ -92,8 +96,7 @@ body {
 			type="checkbox" id="remember" name="remember" value="remember">
 		<label for="remember"> Remember Me</label><br> <input
 			type="submit" value="Login"><br>
-			<br> <label for="forgot">Forgot password?</label>
-		<a href="reset.jsp"><button type="button">Reset Password</button></a><br>
+		<br><a href="reset.jsp"><button type="button">Reset Password</button></a><br>
 		<br> <label for="create">Don't have an account?</label><br>
 		<a href="registration.html"><button type="button">Create
 				New Account</button></a>

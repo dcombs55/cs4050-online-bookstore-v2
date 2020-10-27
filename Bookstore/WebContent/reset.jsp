@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,21 +54,13 @@
 </head>
 <body>
 <header>
-	<h1>Edit Your Profile!</h1>
+	<h1>Reset Your Password!</h1>
 </header>
 <main>
 	<form>
 		<label>
-			First Name
-				<input type="text" placeholder="previously stored name here">
-		</label>
-		<label>
-			Last Name
-				<input type="text" placeholder="previously stored name here">
-		</label>
-		<label>
-			Email
-				<input type="text" placeholder="previously stored email here">
+			Username
+				<input type="text" placeholder="Enter existing username">
 		</label>
 		<label>
 			Change password (New password must not be same as old password)
@@ -81,28 +75,9 @@
 			Confirm new password (must match new password)
 				<input type="password">
 		</label>
-		<label>
-			Shipping Address
-				<input type="text" placeholder="previously stored address here">
-		</label>
-		<label>
-			Payment Info
-		</label>
-		<label>
-			Credit Card Number
-				<input type="text" placeholder="shown as *'s except last 4 digits">
-		</label>
-		<label>
-			Exp Date
-			<input type="date" placeholder="ex. 12/2099">
-		</label>
-		<label>
-			CCV
-				<input type="text" placeholder="shown as ***">
-		</label>
 	</form>
 	<button>Save Changes</button>
-	<a href = "homepage.html"><button type = "button">Cancel</button></a>
+	<a href = "login.html"><button type = "button">Cancel</button></a>
 
 </main>
 </body>
