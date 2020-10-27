@@ -63,14 +63,16 @@
 			width: 100%;
 			height: 25px;
 			padding-left: 7.5px;
-		}
-		label{
 			margin-bottom: 12.5px;
 		}
 		form{
 			margin-left: 10%;
 			margin-right: 10%;
 		}
+		.required:after {
+   			content:" *";
+    		color: red;
+  		}
 		
 	</style>
 </head>
@@ -87,31 +89,20 @@
 		<div id = "accountInfoForm">
 			<h2>Create an Account </h2>
 			<form action="<%= request.getContextPath() %>/register" method="post">
-				<label>
-					First Name
-					<input type="text" name="firstName" placeholder="Enter First Name">
-				</label>
+				<label class="required">First Name</label>
+				<input type="text" name="firstName" placeholder="Enter First Name" required>
 				
+				<label class="required">Last Name</label>
+				<input type="text" name="lastName" placeholder="Enter Last Name" required>
 				
-				<label>
-					Last Name
-					<input type="text" name="lastName" placeholder="Enter Last Name">
-				</label>
+				<label class="required">Email</label>
+				<input type="text" name="emailAddress" placeholder="Enter Email" required>
 				
-				<label>
-					Email
-					<input type="text" name="emailAddress" placeholder="Enter Email">
-				</label>
+				<label class="required">Username</label>
+				<input type="text" name="username" placeholder="Enter Username" required>
 				
-				<label>
-					Username
-					<input type="text" name="username" placeholder="Enter Username">
-				</label>
-				
-				<label>
-					Password
-					<input type="text" name="password" placeholder="Enter Password">
-				</label>
+				<label class="required">Password</label>
+				<input type="password" name="password" placeholder="Enter Password" required>
 				
 				<details>
 					<summary>Requirements</summary>
@@ -120,10 +111,8 @@
 				</details>
 				
 				<br>
-				<label>
-					Confirm Password
-					<input type="text" placeholder="Re-enter Password">
-				</label>
+				<label class="required">Confirm Password</label>
+				<input type="password" placeholder="Re-enter Password" required>
 				
 				<input type="submit" value="Create Account"/>
 			</form>
