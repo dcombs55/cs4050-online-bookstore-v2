@@ -115,10 +115,12 @@
   LoginDao loginDao = new LoginDao();
    boolean status = loginDao.validate(login);
    if (status) {
-       	out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
-   }
-   if(status && login.getUsername().equals("admin") && login.getPassword().equals("admin")){
-	   response.sendRedirect("admin_hp.html");
+	   if(login.getUsername().equals("admin") && login.getPassword().equals("admin")){
+		   response.sendRedirect("admin_hp.html");
+	   }
+	   else{
+       		out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
+	   }
    }
    else{
 	   response.sendRedirect("invalid.jsp");
@@ -128,9 +130,7 @@
 	<main>
 		<div class="navbar">
 			<a class ="active" href = "homepage.html">HOME</a>
-			<a href = "login.html">LOGIN</a>
-			<a href = "registration.html">REGISTER</a>
-			<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
+			<a href = "edit_profile.html">EDIT PROFILE</a>
 			<a href = "Logout.jsp">LOGOUT</a>
 			<div class ="search">
 				<form action="/booksearch.php">	
