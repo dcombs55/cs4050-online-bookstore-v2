@@ -73,22 +73,67 @@
    			content:" *";
     		color: red;
   		}
+  		#password_confirm_error, #password_error, #email_error
+  		{
+  			color:red;
+  		}
 		
 	</style>
 </head>
 <body>
+
+	<script type="text/javascript">
+		function checkPassword(str){
+			var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+			return re.test(str);
+		}
+		
+		function validateForm(){
+			var emailAddress = document.register.emailAddress;
+			var password = document.register.password;
+			var confirmPassword = document.register.confirmPassword;
+			var password_confirm_error = document.getElementById('password_confirm_error');
+			var password_error = document.getElementById('password_error');
+			var email_error = document.getElementById("email_error");
+			
+			var atposition = emailAddress.value.indexOf("@");
+			var dotposition = emailAddress.value.indexOf(".");
+			if (atposition < 1 || dotposition < atposition+2 || dotposition+2 >= emailAddress.value.length){  
+				emailAddress.style.border = "1px solid red";
+				email_error.innerHTML = "Please enter a valid e-mail address";  
+				return false;  
+			} 
+			
+			if(password.value == confirmPassword.value){
+				if(!checkPassword(password.value)){
+					password.style.border = "1px solid red";
+					password_error.innerHTML = "Password entered is not valid!";
+					return false;
+				}
+				else{
+					return true;
+				}
+			}else{
+				password.style.border = "1px solid red";
+				confirmPassword.style.border = "1px solid red";
+				password_confirm_error.innerHTML = "Passwords do not match!";
+				return false;
+			}	
+		}
+	</script>
 	
 	<h1>WASHINGTON T. BOOKSTORE</h1>
 	<div class="navbar">
 		<a href = "homepage.html">HOME</a>
 		<a href = "login.html">LOGIN</a>
-		<a class ="active" href = "registration.html">REGISTER</a>
+		<a class ="active" href = "registration.jsp">REGISTER</a>
 		<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
 	</div>
 	<main>
+	${errors}
 		<div id = "accountInfoForm">
 			<h2>Create an Account </h2>
-			<form action="<%= request.getContextPath() %>/register" method="post">
+			<form name="register" action="${pageContext.request.contextPath}/register" onsubmit="return validateForm()" method="post">
 				<label class="required">First Name</label>
 				<input type="text" name="firstName" placeholder="Enter First Name" required>
 				
@@ -97,12 +142,14 @@
 				
 				<label class="required">Email</label>
 				<input type="text" name="emailAddress" placeholder="Enter Email" required>
+				<div id="email_error"></div>
 				
 				<label class="required">Username</label>
 				<input type="text" name="username" placeholder="Enter Username" required>
 				
 				<label class="required">Password</label>
 				<input type="password" name="password" placeholder="Enter Password" required>
+				<div id="password_error"><br/></div>
 				
 				<details>
 					<summary>Requirements</summary>
@@ -112,7 +159,8 @@
 				
 				<br>
 				<label class="required">Confirm Password</label>
-				<input type="password" placeholder="Re-enter Password" required>
+				<input type="password" name="confirmPassword" placeholder="Re-enter Password" required>
+				<div id="password_confirm_error"></div>
 				
 				<input type="submit" value="Create Account"/>
 			</form>
@@ -123,7 +171,7 @@
 			<!-- <a href = "confirmation.html"><button>Create Account</button></a> -->
 			<p><a style="color:black" href="homepage.html">Cancel</a></p>
 		</div>
-	<main>
+	</main>
 
 </body>
 </html>
