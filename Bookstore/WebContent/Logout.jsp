@@ -117,7 +117,7 @@ login.setPassword("");
 		<div class="navbar">
 			<a class ="active" href = "homepage.html">HOME</a>
 			<a href = "login.html">LOGIN</a>
-			<a href = "registration.html">REGISTER</a>
+			<a href = "registration.jsp">REGISTER</a>
 			<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
 			<div class ="search">
 				<form action="/booksearch.php">	
