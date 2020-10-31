@@ -37,9 +37,13 @@ public class CustomerServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
         String emailAddress = request.getParameter("emailAddress");
         
-        if(confirmPassword != password) {
-        	response.sendRedirect("registration.jsp");
-        }else {
+//        if(confirmPassword != password) {
+//        	System.out.println(confirmPassword);
+//        	System.out.println(password);
+//        	HttpSession session = request.getSession();
+//        	session.setAttribute("errors", "Passwords do not match!");
+//        	response.sendRedirect("registration.jsp");
+//        }else {
         	Customer customer = new Customer();
             customer.setFirstName(firstName);
             customer.setLastName(lastName);
@@ -48,14 +52,20 @@ public class CustomerServlet extends HttpServlet {
             customer.setEmailAddress(emailAddress);
             
             try {
-                customerDao.registerCustomer(customer);
+            	if(customerDao.checkCustomerUsername(customer)) {
+            		customerDao.registerCustomer(customer);
+                    response.sendRedirect("confirmation.jsp");
+            	}
+            	else {
+            		HttpSession session = request.getSession();
+                	session.setAttribute("errors", "Username is taken");
+                	response.sendRedirect("registration.jsp");
+            	} 
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            
-            response.sendRedirect("confirmation.jsp");
-       }
+//       }
         
 
         //Setting up credentials to send confirmation email

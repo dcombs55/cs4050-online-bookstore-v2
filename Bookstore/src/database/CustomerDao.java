@@ -41,6 +41,33 @@ public class CustomerDao {
 		return result;
 	}
 	
+	public boolean checkCustomerUsername (Customer customer) throws ClassNotFoundException{
+		String CHECK_USERNAME_SQL = "SELECT * FROM Bookstore.Customer WHERE UserID=?;";
+		
+		ResultSet result;
+		boolean validUsername = false;
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		try (Connection connection = DriverManager
+			.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+				
+			PreparedStatement preparedStatement = connection.prepareStatement(CHECK_USERNAME_SQL)){
+			preparedStatement.setString(1, customer.getUsername());
+			
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeQuery();
+			if(!result.next()) {
+				validUsername = true;
+			}
+			
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		
+		return validUsername;
+	}
+	
 	private void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
