@@ -7,7 +7,7 @@
 <title>Washington T. Bookstore</title>
 	<style>
 		body{
-			background-color: #000000;
+			background-color: #FFFFFF;
 			font-family: Arial, Verdana, Helvetica;
 		}
 		.navbar{
@@ -80,7 +80,7 @@
 			font-weight: bold;
 		}
 		#author {
-			color:#FFC370
+			color:#BF0600
 		}
 		#isbn {
 			font-size: 10px;

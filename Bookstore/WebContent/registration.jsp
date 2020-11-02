@@ -5,7 +5,8 @@
 	<title>Registration Page</title>
 	<style>
 		body{
-			background-color: #000000;
+			background-color: #FFFFFFF;
+			background-image: url('book.jpg');
 			font-family: Arial, Verdana, Helvetica;
 		}
 		.navbar{

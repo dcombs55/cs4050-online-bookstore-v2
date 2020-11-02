@@ -9,6 +9,7 @@ public class Customer implements Serializable {
     private String username;
     private String password;
     private String emailAddress;
+    private String creditCard;
     
     public String getFirstName() {
         return firstName;
@@ -39,5 +40,11 @@ public class Customer implements Serializable {
     }
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+    public String getCreditCard() {
+    	return creditCard;
+    }
+    public void setCreditCard(String creditCard) {
+    	this.creditCard = creditCard;
     }
 }

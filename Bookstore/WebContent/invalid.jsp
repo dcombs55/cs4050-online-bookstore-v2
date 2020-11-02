@@ -135,8 +135,7 @@ body {
 			type="submit" value="Login"><br>
 		<br><a href="reset.jsp"><button type="button">Reset Password</button></a><br>
 		<br> <label for="create">Don't have an account?</label><br>
-		<a href="registration.html"><button type="button">Create
-				New Account</button></a>
+		<a href="registration.html"><button type="button">Create New Account</button></a>
 	</form>
 	<div id="myModal" class="modal">
 	
