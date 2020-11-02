@@ -75,12 +75,17 @@
 			margin-left: 10%;
 			margin-right: 10%;
 		}
+		#server_errors{
+			margin-left: 10%;
+			margin-right: 10%;
+			width: 80%;
+			margin-top: 20px;
+		}
 		.required:after {
    			content:" *";
     		color: red;
   		}
-  		#password_confirm_error, #password_error, #email_error
-  		{
+  		.errors{
   			color:red;
   		}
 		
@@ -101,6 +106,9 @@
 			var password_confirm_error = document.getElementById('password_confirm_error');
 			var password_error = document.getElementById('password_error');
 			var email_error = document.getElementById("email_error");
+			password_confirm_error.innerHTML = "";
+			password_error.innerHTML = "";
+			email_error.innerHTML = "";
 			
 			var atposition = emailAddress.value.indexOf("@");
 			var dotposition = emailAddress.value.indexOf(".");
@@ -136,7 +144,7 @@
 		<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
 	</div>
 	<main>
-	${errors}
+	<div class="errors" id="server_errors">${errors}</div>
 		<div id = "accountInfoForm">
 			<h2>Create an Account </h2>
 			<form name="register" action="${pageContext.request.contextPath}/register" onsubmit="return validateForm()" method="post">
@@ -148,14 +156,14 @@
 				
 				<label class="required">Email</label>
 				<input type="text" name="emailAddress" placeholder="Enter Email" required>
-				<div id="email_error"></div>
+				<div class="errors" id="email_error"></div>
 				
 				<label class="required">Username</label>
 				<input type="text" name="username" placeholder="Enter Username" required>
 				
 				<label class="required">Password</label>
 				<input type="password" name="password" placeholder="Enter Password" required>
-				<div id="password_error"><br/></div>
+				<div class="errors" id="password_error"><br/></div>
 				
 				<details>
 					<summary>Requirements</summary>
@@ -166,7 +174,7 @@
 				<br>
 				<label class="required">Confirm Password</label>
 				<input type="password" name="confirmPassword" placeholder="Re-enter Password" required>
-				<div id="password_confirm_error"></div>
+				<div class="errors" id="password_confirm_error"></div>
 				
 				<input type="submit" value="Create Account"/>
 			</form>

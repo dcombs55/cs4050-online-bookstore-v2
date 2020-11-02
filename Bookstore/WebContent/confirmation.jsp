@@ -83,7 +83,7 @@ pageEncoding="ISO-8859-1"%>
 	</div>
 	<main>
 		<div id = "confirmationDialog">
-			<h1>User successfully registered!</h1>
+			<h1>You have been successfully registered!</h1>
 			<h2>Thank you for creating an account with Washington T. Bookstore!</h2>
 			<p>To finish setting up your account, you just need to confirm the email that was sent to you.</p>
 		</div>
@@ -92,7 +92,7 @@ pageEncoding="ISO-8859-1"%>
 		<div id="confirm">
 			<button>Confirm Email</button>
 		</div>
-	<main>
+	</main>
 
 </body>
 </html>

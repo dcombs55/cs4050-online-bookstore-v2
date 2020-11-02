@@ -29,7 +29,10 @@ public class CustomerServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-
+    	
+    	if(request.getAttribute("errors") != null) {
+			request.removeAttribute("errors");
+		}
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String username = request.getParameter("username");
@@ -37,36 +40,43 @@ public class CustomerServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
         String emailAddress = request.getParameter("emailAddress");
         
-//        if(confirmPassword != password) {
-//        	System.out.println(confirmPassword);
-//        	System.out.println(password);
-//        	HttpSession session = request.getSession();
-//        	session.setAttribute("errors", "Passwords do not match!");
-//        	response.sendRedirect("registration.jsp");
-//        }else {
-        	Customer customer = new Customer();
-            customer.setFirstName(firstName);
-            customer.setLastName(lastName);
-            customer.setUsername(username);
-            customer.setPassword(password);
-            customer.setEmailAddress(emailAddress);
-            
-            try {
-            	if(customerDao.checkCustomerUsername(customer)) {
-            		customerDao.registerCustomer(customer);
-                    response.sendRedirect("confirmation.jsp");
-            	}
-            	else {
-            		HttpSession session = request.getSession();
-                	session.setAttribute("errors", "Username is taken");
-                	response.sendRedirect("registration.jsp");
-            	} 
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-//       }
+    	Customer customer = new Customer();
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+        customer.setUsername(username);
+        customer.setPassword(password);
+        customer.setEmailAddress(emailAddress); 
         
+        try {
+        	boolean validUsername = customerDao.checkCustomerUsername(customer);
+            boolean validEmail = customerDao.checkCustomerEmail(customer);
+            boolean passwordsMatch = request.getParameter(password) == request.getParameter(confirmPassword);
+            
+        	if(validUsername && validEmail && passwordsMatch) {
+        		customerDao.registerCustomer(customer);
+                response.sendRedirect("confirmation.jsp");
+        	}
+        	else {
+        		HttpSession session = request.getSession();
+        		String errors = "Errors: <ul>";
+        		if(!validUsername) {
+        			errors = errors + "<li>This username is already taken. Please choose another username.</li>";
+        		}
+        		if(!validEmail) {
+        			errors = errors + "<li>This email address is already being used.</li>";
+        		}
+        		if(!passwordsMatch) {
+        			errors = errors + "<li>Passwords do not match!</li>";
+        		}
+        		errors = errors + "</ul>";
+            	session.setAttribute("errors", errors);
+            	response.sendRedirect("registration.jsp");
+        	} 
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    
 
         //Setting up credentials to send confirmation email
 //        String result;

@@ -68,6 +68,33 @@ public class CustomerDao {
 		return validUsername;
 	}
 	
+	public boolean checkCustomerEmail (Customer customer) throws ClassNotFoundException{
+		String CHECK_EMAIL_SQL = "SELECT * FROM Bookstore.Customer WHERE Email=?;";
+		
+		ResultSet result;
+		boolean validEmail = false;
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		try (Connection connection = DriverManager
+			.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+				
+			PreparedStatement preparedStatement = connection.prepareStatement(CHECK_EMAIL_SQL)){
+			preparedStatement.setString(1, customer.getEmailAddress());
+			
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeQuery();
+			if(!result.next()) {
+				validEmail = true;
+			}
+			
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		
+		return validEmail;
+	}
+	
 	private void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
