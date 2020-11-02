@@ -5,11 +5,12 @@
 	<title>Registration Page</title>
 	<style>
 		body{
+			background-color: #000000;
 			font-family: Arial, Verdana, Helvetica;
 		}
 		.navbar{
-			background-color: #000000;
-			background-image: linear-gradient(to top, rgba(255,255,255,0.5), rgba(255,255,255,0) 50%);
+			background-color: #FF9505;
+			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
 			color: #FFFFFF;
 			margin: auto;
 			margin-bottom: 50px;
@@ -24,11 +25,16 @@
 			color: white;
 		}
 		.navbar a.active {
-			background-color: lightgrey;
+			background-color: #FFC370;
 			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
 			color: black;
 		}
+		.navbar input[type=text] {
+			padding: 10px;
+			border: none;
+		}
 		h1{
+			color: #FFA21F;
 			margin-left: 5px;
 		}
 		a:hover{
