@@ -49,7 +49,7 @@ public class CreditCardEncryption {
 			} catch (SQLException e) {
 				printSQLException(e);
 			}
-		
+		customer.setCreditCard(creditCard);
 		return result;
 	}
 	
