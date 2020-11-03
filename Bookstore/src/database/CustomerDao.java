@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import bean.Customer;
+import bean.CreditCard; 
+import bean.Address;
 
 public class CustomerDao {
 	
@@ -32,6 +34,66 @@ public class CustomerDao {
 			preparedStatement.setString(6, customer.getPassword());
 			preparedStatement.setInt(7, customer.getActivateCode());
 			preparedStatement.setString(8, "Inactive");
+			
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeUpdate();
+			
+			setCustomerAddress(customer.getAddress());
+			setCustomerCreditCard(customer.getUsername(), customer.getCreditCard());
+			
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		
+		return result;
+	}
+	
+	public int setCustomerAddress(Address customerAddress) throws ClassNotFoundException{
+		String INSERT_ADDRESS_SQL = "INSERT INTO Bookstore.Address" + 
+				" (Street, City, State, Customer_UserID) VALUES " +
+				" (?, ?, ?, ?);";
+		
+		int result = 0;
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		try (Connection connection = DriverManager
+			.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+				
+			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ADDRESS_SQL)){
+			preparedStatement.setString(1, customerAddress.getStreet());
+			preparedStatement.setString(2, customerAddress.getCity());
+			preparedStatement.setString(3, customerAddress.getState());
+			preparedStatement.setString(4, customerAddress.getCustomerUserId());
+			
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		
+		return result;
+	}
+	
+	public int setCustomerCreditCard(String username, CreditCard customerCard) throws ClassNotFoundException{
+		String INSERT_CARD_SQL = "INSERT INTO Bookstore.CreditCard" + 
+				" (CardNum, CardType, ExpDate, UserID, CCV) VALUES " +
+				" (?, ?, ?, ?, ?);";
+		
+		int result = 0;
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		try (Connection connection = DriverManager
+			.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+				
+			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CARD_SQL)){
+			preparedStatement.setString(1, customerCard.getCardNum());
+			preparedStatement.setString(2, customerCard.getCardType());
+			preparedStatement.setString(3, customerCard.getExpDate());
+			preparedStatement.setString(4, username);
+			preparedStatement.setString(5, customerCard.getCCV());
 			
 			System.out.println(preparedStatement);
 			result = preparedStatement.executeUpdate();

@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 
 import database.CustomerDao;
 import bean.Customer;
+import bean.Address;
+import bean.CreditCard;
 
 @WebServlet("/register")
 public class CustomerServlet extends HttpServlet {
@@ -52,6 +54,20 @@ public class CustomerServlet extends HttpServlet {
         customer.setEmailAddress(emailAddress); 
         customer.setPhoneNumber(phoneNumber);
         customer.setActivateCode(activateCode);
+        
+        Address address = new Address();
+        address.setStreet("");
+        address.setCity("");
+        address.setState("");
+        address.setCustomerUserId(username);
+        customer.setAddress(address);
+        
+        CreditCard card = new CreditCard();
+        card.setCardNum("");
+        card.setCardType("");
+        card.setCCV("");
+        card.setExpDate("");
+        customer.setCreditCard(card);
         
         try {
         	boolean validUsername = customerDao.checkCustomerUsername(customer);

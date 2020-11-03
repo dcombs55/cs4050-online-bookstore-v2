@@ -30,7 +30,8 @@ public class CreditCard implements Serializable {
     public String getCCV() {
     	return CCV;
     }
-    public void setCCV(String CCV) {
-    	this.CCV = CCV;
-    }
+	public void setCCV(String cCV) {
+		// TODO Auto-generated method stub	
+		this.CCV = cCV;
+	}
 }

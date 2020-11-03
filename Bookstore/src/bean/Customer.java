@@ -12,6 +12,7 @@ public class Customer implements Serializable {
     private String phoneNumber;
     private int activateCode;
     private CreditCard creditCard;
+    private Address address;
 
     public String getFirstName() {
         return firstName;
@@ -62,5 +63,12 @@ public class Customer implements Serializable {
     }
     public void setCreditCard(CreditCard creditCard) {
     	this.creditCard = creditCard;
+    }
+    
+    public Address getAddress() {
+    	return address;
+    }
+    public void setAddress(Address address) {
+    	this.address = address;
     }
 }
