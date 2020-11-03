@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
     <%@page import="database.*"%>
+    <%@page import="java.util.*"%>
+    <%@page import="javax.*"%>
         <!DOCTYPE html>
         <html>
 
@@ -117,9 +119,12 @@
             <jsp:setProperty property="*" name="login" />
 
             <%
+            HttpSession session1 = request.getSession();
   LoginDao loginDao = new LoginDao();
    boolean status = loginDao.validate(login);
    if (status) {
+   		String user = login.getUsername();
+       session1.setAttribute("username", user);
 	   if((login.getUsername().equals("admin") || login.getUsername().equals("admin@admin.com")) && login.getPassword().equals("admin")){
 		   response.sendRedirect("admin_hp.html");
 	   }
@@ -135,7 +140,7 @@
 	<main>
 		<div class="navbar">
 			<a class ="active" href = "homepage.html">HOME</a>
-			<a href = "edit_profile.html">EDIT PROFILE</a>
+			<a href = "edit_profile.jsp">EDIT PROFILE</a>
 			<a href = "Logout.jsp">LOGOUT</a>
 			<div class ="search">
 				<form action="/booksearch.php">	
