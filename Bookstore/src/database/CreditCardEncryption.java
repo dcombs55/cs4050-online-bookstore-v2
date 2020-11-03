@@ -10,22 +10,29 @@ import bean.CreditCard;
 
 public class CreditCardEncryption {
 	/*	COMMAND TO DECRYPT -------------------------------------------------------------------------------------
-	 * 		String DECRYPT_CARDNUM = "replace(cast(aes_decrypt" +
-	 *		"(CardNum, '\" + key + \"') as char(100)), Salt, ''), Salt from Bookstore.CreditCard";
+		String salt = customer.getUsername() + "NaCl";
+	  	String DECRYPT_CARDNUM = "replace(cast(aes_decrypt" +
+	 			"(CardNum, '\" + key + \"') as char(100)), salt, ''), salt from Bookstore.CreditCard";
+	 	String DECRYPT_CCV = "replace(cast(aes_decrypt" +
+	 			"(CCV, '\" + key + \"') as char(100)), salt, ''), salt from Bookstore.CreditCard";
 	 */
 	public int addCreditCard(Customer customer, CreditCard creditCard) throws ClassNotFoundException{
 		int result = 0;
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cardNum = creditCard.getCardNum();
+		String CCV = creditCard.getCCV();
 		
-		String salt = customer.getUsername() + "NaCl";
+		String salt = customer.getUsername() + "NaCl"; // This is the universal salt formula for all cards
 		String key = "123OpenSesame"; // This will always be the key
 		
 		String INSERT_CREDIT_SQL = "INSERT INTO Bookstore.CreditCard" + 
-				" (UserID, CardNum, CardType, ExpDate, Salt) VALUES " +
+				" (UserID, CardNum, CardType, ExpDate, CCV) VALUES " +
 				" (?, ?, ?, ?, ?);";
 		String ENCRYPT_CARDNUM = "aes_encrypt" +
 				"(concat('" + cardNum + "', '" + salt + "'), '" +
+				key + "');";
+		String ENCRYPT_CCV = "aes_encrypt" +
+				"(concat('" + CCV + "', '" + salt + "'), '" +
 				key + "');";
 		
 		try (Connection connection = DriverManager
@@ -35,7 +42,7 @@ public class CreditCardEncryption {
 				preparedStatement.setString(2, ENCRYPT_CARDNUM);
 				preparedStatement.setString(3, creditCard.getCardType());
 				preparedStatement.setString(4, creditCard.getExpDate());
-				preparedStatement.setString(5, salt);
+				preparedStatement.setString(5, ENCRYPT_CCV);
 				
 				System.out.println(preparedStatement);
 				result = preparedStatement.executeUpdate();
