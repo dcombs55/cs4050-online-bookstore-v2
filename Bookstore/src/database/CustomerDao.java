@@ -13,8 +13,8 @@ public class CustomerDao {
 	
 	public int registerCustomer(Customer customer) throws ClassNotFoundException{
 		String INSERT_CUSTOMERS_SQL = "INSERT INTO Bookstore.Customer" + 
-				" (UserID, FirstName, LastName, Email, Password, AccountState) VALUES " +
-				" (?, ?, ?, ?, ?, ?);";
+				" (UserID, FirstName, LastName, Email, PhoneNumber, Password, ActivateCode, AccountState) VALUES " +
+				" (?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		int result = 0;
 		
@@ -28,8 +28,10 @@ public class CustomerDao {
 			preparedStatement.setString(2, customer.getFirstName());
 			preparedStatement.setString(3, customer.getLastName());
 			preparedStatement.setString(4, customer.getEmailAddress());
-			preparedStatement.setString(5, customer.getPassword());
-			preparedStatement.setString(6, "Active");
+			preparedStatement.setString(5, customer.getPhoneNumber());
+			preparedStatement.setString(6, customer.getPassword());
+			preparedStatement.setInt(7, customer.getActivateCode());
+			preparedStatement.setString(8, "Inactive");
 			
 			System.out.println(preparedStatement);
 			result = preparedStatement.executeUpdate();
@@ -93,6 +95,59 @@ public class CustomerDao {
 		}
 		
 		return validEmail;
+	}
+	
+	public boolean checkActivationCode (String username, String emailAddress, int enteredCode) throws ClassNotFoundException{
+		String CHECK_EMAIL_SQL = "SELECT * FROM Bookstore.Customer WHERE UserID=? AND Email=? AND ActivateCode=?;";
+		
+		ResultSet result;
+		boolean validActivationCode = false;
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		try (Connection connection = DriverManager
+			.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+				
+			PreparedStatement preparedStatement = connection.prepareStatement(CHECK_EMAIL_SQL)){
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, emailAddress);
+			preparedStatement.setInt(3, enteredCode);
+			
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeQuery();
+			if(result.next()) {
+				validActivationCode = true;
+			}
+			
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		
+		return validActivationCode;
+	}
+	
+	public void updateAccountState(String username, String emailAddress, String accountState) throws ClassNotFoundException{
+		String UPDATE_ACCOUNT_STATE_SQL = "UPDATE Bookstore.Customer SET AccountState=? WHERE UserID=? AND Email=?;";
+		
+		int result;
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		try (Connection connection = DriverManager
+			.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+				
+			PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ACCOUNT_STATE_SQL)){
+			preparedStatement.setString(1, accountState);
+			preparedStatement.setString(2, username);
+			preparedStatement.setString(3, emailAddress);
+			
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		
 	}
 	
 	private void printSQLException(SQLException ex) {

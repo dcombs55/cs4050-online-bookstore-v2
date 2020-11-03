@@ -10,9 +10,6 @@ import javax.servlet.http.*;
 import javax.servlet.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import database.CustomerDao;
 import bean.Customer;
@@ -30,8 +27,9 @@ public class CustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
     	
-    	if(request.getAttribute("errors") != null) {
-			request.removeAttribute("errors");
+    	HttpSession session = request.getSession();
+    	if(session.getAttribute("errors") != null) {
+			session.removeAttribute("errors");
 		}
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -39,6 +37,12 @@ public class CustomerServlet extends HttpServlet {
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
         String emailAddress = request.getParameter("emailAddress");
+        String phoneNumber = request.getParameter("phone");
+        phoneNumber = phoneNumber.replaceAll("-", "");
+        
+        Random r = new Random();
+        int activateCode = r.nextInt(8999 + 1) + 1000;
+        System.out.println(activateCode);
         
     	Customer customer = new Customer();
         customer.setFirstName(firstName);
@@ -46,18 +50,24 @@ public class CustomerServlet extends HttpServlet {
         customer.setUsername(username);
         customer.setPassword(password);
         customer.setEmailAddress(emailAddress); 
+        customer.setPhoneNumber(phoneNumber);
+        customer.setActivateCode(activateCode);
         
         try {
         	boolean validUsername = customerDao.checkCustomerUsername(customer);
             boolean validEmail = customerDao.checkCustomerEmail(customer);
-            boolean passwordsMatch = request.getParameter(password) == request.getParameter(confirmPassword);
+            boolean passwordsMatch = password.equals(confirmPassword);
             
         	if(validUsername && validEmail && passwordsMatch) {
         		customerDao.registerCustomer(customer);
+        		session = request.getSession();
+        		session.setMaxInactiveInterval(600);
+        		session.setAttribute("username", username);
+        		session.setAttribute("emailAddress", emailAddress);
                 response.sendRedirect("confirmation.jsp");
         	}
         	else {
-        		HttpSession session = request.getSession();
+        		session = request.getSession();
         		String errors = "Errors: <ul>";
         		if(!validUsername) {
         			errors = errors + "<li>This username is already taken. Please choose another username.</li>";

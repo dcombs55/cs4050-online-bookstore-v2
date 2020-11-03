@@ -159,6 +159,9 @@
 				<input type="text" name="emailAddress" placeholder="Enter Email" required>
 				<div class="errors" id="email_error"></div>
 				
+				<label class="required">Phone Number</label>
+				<input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Enter Phone Number (XXX-XXX-XXXX)" required>
+				
 				<label class="required">Username</label>
 				<input type="text" name="username" placeholder="Enter Username" required>
 				

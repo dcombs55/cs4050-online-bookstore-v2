@@ -60,14 +60,23 @@ pageEncoding="ISO-8859-1"%>
 		#confirmationDialog{
 			text-align: center;
 		}
-		label, input{
-			display: block;
+		input[type="submit"]{
+			background-color: #000000;
+			border: none;
+			color: white;
+			padding: 16px 32px;
+			text-decoration: none;
+			margin-left: 6.5px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			cursor: pointer;
+		}
+		form{
+			margin-left: 38%;
+			text-align:center;
 		}
 		input{
-			margin-top: 2px;
-			width: 100%;
-			height: 25px;
-			padding-left: 7.5px;
+			display: block;
 		}
 		
 	</style>
@@ -85,12 +94,14 @@ pageEncoding="ISO-8859-1"%>
 		<div id = "confirmationDialog">
 			<h1>You have been successfully registered!</h1>
 			<h2>Thank you for creating an account with Washington T. Bookstore!</h2>
-			<p>To finish setting up your account, you just need to confirm the email that was sent to you.</p>
-		</div>
-
-		<br>
-		<div id="confirm">
-			<button>Confirm Email</button>
+			<p>To finish setting up your account, you need to activate it by entering below the code that was included in your confirmation email.</p>
+			<div id="activateForm">
+				<form name="activateAccount" action="${pageContext.request.contextPath}/activate" method="post">
+					<input type="number" name="activateCode">
+					<input type="submit" value="Activate Account">
+				</form>
+			</div>
+			
 		</div>
 	</main>
 
