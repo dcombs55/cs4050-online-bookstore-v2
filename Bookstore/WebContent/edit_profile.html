@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Create An Account</title>
+<title>Edit Profile</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-	header {
-  		text-align: center;
-  		font-size: 35px;
-  		height: 25px;
-  		color: #000000;
-  		margin-bottom: 75px;
-	}
 	body{
-		background-image: url('book.jpg');
-		font-family:verdana;
-	}
+			background-color: #FFFFFF;
+			font-family: Arial, Verdana, Helvetica;
+		}
+		.navbar{
+			background-color: #FF9505;
+			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
+			color: #FFFFFF;
+			margin: auto;
+			margin-bottom: 50px;
+			overflow: hidden;
+		}
+		.navbar a {
+			float: left;
+			display: block;
+			text-align: center;
+			padding: 15px 15px;
+			text-decoration: none;
+			color: white;
+		}
+		.navbar a.active {
+			background-color: #FFC370;
+			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
+			color: black;
+		}
+		h1{
+			color: #FFA21F;
+			margin-left: 5px;
+		}
+		h2{
+			color: black;
+			margin-left:5px;
+		}
 	main{
 		width: 45%;
 		margin: auto;
@@ -52,7 +74,19 @@
 </head>
 <body>
 <header>
-	<h1>Edit Your Profile!</h1>
+	<h1>WASHINGTON T. BOOKSTORE</h1>
+	<div class="navbar">
+			<a class ="active" href = "homepage.html">HOME</a>
+			<a href = "edit_profile.html">EDIT PROFILE</a>
+			<a href = "Logout.jsp">LOGOUT</a>
+			<div class ="search">
+				<form action="/booksearch.php">	
+					<input type="text" placeholder="Search for books..." name="search">
+					<button formaction="search.html" type="submit">&#128269;</button>
+				</form>
+			</div>
+		</div>
+	<h2>Edit Your Profile!</h2>
 </header>
 <main>
 	<form>

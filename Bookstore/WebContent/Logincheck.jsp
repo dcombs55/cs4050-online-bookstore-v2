@@ -8,11 +8,12 @@
         <title>Washington T. Bookstore</title>
 	<style>
 		body{
+			background-color: #FFFFFF;
 			font-family: Arial, Verdana, Helvetica;
 		}
 		.navbar{
-			background-color: #000000;
-			background-image: linear-gradient(to top, rgba(255,255,255,0.5), rgba(255,255,255,0) 50%);
+			background-color: #FF9505;
+			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
 			color: #FFFFFF;
 			margin: auto;
 			margin-bottom: 50px;
@@ -27,7 +28,7 @@
 			color: white;
 		}
 		.navbar a.active {
-			background-color: lightgrey;
+			background-color: #FFC370;
 			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
 			color: black;
 		}
@@ -52,10 +53,11 @@
 			background-color: #DFDFDF;
 		}
 		h1{
+			color: #FFA21F;
 			margin-left: 5px;
 		}
 		#feat {
-			background-image: linear-gradient(to left, rgba(80,80,80,0), rgba(80,80,80,1));
+			background-image: linear-gradient(to left, rgba(255,149,5,0), rgba(255,149,5,1));
 			height: 25px;
 			width: 200px;
 			padding: 5px 10px 5px;
@@ -79,7 +81,7 @@
 			font-weight: bold;
 		}
 		#author {
-			color:#424242
+			color:#BF0600
 		}
 		#isbn {
 			font-size: 10px;
@@ -87,11 +89,11 @@
 			color:grey;
 		}
 		a:hover{
-			background-color: #DCDCDC;
+			background-color: #FFC370;
 		}
 		.catalog{
-			background-color: black;
-			background-image: linear-gradient(to top, rgba(65,40,255,0.5), rgba(65,40,255,0) 150%);
+			background-color: #FFA21F;
+			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 150%);
   			color: white;
   			cursor: pointer;
   			display: inline-block;
