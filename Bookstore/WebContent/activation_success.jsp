@@ -96,15 +96,9 @@ pageEncoding="ISO-8859-1"%>
 		<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
 	</div>
 	<main>
-		<div id = "activationDialog">
-			<h1>You have been successfully registered!</h1>
-			<h2>Thank you for creating an account with Washington T. Bookstore!</h2>
-			<p>To finish setting up your account, you need to activate it by entering below the code that was included in your confirmation email.</p>
 			<div id="activateForm">
-				<div class="errors">${errors}</div>
-				<form name="activateAccount" action="${pageContext.request.contextPath}/activate" method="post">
-					<input type="number" name="activateCode">
-					<input type="submit" value="Activate Account">
+				<a href = "homepage.html"><button type = "button">Go Shopping!/button></a>
+				<a href = "edit_profile.jsp"><button type = "button">Edit Profile!</button></a>
 				</form>
 			</div>
 			
