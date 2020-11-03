@@ -112,7 +112,7 @@
 			email_error.innerHTML = "";
 			
 			var atposition = emailAddress.value.indexOf("@");
-			var dotposition = emailAddress.value.indexOf(".");
+			var dotposition = emailAddress.value.substring(atposition)indexOf(".");
 			if (atposition < 1 || dotposition < atposition+2 || dotposition+2 >= emailAddress.value.length){  
 				emailAddress.style.border = "1px solid red";
 				email_error.innerHTML = "Please enter a valid e-mail address";  

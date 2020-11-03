@@ -64,8 +64,61 @@ public class CustomerServlet extends HttpServlet {
         		session.setMaxInactiveInterval(600);
         		session.setAttribute("username", username);
         		session.setAttribute("emailAddress", emailAddress);
+        		
+    		    //Setting up credentials to send confirmation email
+    		    String result;
+    		    String from = "washingtont.bookstore@gmail.com"; //change name to sendingEmail
+    		    String to = emailAddress; //change name to recipientEmail
+    		   
+    		    Properties properties = new Properties();
+    		    properties.put("mail.smtp.auth", "true"); //sets if the email needs to be authenticated
+    		    properties.put("mail.smtp.starttls.enable", "true");
+    		    properties.put("mail.smtp.host", "smtp.gmail.com"); //your email host
+    		    properties.put("mail.smtp.port", "587"); //the port of your email
+    		    
+    		    String myAccountEmail = "washingtont.bookstore@gmail.com";
+    		    String password1 = "softwareengr2";
+    		    //when using gMail you need to toggle it so that it allows less secure apps to access (fix this later)
+    		    //need to find a way to not include password credentials in code
+    		    
+    		    Session mailSession = Session.getInstance(properties, new Authenticator() {
+    		    	@Override
+    		    	protected PasswordAuthentication getPasswordAuthentication() {
+    		    		return new PasswordAuthentication(myAccountEmail, password1);
+    		    	}
+    		    });
+    		    
+    		    try { //sending confirmation email
+    		        // Create a default MimeMessage object.
+    		        MimeMessage message = new MimeMessage(mailSession);
+    		        
+    		        // Set From: header field of the header.
+    		        message.setFrom(new InternetAddress(from));
+    		        
+    		        // Set To: header field of the header.
+    		        message.addRecipient(Message.RecipientType.TO,
+    		                                 new InternetAddress(to));
+    		        // Set Subject: header field
+    		        message.setSubject("Welcome to Washington T. Bookstore!");
+    		        
+    		        // Now set the actual message
+    		        String messageContent = "<h1>Hi " + firstName + ", <h1>"
+    		        		+ "<center><p>Thank you so much for creating an account with Washington T. Bookstore!"
+    		        		+ "<br/>Now you just need to use the verification code below to activate your account:"
+    		        		+ "<br/>" + customer.getActivateCode()+ "</p></center>";
+    		        
+    		        message.setContent(messageContent, "text/html");
+    		        
+    		        // Send message
+    		        Transport.send(message);
+    		        result = "Sent message successfully....";
+    		     } catch (MessagingException mex) {
+    		        mex.printStackTrace();
+    		        result = "Error: unable to send message....";
+    		     }
+        		
                 response.sendRedirect("confirmation.jsp");
-        	}
+        	}//if
         	else {
         		session = request.getSession();
         		String errors = "Errors: <ul>";
@@ -81,58 +134,11 @@ public class CustomerServlet extends HttpServlet {
         		errors = errors + "</ul>";
             	session.setAttribute("errors", errors);
             	response.sendRedirect("registration.jsp");
-        	} 
+        	}//else
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    
-
-        //Setting up credentials to send confirmation email
-//        String result;
-//        String from = ""; //change name to sendingEmail
-//        String to = emailAddress; //change name to recipientEmail
-//   
-//        Properties properties = new Properties();
-//        properties.put("mail.smtp.auth", "true"); //sets if the email needs to be authenticated
-//        properties.put("mail.smtp.starttls.enable", "true");
-//        properties.put("mail.smtp.host", "smtp.gmail.com"); //your email host
-//        properties.put("mail.smtp.port", "587"); //the port of your email
-//        
-//        String myAccountEmail = "";
-//        String password1 = "";
-//        //when using gMail you need to toggle it so that it allows less secure apps to access (fix this later)
-//        
-//        Session mailSession = Session.getInstance(properties, new Authenticator() {
-//        	@Override
-//        	protected PasswordAuthentication getPasswordAuthentication() {
-//        		return new PasswordAuthentication(myAccountEmail, password1);
-//        	}
-//        });
-//        
-//        try { //sending confirmation email
-//            // Create a default MimeMessage object.
-//            MimeMessage message = new MimeMessage(mailSession);
-//            
-//            // Set From: header field of the header.
-//            message.setFrom(new InternetAddress(from));
-//            
-//            // Set To: header field of the header.
-//            message.addRecipient(Message.RecipientType.TO,
-//                                     new InternetAddress(to));
-//            // Set Subject: header field
-//            message.setSubject("This is the Subject Line!");
-//            
-//            // Now set the actual message
-//            message.setText("This is actual message");
-//            
-//            // Send message
-//            Transport.send(message);
-//            result = "Sent message successfully....";
-//         } catch (MessagingException mex) {
-//            mex.printStackTrace();
-//            result = "Error: unable to send message....";
-//         }
-    	        
+ 
     }
 }
