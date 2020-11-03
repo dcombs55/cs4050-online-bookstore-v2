@@ -10,12 +10,11 @@
         <title>Washington T. Bookstore</title>
 	<style>
 		body{
-			background-color: #FFFFFF;
 			font-family: Arial, Verdana, Helvetica;
 		}
 		.navbar{
-			background-color: #FF9505;
-			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
+			background-color: #000000;
+			background-image: linear-gradient(to top, rgba(255,255,255,0.5), rgba(255,255,255,0) 50%);
 			color: #FFFFFF;
 			margin: auto;
 			margin-bottom: 50px;
@@ -30,7 +29,7 @@
 			color: white;
 		}
 		.navbar a.active {
-			background-color: #FFC370;
+			background-color: lightgrey;
 			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
 			color: black;
 		}
@@ -55,14 +54,10 @@
 			background-color: #DFDFDF;
 		}
 		h1{
-			color: #FFA21F;
-			margin-left: 5px;
-		}
-		h2{
 			margin-left: 5px;
 		}
 		#feat {
-			background-image: linear-gradient(to left, rgba(255,149,5,0), rgba(255,149,5,1));
+			background-image: linear-gradient(to left, rgba(80,80,80,0), rgba(80,80,80,1));
 			height: 25px;
 			width: 200px;
 			padding: 5px 10px 5px;
@@ -86,7 +81,7 @@
 			font-weight: bold;
 		}
 		#author {
-			color:#BF0600
+			color:#424242
 		}
 		#isbn {
 			font-size: 10px;
@@ -94,11 +89,11 @@
 			color:grey;
 		}
 		a:hover{
-			background-color: #FFC370;
+			background-color: #DCDCDC;
 		}
 		.catalog{
-			background-color: #FFA21F;
-			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 150%);
+			background-color: black;
+			background-image: linear-gradient(to top, rgba(65,40,255,0.5), rgba(65,40,255,0) 150%);
   			color: white;
   			cursor: pointer;
   			display: inline-block;
@@ -120,16 +115,17 @@
 
             <%
             HttpSession session1 = request.getSession();
-  LoginDao loginDao = new LoginDao();
+            
+          LoginDao loginDao = new LoginDao();
    boolean status = loginDao.validate(login);
    if (status) {
-   		String user = login.getUsername();
+ 	   String user = login.getUsername();
        session1.setAttribute("username", user);
 	   if((login.getUsername().equals("admin") || login.getUsername().equals("admin@admin.com")) && login.getPassword().equals("admin")){
 		   response.sendRedirect("admin_hp.html");
 	   }
 	   else{
-       		out.print("<h2>You have logged in successfully " + login.getUsername() + "!</h2>");
+       		out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
 	   }
    }
    else{
@@ -157,9 +153,9 @@
 				<th><a href = "book_details.html"><div id="book"><img border="0" src="feat3.jpg" width="125" height="200"></div></th>
 			</tr>
 			<tr id ="booktitle">
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book1</a></td>
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book2</a></td>
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book3</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book1</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book2</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book3</a></td>
 			</tr>
 			<tr id ="author">
 				<td><i>By</i> Author</td>
@@ -177,9 +173,9 @@
 				<th><a href = "book_details.html"><div id="book"><img border="0" src="feat6.jpg" width="125" height="200"></div></a></th>
 			</tr>
 			<tr id ="booktitle">
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book4</a></td>
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book5</a></td>
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book6</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book4</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book5</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book6</a></td>
 			</tr>
 			<tr id ="author">
 				<td><i>By</i> Author</td>
@@ -202,9 +198,9 @@
 				<th><a href = "book_details.html"><div id="book"><img border="0" src="best3.jpg" width="125" height="200"></div></a></th>
 			</tr>
 			<tr id ="booktitle">
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book1</a></td>
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book2</a></td>
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book3</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book1</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book2</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book3</a></td>
 			</tr>
 			<tr id ="author">
 				<td><i>By</i> Author</td>
@@ -222,9 +218,9 @@
 				<th><a href = "book_details.html"><div id="book"><img border="0" src="best6.jpg" width="125" height="200"></div></a></th>
 			</tr>
 			<tr id ="booktitle">
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book4</a></td>
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book5</a></td>
-				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book6</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book4</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book5</a></td>
+				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book6</a></td>
 			</tr>
 			<tr id ="author">
 				<td><i>By</i> Author</td>
