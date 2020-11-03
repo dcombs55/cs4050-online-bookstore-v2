@@ -7,6 +7,7 @@ public class CreditCard implements Serializable {
     private String cardNum;
     private String cardType;
     private String expDate;
+    private String CCV;
     
     public String getCardNum() {
         return cardNum;
@@ -25,5 +26,11 @@ public class CreditCard implements Serializable {
     }
     public void setExpDate(String expDate) {
         this.expDate = expDate;
+    }
+    public String getCCV() {
+    	return CCV;
+    }
+    public void setCCV(String CCV) {
+    	this.CCV = CCV;
     }
 }
