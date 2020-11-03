@@ -10,9 +10,9 @@ public class Customer implements Serializable {
     private String password;
     private String emailAddress;
     private String phoneNumber;
-    private String creditCard;
     private int activateCode;
-    
+    private CreditCard creditCard;
+
     public String getFirstName() {
         return firstName;
     }
@@ -43,6 +43,7 @@ public class Customer implements Serializable {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -55,10 +56,11 @@ public class Customer implements Serializable {
     public void setActivateCode(int activateCode) {
         this.activateCode = activateCode;
     }
-    public String getCreditCard() {
+    
+    public CreditCard getCreditCard() {
     	return creditCard;
     }
-    public void setCreditCard(String creditCard) {
+    public void setCreditCard(CreditCard creditCard) {
     	this.creditCard = creditCard;
     }
 }
