@@ -45,9 +45,7 @@ public class AccountActivationServlet extends HttpServlet {
         	}
         	else {
         		session = request.getSession();
-        		String errors = "Errors: <ul>";
-        		errors = errors + "<li>The code entered is invalid. Please try again.</li>";
-        		errors = errors + "</ul>";
+        		String errors = "Error: The code entered is invalid. Please try again.";
             	session.setAttribute("errors", errors);
             	response.sendRedirect("confirmation.jsp");
         	} 

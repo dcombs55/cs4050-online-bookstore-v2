@@ -119,7 +119,7 @@
 				return false;  
 			} 
 			
-			if(password.value == confirmPassword.value){
+			if(password.value === confirmPassword.value){
 				if(!checkPassword(password.value)){
 					password.style.border = "1px solid red";
 					password_error.innerHTML = "Password entered is not valid!";

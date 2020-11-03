@@ -80,7 +80,10 @@ pageEncoding="ISO-8859-1"%>
 		input{
 			display: block;
 		}
-		
+		.errors{
+  			color:red;
+  			margin-bottom: 8px;
+  		}
 	</style>
 </head>
 <body>
@@ -98,6 +101,7 @@ pageEncoding="ISO-8859-1"%>
 			<h2>Thank you for creating an account with Washington T. Bookstore!</h2>
 			<p>To finish setting up your account, you need to activate it by entering below the code that was included in your confirmation email.</p>
 			<div id="activateForm">
+				<div class="errors">${errors}</div>
 				<form name="activateAccount" action="${pageContext.request.contextPath}/activate" method="post">
 					<input type="number" name="activateCode">
 					<input type="submit" value="Activate Account">
