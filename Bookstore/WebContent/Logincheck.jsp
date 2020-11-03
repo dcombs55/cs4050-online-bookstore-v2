@@ -56,6 +56,9 @@
 			color: #FFA21F;
 			margin-left: 5px;
 		}
+		h2{
+			margin-left: 5px;
+		}
 		#feat {
 			background-image: linear-gradient(to left, rgba(255,149,5,0), rgba(255,149,5,1));
 			height: 25px;
@@ -121,7 +124,7 @@
 		   response.sendRedirect("admin_hp.html");
 	   }
 	   else{
-       		out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
+       		out.print("<h2>You have logged in successfully " + login.getUsername() + "!</h2>");
 	   }
    }
    else{
@@ -149,9 +152,9 @@
 				<th><a href = "book_details.html"><div id="book"><img border="0" src="feat3.jpg" width="125" height="200"></div></th>
 			</tr>
 			<tr id ="booktitle">
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book1</a></td>
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book2</a></td>
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book3</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book1</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book2</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book3</a></td>
 			</tr>
 			<tr id ="author">
 				<td><i>By</i> Author</td>
@@ -169,9 +172,9 @@
 				<th><a href = "book_details.html"><div id="book"><img border="0" src="feat6.jpg" width="125" height="200"></div></a></th>
 			</tr>
 			<tr id ="booktitle">
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book4</a></td>
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book5</a></td>
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book6</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book4</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book5</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book6</a></td>
 			</tr>
 			<tr id ="author">
 				<td><i>By</i> Author</td>
@@ -194,9 +197,9 @@
 				<th><a href = "book_details.html"><div id="book"><img border="0" src="best3.jpg" width="125" height="200"></div></a></th>
 			</tr>
 			<tr id ="booktitle">
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book1</a></td>
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book2</a></td>
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book3</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book1</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book2</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book3</a></td>
 			</tr>
 			<tr id ="author">
 				<td><i>By</i> Author</td>
@@ -214,9 +217,9 @@
 				<th><a href = "book_details.html"><div id="book"><img border="0" src="best6.jpg" width="125" height="200"></div></a></th>
 			</tr>
 			<tr id ="booktitle">
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book4</a></td>
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book5</a></td>
-				<td><a style="text-decoration:none; color:black" href = "book_details.html">Book6</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book4</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book5</a></td>
+				<td><a style="text-decoration:none; color:#FF9505" href = "book_details.html">Book6</a></td>
 			</tr>
 			<tr id ="author">
 				<td><i>By</i> Author</td>
