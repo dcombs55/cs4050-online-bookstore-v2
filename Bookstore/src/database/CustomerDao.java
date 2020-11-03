@@ -21,12 +21,12 @@ public class CustomerDao {
 		String INSERT_CUSTOMERS_SQL = "INSERT INTO Bookstore.Customer" + 
 				" (UserID, FirstName, LastName, Email, PhoneNumber, Password, ActivateCode, AccountState) VALUES " +
 				" (?, ?, ?, ?, ?, ?, ?, ?);";
-		String salt = customer.getUsername() + "sour"; // This is the universal salt formula for all cards
-		String key = "OpenSesame123"; // This will always be the key
-		
-		String ENCRYPT_PASSWORD = "aes_encrypt" +
-				"(concat('" + customer.getPassword() + "', '" + salt + "'), '" +
-				key + "');";
+//		String salt = customer.getUsername() + "sour"; // This is the universal salt formula for all cards
+//		String key = "OpenSesame123"; // This will always be the key
+//		
+//		String ENCRYPT_PASSWORD = "aes_encrypt" +
+//				"(concat('" + customer.getPassword() + "', '" + salt + "'), '" +
+//				key + "');";
 		int result = 0;
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -40,7 +40,7 @@ public class CustomerDao {
 			preparedStatement.setString(3, customer.getLastName());
 			preparedStatement.setString(4, customer.getEmailAddress());
 			preparedStatement.setString(5, customer.getPhoneNumber());
-			preparedStatement.setString(6, ENCRYPT_PASSWORD);
+			preparedStatement.setString(6, customer.getPassword());
 			preparedStatement.setInt(7, customer.getActivateCode());
 			preparedStatement.setString(8, "Inactive");
 			

@@ -13,10 +13,10 @@ public class LoginDao {
 	        boolean status = false;
 
 	        Class.forName("com.mysql.jdbc.Driver");
-	        String salt = customer.getUsername() + "sour";
-	        String key = "OpenSesame123"; // This will always be the key
-	  		String DECRYPT_Password = "replace(cast(aes_decrypt" +
-	 			"(Password, '\" + key + \"') as char(100)), salt, ''), salt from Bookstore.Customer";
+//	        String salt = loginBean.getUsername() + "sour";
+//	        String key = "OpenSesame123"; // This will always be the key
+//	  		String DECRYPT_Password = "replace(cast(aes_decrypt" +
+//	 			"(Password, '\" + key + \"') as char(100)), salt, ''), salt from Bookstore.Customer";
 	        try (Connection connection = DriverManager
 	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
@@ -24,7 +24,7 @@ public class LoginDao {
 	            PreparedStatement preparedStatement = connection
 	            .prepareStatement("select * from Bookstore.Customer where UserID= ? and Password = ? ")) {
 	            preparedStatement.setString(1, loginBean.getUsername());
-	            preparedStatement.setString(2, DECRYPT_Password);
+	            preparedStatement.setString(2, loginBean.getPassword());
 
 	            System.out.println(preparedStatement);
 	            ResultSet rs = preparedStatement.executeQuery();
