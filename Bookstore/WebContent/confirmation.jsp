@@ -36,7 +36,7 @@ pageEncoding="ISO-8859-1"%>
 			margin-left: 5px;
 		}
 		a:hover{
-			background-color: #DCDCDC;
+			background-color: #FFC370;
 		}
 		main{
 			width: 45%;

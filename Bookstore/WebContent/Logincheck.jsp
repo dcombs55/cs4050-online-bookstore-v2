@@ -10,11 +10,12 @@
         <title>Washington T. Bookstore</title>
 	<style>
 		body{
+			background-color: #FFFFFF;
 			font-family: Arial, Verdana, Helvetica;
 		}
 		.navbar{
-			background-color: #000000;
-			background-image: linear-gradient(to top, rgba(255,255,255,0.5), rgba(255,255,255,0) 50%);
+			background-color: #FF9505;
+			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
 			color: #FFFFFF;
 			margin: auto;
 			margin-bottom: 50px;
@@ -29,31 +30,12 @@
 			color: white;
 		}
 		.navbar a.active {
-			background-color: lightgrey;
+			background-color: #FFC370;
 			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0) 50%);
 			color: black;
 		}
-		.navbar input[type=text] {
-			padding: 10px;
-			border: none;
-		}
-		.navbar .search {
-			float: right;
-			padding-top: 6px;
-		}
-		.navbar .search button {
-			float: right;
-			margin-right: 5px;
-			cursor: pointer;
-			height: 36px;
-			width: 36px;
-			background-color: #EFEFEF;
-			border: none;
-		}
-		.navbar .search button:hover {
-			background-color: #DFDFDF;
-		}
 		h1{
+			color: #FFA21F;
 			margin-left: 5px;
 		}
 		#feat {
@@ -89,7 +71,7 @@
 			color:grey;
 		}
 		a:hover{
-			background-color: #DCDCDC;
+			background-color: #FFC370;
 		}
 		.catalog{
 			background-color: black;
