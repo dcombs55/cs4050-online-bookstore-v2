@@ -49,11 +49,15 @@
 	<form action = "reset.jsp" method = "post">
 		<label for = "Username">
 			Username
-				<input type="text" name = "Username" placeholder="Enter existing username">
+				<input type="text" name = "Username" placeholder="Enter existing username" required>
+		</label>
+		<label>
+			Password
+				<input type="password" name = "OldPassword" required>
 		</label>
 		<label for = "Password1">
-			Change password (New password must not be same as old password)
-				<input type="password" name = "Password1">
+			New password (New password must not be same as old password)
+				<input type="password" name = "Password1" required>
 		</label>
 		<details>
 					<summary>Requirements</summary>
@@ -62,15 +66,10 @@
 				</details>
 		<label for = "Password2"">
 			Confirm new password (must match new password)
-				<input type="password" name = "Password2">
+				<input type="password" name = "Password2" required>
 		</label>
-		<label>
-			Input old password
-				<input type="text">
-		</label>
-		<label>
-	<input type = "submit" value="Save Changes">
-	<a href = "login.html"><button type = "button">Cancel</button></a>
+		<input type = "submit" value="Save Changes">
+		<a href = "login.html"><button type = "button">Cancel</button></a>
 	</form>
 </main>
 

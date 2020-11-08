@@ -59,30 +59,23 @@ pageEncoding="ISO-8859-1"%>
 		div{
 			width: 100%;
 		}
-		#activationDialog{
-			text-align: center;
-		}
 		input[type="submit"]{
 			background-color: #000000;
 			border: none;
 			color: white;
 			padding: 16px 32px;
 			text-decoration: none;
-			margin-left: 6.5px;
+			margin-left: 10px;
 			margin-top: 20px;
 			margin-bottom: 20px;
 			cursor: pointer;
 		}
-		form{
-			margin-left: 38%;
-			text-align:center;
-		}
-		input{
-			display: block;
-		}
 		.errors{
   			color:red;
   			margin-bottom: 8px;
+  		}
+  		#dialogBox {
+  			text-align: center;
   		}
 	</style>
 </head>
@@ -95,13 +88,14 @@ pageEncoding="ISO-8859-1"%>
 		<a class ="active" href = "registration.jsp">REGISTER</a>
 		<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
 	</div>
-	<main>
-			<div id="activateForm">
-				<a href = "homepage.html"><button type = "button">Go Shopping!/button></a>
-				<a href = "edit_profile.jsp"><button type = "button">Edit Profile!</button></a>
-				</form>
-			</div>
-			
+	<main id="dialogBox">
+		<h2>You have successfully activated your account!</h2>
+		<p>You can finish setting up your account or start shopping now!</p>		
+		<div id="continueForm">
+			<form action="/Logincheck.jsp" method="post">
+				<input type="submit" formaction="login.html" value="Go Shopping!">
+				<input type="submit" formaction="edit_profile.jsp" value="Edit Profile!">
+			</form>
 		</div>
 	</main>
 

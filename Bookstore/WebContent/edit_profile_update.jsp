@@ -24,6 +24,9 @@ String t = request.getParameter("state");
 String y = request.getParameter("CCNum");
 String u = request.getParameter("date");
 String i = request.getParameter("ccv");
+String oldPass = request.getParameter("OldPassword");
+String pass1 = request.getParameter("Password1");
+String pass2 = request.getParameter("Password2");
 String s1 = "update Bookstore.Customer set FirstName=?,LastName=? where UserID= " + "'" + user+ "'";
 PreparedStatement ps1 = connection.prepareStatement(s1);
 ps1.setString(1,q);
@@ -64,6 +67,16 @@ else{
 	ps3.setString(3,i);
 }
 ps3.executeUpdate();
+String s4;
+PreparedStatement ps4;
+if(oldPass != null && pass1 != null && pass2 != null && pass1.equals(pass2)){
+	s4 = "update Bookstore.Customer set Password=? where UserID=? AND Password=?";
+	ps4 =connection.prepareStatement(s4);
+	ps4.setString(1, pass2);
+	ps4.setString(2, user);
+	ps4.setString(3, oldPass);
+	ps4.executeUpdate();
+}
 response.sendRedirect("edit_profile.jsp");
 %>
 </body>

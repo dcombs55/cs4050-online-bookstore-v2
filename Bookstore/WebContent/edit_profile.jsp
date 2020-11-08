@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Create An Account</title>
+<title>Edit Profile</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -85,17 +85,21 @@ while(rs.next()){
 		}
 		%>
 		<label>
-			Change password (New password must not be same as old password)
-				<input type="password" name="pass1">
+			Password (To change your password, you must enter your password)
+			<input type="password" name = "OldPassword" required>
+		</label>
+		<label for = "Password1">
+			New password (New password must not be same as old password)
+				<input type="password" name = "Password1" required>
 		</label>
 		<details>
-					<summary>Requirements</summary>
-					<p>Password must be at least 8 characters long and include at least one uppercase
-					letter, lower case letter and number.</p>
-				</details>
-		<label>
+			<summary>Requirements</summary>
+			<p>Password must be at least 8 characters long and include at least one uppercase
+			letter, lower case letter and number.</p>
+		</details>
+		<label for = "Password2"">
 			Confirm new password (must match new password)
-				<input type="password" name="pass2">
+			<input type="password" name = "Password2" required>
 		</label>
 		<%
 		ResultSet rs3 = s.executeQuery(s3);

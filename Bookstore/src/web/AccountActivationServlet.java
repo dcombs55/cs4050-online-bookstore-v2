@@ -41,7 +41,7 @@ public class AccountActivationServlet extends HttpServlet {
 
         	if(validActivationCode) {
         		customerDao.updateAccountState(userName, emailAddress, "Active");
-                response.sendRedirect("homepage.html");
+                response.sendRedirect("activation_success.jsp");
         	}
         	else {
         		session = request.getSession();
