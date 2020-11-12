@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Homepage</title>
+	<title>Manage Employees</title>
+	<%@page import = "java.sql.*; " %>
 	<style>
 		h1 {
 			color:white;
@@ -13,7 +14,7 @@
 			background-color: #030303;
 			background-image: linear-gradient(to right, rgba(40,40,40,0), rgba(40,40,40,0.25));
 		}
-		a:hover{
+		input:hover{
 			background-color: #DCDCDC;
 		}
 		#menu {
@@ -23,9 +24,6 @@
 			width: 40%;
 			text-align:center;
 			border: 5px solid #202020;
-		}
-		#butcon {
-			margin-bottom:50px;
 		}
 		.button{
 			background-color: #FFCC10;
@@ -37,7 +35,8 @@
   			padding: 20px 40px;
   			text-align: center;
   			text-decoration: none;
-			width: 180px;
+			width: 250px;
+			margin-bottom: 50px;
 		}
 		.signout {
 			background-color: #FF1030;
@@ -51,21 +50,32 @@
   			text-decoration: none;
 			width: 180px;
 		}
+		input{
+			display: block;
+		}
 	</style>
 	<meta charset="UTF-8">
 </head>
 <body>
 	
-	<h1>Welcome, admin!</h1>
 	<main>
-		<div id="menu">
-			<div id="butcon"><a href="managebooks.html" class="button">Manage Books</a></div>
-			<div id="butcon"><a href="#" class="button">Manage Promotions</a></div>
-			<div id="butcon"><a href="manage_users.jsp" class="button">Manage Users</a></div>
-			<div id="butcon"><a href="homepage_adminver.html" class="button">Customer View</a></div>
-			<div><a href="homepage.html" class="signout">Sign Out</a></div>
-		</div>
-	<main>
+	<h1>Manage Employees</h1>
+	<div align="center">
+        <table border="1" cellpadding="5">
+           <thead>
+	            <tr>
+	                <th>Username</th>
+	                <th>First Name</th>
+	                <th>Last Name</th>
+	                <th>Email Address</th>
+	            </tr>
+            </thead>
+            <%
+            	ResultSet rs = ${employees};
+            %>
+        </table>
+    </div>
+	</main>
 
 </body>
 </html>

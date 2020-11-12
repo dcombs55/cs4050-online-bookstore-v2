@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import bean.LoginBean;
 
 public class LoginDao {
-	 public boolean validate(LoginBean loginBean) throws ClassNotFoundException {
+	 public boolean validateCustomer(LoginBean loginBean) throws ClassNotFoundException {
 	        boolean status = false;
 
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -22,9 +22,11 @@ public class LoginDao {
 
 	            // Step 2:Create a statement using connection object
 	            PreparedStatement preparedStatement = connection
-	            .prepareStatement("select * from Bookstore.Customer where UserID= ? and Password = ? ")) {
+	            .prepareStatement("select * from Bookstore.Customer where UserID= ? and Password = ? and (AccountType = ? OR AccountType = ?)")) {
 	            preparedStatement.setString(1, loginBean.getUsername());
 	            preparedStatement.setString(2, loginBean.getPassword());
+	            preparedStatement.setInt(3, 1);
+	            preparedStatement.setInt(4, 2);
 
 	            System.out.println(preparedStatement);
 	            ResultSet rs = preparedStatement.executeQuery();
@@ -36,6 +38,36 @@ public class LoginDao {
 	        }
 	        return status;
 	    }
+	 
+	 public boolean validateAdmin(LoginBean loginBean) throws ClassNotFoundException {
+	        boolean status = false;
+
+	        Class.forName("com.mysql.jdbc.Driver");
+//	        String salt = loginBean.getUsername() + "sour";
+//	        String key = "OpenSesame123"; // This will always be the key
+//	  		String DECRYPT_Password = "replace(cast(aes_decrypt" +
+//	 			"(Password, '\" + key + \"') as char(100)), salt, ''), salt from Bookstore.Customer";
+	        try (Connection connection = DriverManager
+	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+
+	            // Step 2:Create a statement using connection object
+	            PreparedStatement preparedStatement = connection
+	            .prepareStatement("select * from Bookstore.Customer where UserID= ? and Password = ? and AccountType = ?")) {
+	            preparedStatement.setString(1, loginBean.getUsername());
+	            preparedStatement.setString(2, loginBean.getPassword());
+	            preparedStatement.setInt(3, 3);
+
+	            System.out.println(preparedStatement);
+	            ResultSet rs = preparedStatement.executeQuery();
+	            status = rs.next();
+
+	        } catch (SQLException e) {
+	            // process sql exception
+	            printSQLException(e);
+	        }
+	        return status;
+	    }
+
 
 	    private void printSQLException(SQLException ex) {
 	        for (Throwable e: ex) {

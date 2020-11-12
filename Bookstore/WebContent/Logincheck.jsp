@@ -99,16 +99,15 @@
             HttpSession session1 = request.getSession();
             
           LoginDao loginDao = new LoginDao();
-   boolean status = loginDao.validate(login);
-   if (status) {
+   if(loginDao.validateCustomer(login)){
  	   String user = login.getUsername();
        session1.setAttribute("username", user);
-	   if((login.getUsername().equals("admin") || login.getUsername().equals("admin@admin.com")) && login.getPassword().equals("admin")){
-		   response.sendRedirect("admin_hp.html");
-	   }
-	   else{
-       		out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
-	   }
+       out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
+   }
+   else if(loginDao.validateAdmin(login)){
+ 	   String user = login.getUsername();
+       session1.setAttribute("username", user);
+		response.sendRedirect("admin_hp.html");
    }
    else{
 	   response.sendRedirect("invalid.jsp");

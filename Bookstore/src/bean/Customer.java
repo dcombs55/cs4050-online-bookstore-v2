@@ -13,6 +13,7 @@ public class Customer implements Serializable {
     private int activateCode;
     private CreditCard creditCard;
     private Address address;
+    private int accountType;
 
     public String getFirstName() {
         return firstName;
@@ -70,5 +71,12 @@ public class Customer implements Serializable {
     }
     public void setAddress(Address address) {
     	this.address = address;
+    }
+    
+    public int getAccountType() {
+    	return this.accountType;
+    }
+    public void setAccountType(int accountType) {
+    	this.accountType = accountType;
     }
 }

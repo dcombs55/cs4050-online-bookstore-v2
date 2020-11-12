@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Homepage</title>
+	<title>Manage Users</title>
 	<style>
 		h1 {
 			color:white;
@@ -13,7 +13,7 @@
 			background-color: #030303;
 			background-image: linear-gradient(to right, rgba(40,40,40,0), rgba(40,40,40,0.25));
 		}
-		a:hover{
+		input:hover{
 			background-color: #DCDCDC;
 		}
 		#menu {
@@ -23,9 +23,6 @@
 			width: 40%;
 			text-align:center;
 			border: 5px solid #202020;
-		}
-		#butcon {
-			margin-bottom:50px;
 		}
 		.button{
 			background-color: #FFCC10;
@@ -37,7 +34,8 @@
   			padding: 20px 40px;
   			text-align: center;
   			text-decoration: none;
-			width: 180px;
+			width: 250px;
+			margin-bottom: 50px;
 		}
 		.signout {
 			background-color: #FF1030;
@@ -51,21 +49,25 @@
   			text-decoration: none;
 			width: 180px;
 		}
+		input{
+			display: block;
+		}
 	</style>
 	<meta charset="UTF-8">
 </head>
 <body>
 	
-	<h1>Welcome, admin!</h1>
+	<h1>Manage Users</h1>
 	<main>
 		<div id="menu">
-			<div id="butcon"><a href="managebooks.html" class="button">Manage Books</a></div>
-			<div id="butcon"><a href="#" class="button">Manage Promotions</a></div>
-			<div id="butcon"><a href="manage_users.jsp" class="button">Manage Users</a></div>
-			<div id="butcon"><a href="homepage_adminver.html" class="button">Customer View</a></div>
-			<div><a href="homepage.html" class="signout">Sign Out</a></div>
+			<form action="${pageContext.request.contextPath}/register" method="post">
+				<div><input type="submit" formaction="${pageContext.request.contextPath}/register" value="Manage Employees" class="button"></div>
+				<div><input type="submit" formaction="#" value="Manage Customers" class="button"></div>
+				<div><input type="submit" formaction="admin_hp.html" value="Main Menu" class="button"></div>
+				<div><input type="submit" formaction="homepage.html" value="Sign Out" class="signout"></div>
+			</form>
 		</div>
-	<main>
+	</main>
 
 </body>
 </html>

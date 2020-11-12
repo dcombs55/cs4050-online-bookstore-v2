@@ -19,8 +19,8 @@ public class CustomerDao {
  */
 	public int registerCustomer(Customer customer) throws ClassNotFoundException{
 		String INSERT_CUSTOMERS_SQL = "INSERT INTO Bookstore.Customer" + 
-				" (UserID, FirstName, LastName, Email, PhoneNumber, Password, ActivateCode, AccountState) VALUES " +
-				" (?, ?, ?, ?, ?, ?, ?, ?);";
+				" (UserID, FirstName, LastName, Email, PhoneNumber, Password, ActivateCode, AccountState, AccountType) VALUES " +
+				" (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 //		String salt = customer.getUsername() + "sour"; // This is the universal salt formula for all cards
 //		String key = "OpenSesame123"; // This will always be the key
 //		
@@ -43,6 +43,7 @@ public class CustomerDao {
 			preparedStatement.setString(6, customer.getPassword());
 			preparedStatement.setInt(7, customer.getActivateCode());
 			preparedStatement.setString(8, "Inactive");
+			preparedStatement.setInt(9, 1);
 			
 			System.out.println(preparedStatement);
 			result = preparedStatement.executeUpdate();
