@@ -1,8 +1,8 @@
+<%@page language="java" import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Manage Employees</title>
-	<%@page import = "java.sql.*; " %>
 	<style>
 		h1 {
 			color:white;
@@ -17,11 +17,11 @@
 		input:hover{
 			background-color: #DCDCDC;
 		}
-		#menu {
+		#mainContent {
 			margin: auto;
 			padding: 2%;
 			background: black;
-			width: 40%;
+			width: 50%;
 			text-align:center;
 			border: 5px solid #202020;
 		}
@@ -30,13 +30,12 @@
 			background-image: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));
   			color: black;
   			cursor: pointer;
-  			display: inline-block;
-  			font-size: 20px;
-  			padding: 20px 40px;
+  			font-size: 15px;
+  			padding: 10px 25px;
   			text-align: center;
   			text-decoration: none;
-			width: 250px;
-			margin-bottom: 50px;
+			width: 145px;
+			margin-bottom: 20px;
 		}
 		.signout {
 			background-color: #FF1030;
@@ -44,14 +43,16 @@
   			color: black;
   			cursor: pointer;
   			display: inline-block;
-  			font-size: 20px;
-  			padding: 20px 40px;
+  			font-size: 15px;
+  			padding: 10px 25px;
   			text-align: center;
   			text-decoration: none;
-			width: 180px;
+			width: 145px;
 		}
-		input{
-			display: block;
+		table{
+			color:white;
+			margin-bottom: 20px;
+			width: 100%;
 		}
 	</style>
 	<meta charset="UTF-8">
@@ -60,21 +61,50 @@
 	
 	<main>
 	<h1>Manage Employees</h1>
-	<div align="center">
-        <table border="1" cellpadding="5">
-           <thead>
-	            <tr>
-	                <th>Username</th>
-	                <th>First Name</th>
-	                <th>Last Name</th>
-	                <th>Email Address</th>
-	            </tr>
-            </thead>
-            <%
-            	ResultSet rs = ${employees};
-            %>
-        </table>
-    </div>
+		<form id="mainContent" action="${pageContext.request.contextPath}/manage-employees" method="post">
+			<div align="center">
+		        <table border="1">
+		            <tr>
+		                <th></th>
+		                <th>Username</th>
+		                <th>First Name</th>
+		                <th>Last Name</th>
+		                <th>Email Address</th>
+		                <th>Phone Number</th>
+		                <th>Account Status</th>
+		                <th>Account Type</th>
+		            </tr>
+		            <%
+		            	HashMap<String, List<String>> returnData = (HashMap<String, List<String>>)request.getAttribute("returnData");
+		            	List<String> userName = returnData.get("UserID");
+		            	List<String> firstName = returnData.get("FirstName");
+		            	List<String> lastName = returnData.get("LastName");
+		            	List<String> email = returnData.get("Email");
+		            	List<String> phoneNumber = returnData.get("PhoneNumber");
+		            	List<String> accountState = returnData.get("AccountState");
+		            	List<String> accountType = returnData.get("AccountType");
+		            	
+		            	for(int i = 0; i < userName.size(); i++){
+		            %>
+		            <tr>
+		            	<td><input type="checkbox" name="employee" value=<%=userName.get(i)%>></td>
+		            	<td><%=userName.get(i)%></td>
+		            	<td><%=firstName.get(i)%></td>
+		            	<td><%=lastName.get(i)%></td>
+		            	<td><%=email.get(i)%></td>
+		            	<td><%=phoneNumber.get(i)%></td>
+		            	<td><%=accountState.get(i)%></td>
+		            	<td><%=accountType.get(i)%></td>
+		            </tr>
+		            <%} %>
+		        </table>
+		    </div>
+		   	<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-employees" value="Suspend" class="button">
+			<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-employees" value="Promote" class="button">
+			<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-employees" value="De-promote" class="button"><br/>
+			<input type="submit" formaction="admin_hp.html" value="Main Menu" class="button">
+			<input type="submit" formaction="homepage.html" value="Sign Out" class="signout">
+	    </form>
 	</main>
 
 </body>

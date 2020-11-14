@@ -60,8 +60,8 @@
 	<h1>Manage Users</h1>
 	<main>
 		<div id="menu">
-			<form action="${pageContext.request.contextPath}/register" method="post">
-				<div><input type="submit" formaction="${pageContext.request.contextPath}/register" value="Manage Employees" class="button"></div>
+			<form action="${pageContext.request.contextPath}/employees" method="post">
+				<div><input type="submit" formaction="${pageContext.request.contextPath}/employees" value="Manage Employees" class="button"></div>
 				<div><input type="submit" formaction="#" value="Manage Customers" class="button"></div>
 				<div><input type="submit" formaction="admin_hp.html" value="Main Menu" class="button"></div>
 				<div><input type="submit" formaction="homepage.html" value="Sign Out" class="signout"></div>

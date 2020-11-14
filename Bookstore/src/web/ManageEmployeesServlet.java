@@ -18,8 +18,8 @@ import bean.Address;
 import bean.CreditCard;
 import java.util.*;
 
-@WebServlet("/employees")
-public class EmployeeListServlet extends HttpServlet {
+@WebServlet("/manage-employees")
+public class ManageEmployeesServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
     private AdminDao adminDao;
@@ -30,14 +30,22 @@ public class EmployeeListServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String manageAction = request.getParameter("manage-action");
+        String[] employeesToManage = request.getParameterValues("employee");
         
         try {
-        	HashMap<String, List<String>> returnData = adminDao.getEmployees();
-    		request.setAttribute("returnData", returnData);
-    		
-    		//need to do an error check here if no returnData
-    		
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("manage_employees.jsp");
+        	if(employeesToManage != null) {
+        		if(manageAction.equals("Suspend")) {
+               		adminDao.suspendEmployees(employeesToManage);
+                }else if(manageAction.equals("Promote")) {
+                	adminDao.promoteEmployees(employeesToManage);
+                }else if(manageAction.equals("De-promote")) {
+                	adminDao.dePromoteEmployees(employeesToManage);
+                }
+        		//need to do error check if manageAction is null
+        	}
+           	
+    		RequestDispatcher dispatcher = request.getRequestDispatcher("/employees");
     		if(dispatcher != null) {
     			dispatcher.forward(request, response);
     		}
