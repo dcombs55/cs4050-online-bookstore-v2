@@ -10,11 +10,11 @@ import bean.CreditCard;
 
 public class CreditCardEncryption {
 	/*	COMMAND TO DECRYPT -------------------------------------------------------------------------------------
-		String salt = customer.getUsername() + "NaCl";
+		String salt = customer.getUsername();
 	  	String DECRYPT_CARDNUM = "replace(cast(aes_decrypt" +
-	 			"(CardNum, '\" + key + \"') as char(100)), salt, ''), salt from Bookstore.CreditCard";
+	 			"(CardNum, '" + key + "') as char(100)), salt, ''), salt from Bookstore.CreditCard";
 	 	String DECRYPT_CCV = "replace(cast(aes_decrypt" +
-	 			"(CCV, '\" + key + \"') as char(100)), salt, ''), salt from Bookstore.CreditCard";
+	 			"(CCV, '" + key + "') as char(100)), salt, ''), salt from Bookstore.CreditCard";
 	 */
 	public int addCreditCard(Customer customer, CreditCard creditCard) throws ClassNotFoundException{
 		int result = 0;
@@ -22,17 +22,17 @@ public class CreditCardEncryption {
 		String cardNum = creditCard.getCardNum();
 		String CCV = creditCard.getCCV();
 		
-		String salt = customer.getUsername() + "NaCl"; // This is the universal salt formula for all cards
-		String key = "123OpenSesame"; // This will always be the key
+		String salt = customer.getUsername(); // This is the universal salt formula for all cards
+		String key = "123OS"; // This will always be the key
 		
 		String INSERT_CREDIT_SQL = "INSERT INTO Bookstore.CreditCard" + 
 				" (UserID, CardNum, CardType, ExpDate, CCV) VALUES " +
 				" (?, ?, ?, ?, ?);";
 		String ENCRYPT_CARDNUM = "aes_encrypt" +
-				"(concat('" + cardNum + "', '" + salt + "'), '" +
+				"('" + cardNum + salt +"'), '" +
 				key + "');";
 		String ENCRYPT_CCV = "aes_encrypt" +
-				"(concat('" + CCV + "', '" + salt + "'), '" +
+				"('" + CCV + salt +"'), '" +
 				key + "');";
 		
 		try (Connection connection = DriverManager
