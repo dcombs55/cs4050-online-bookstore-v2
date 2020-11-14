@@ -20,13 +20,13 @@ public class CustomerDao {
 	public int registerCustomer(Customer customer) throws ClassNotFoundException{
 		String INSERT_CUSTOMERS_SQL = "INSERT INTO Bookstore.Customer" + 
 				" (UserID, FirstName, LastName, Email, PhoneNumber, Password, ActivateCode, AccountState, AccountType) VALUES " +
-				" (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-//		String salt = customer.getUsername() + "sour"; // This is the universal salt formula for all cards
-//		String key = "OpenSesame123"; // This will always be the key
-//		
-//		String ENCRYPT_PASSWORD = "aes_encrypt" +
-//				"(concat('" + customer.getPassword() + "', '" + salt + "'), '" +
-//				key + "');";
+				" (?, ?, ?, ?, ?, ?, ?, ?, ?);"; 
+        /* Encryption
+        String salt = customer.getUsername(); // This is the universal salt formula for all users
+		String key = "321OS"; // This will always be the key
+		String ENCRYPT_PASS = "aes_encrypt" +
+				"('" + customer.getPassword() + salt +"', '" +
+				key + "')";*/
 		int result = 0;
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,6 +41,7 @@ public class CustomerDao {
 			preparedStatement.setString(4, customer.getEmailAddress());
 			preparedStatement.setString(5, customer.getPhoneNumber());
 			preparedStatement.setString(6, customer.getPassword());
+			//preparedStatement.setString(6, ENCRYPT_PASS);
 			preparedStatement.setInt(7, customer.getActivateCode());
 			preparedStatement.setString(8, "Inactive");
 			preparedStatement.setInt(9, 1);
