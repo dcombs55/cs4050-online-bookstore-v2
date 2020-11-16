@@ -18,8 +18,8 @@ import bean.Address;
 import bean.CreditCard;
 import java.util.*;
 
-@WebServlet("/manage-employees")
-public class ManageEmployeesServlet extends HttpServlet {
+@WebServlet("/manage-customers")
+public class ManageCustomersServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
     private AdminDao adminDao;
@@ -31,23 +31,21 @@ public class ManageEmployeesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String manageAction = request.getParameter("manage-action");
-        String[] employeesToManage = request.getParameterValues("employee");
+        String[] customersToManage = request.getParameterValues("customer");
         
         try {
-        	if(employeesToManage != null) {
+        	if(customersToManage != null) {
         		if(manageAction.equals("Suspend")) {
-               		adminDao.suspendAccounts(employeesToManage);
+               		adminDao.suspendAccounts(customersToManage);
                 }else if(manageAction.equals("Unsuspend")) {
-                	adminDao.unsuspendAccounts(employeesToManage);
+                	adminDao.unsuspendAccounts(customersToManage);
                 }else if(manageAction.equals("Promote")) {
-                	adminDao.promoteAccounts(employeesToManage);
-                }else if(manageAction.equals("De-promote")) {
-                	adminDao.dePromoteEmployees(employeesToManage);
+                	adminDao.promoteAccounts(customersToManage);
                 }
         		//need to do error check if manageAction is null
         	}
            	
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("/employees");
+    		RequestDispatcher dispatcher = request.getRequestDispatcher("/customers");
     		if(dispatcher != null) {
     			dispatcher.forward(request, response);
     		}

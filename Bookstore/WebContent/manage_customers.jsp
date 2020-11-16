@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Manage Employees</title>
+	<title>Manage Customers</title>
 	<style>
 		h1 {
 			color:white;
@@ -60,7 +60,7 @@
 <body>
 	
 	<main>
-	<h1>Manage Employees</h1>
+	<h1>Manage Customers</h1>
 		<form id="mainContent" action="${pageContext.request.contextPath}/manage-employees" method="post">
 			<div align="center">
 		        <table border="1">
@@ -87,7 +87,7 @@
 		            	for(int i = 0; i < userName.size(); i++){
 		            %>
 		            <tr>
-		            	<td><input type="checkbox" name="employee" value=<%=userName.get(i)%>></td>
+		            	<td><input type="checkbox" name="customer" value=<%=userName.get(i)%>></td>
 		            	<td><%=userName.get(i)%></td>
 		            	<td><%=firstName.get(i)%></td>
 		            	<td><%=lastName.get(i)%></td>
@@ -99,10 +99,9 @@
 		            <%} %>
 		        </table>
 		    </div>
-		   	<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-employees" value="Suspend" class="button">
-		   	<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-employees" value="Unsuspend" class="button">
-			<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-employees" value="Promote" class="button">
-			<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-employees" value="De-promote" class="button"><br/>
+		   	<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-customers" value="Suspend" class="button">
+		   	<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-customers" value="Unsuspend" class="button">
+			<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-customers" value="Promote" class="button"><br/>
 			<input type="submit" formaction="manage_users.jsp" value="Back" class="button">
 			<input type="submit" formaction="homepage.html" value="Sign Out" class="signout">
 	    </form>
