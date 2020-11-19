@@ -271,6 +271,28 @@ public class AdminDao {
 	        return accountType;
 	 	}
 
+	 	public void deletePromos(String[] promotionsToManage) throws ClassNotFoundException{
+	 		String DELETE_PROMOTION_SQL = "DELETE FROM Bookstore.Promotion WHERE PromoID=?;";
+
+	        Class.forName("com.mysql.jdbc.Driver");
+	        
+	        try (Connection connection = DriverManager
+	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+
+	            PreparedStatement preparedStatement = connection
+	            .prepareStatement(DELETE_PROMOTION_SQL)) {
+	            
+	            for(int i = 0; i < promotionsToManage.length; i++) {
+	            	preparedStatement.setString(1, promotionsToManage[i]);
+	            	preparedStatement.executeUpdate();
+	            }
+	            
+	        } catch (SQLException e) {
+	            // process sql exception
+	            printSQLException(e);
+	        }
+	 	}
+	 	
 	    private void printSQLException(SQLException ex) {
 	        for (Throwable e: ex) {
 	            if (e instanceof SQLException) {
