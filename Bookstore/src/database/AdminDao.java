@@ -11,7 +11,7 @@ import bean.LoginBean;
 
 public class AdminDao {
 	 public HashMap<String, List<String>> getEmployees() throws ClassNotFoundException {
-		 	
+
 		 	HashMap<String, List<String>> returnData = new HashMap<>();
 		 	List<String> userNameData = new ArrayList<>();
 		 	List<String> firstNameData = new ArrayList<>();
@@ -20,7 +20,7 @@ public class AdminDao {
 		 	List<String> phoneNumberData = new ArrayList<>();
 		 	List<String> accountStateData = new ArrayList<>();
 		 	List<String> accountTypeData = new ArrayList<>();
-		 	
+
 		 	ResultSet rs;
 
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -46,7 +46,7 @@ public class AdminDao {
 	            	}else {
 	            		accountType = "Admin";
 	            	}
-	            	
+
 	            	userNameData.add(rs.getString("UserID"));
 	            	firstNameData.add(rs.getString("FirstName"));
 	            	lastNameData.add(rs.getString("LastName"));
@@ -71,9 +71,9 @@ public class AdminDao {
 	        }
 	        return returnData;
 	    }
-	 
+
 	 public HashMap<String, List<String>> getCustomers() throws ClassNotFoundException {
-		 	
+
 		 	HashMap<String, List<String>> returnData = new HashMap<>();
 		 	List<String> userNameData = new ArrayList<>();
 		 	List<String> firstNameData = new ArrayList<>();
@@ -82,7 +82,7 @@ public class AdminDao {
 		 	List<String> phoneNumberData = new ArrayList<>();
 		 	List<String> accountStateData = new ArrayList<>();
 		 	List<String> accountTypeData = new ArrayList<>();
-		 	
+
 		 	ResultSet rs;
 
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -105,7 +105,7 @@ public class AdminDao {
 	            	if(rs.getInt("AccountType") == 1) {
 	            		accountType = "Customer";
 	            	}
-	            	
+
 	            	userNameData.add(rs.getString("UserID"));
 	            	firstNameData.add(rs.getString("FirstName"));
 	            	lastNameData.add(rs.getString("LastName"));
@@ -130,68 +130,68 @@ public class AdminDao {
 	        }
 	        return returnData;
 	    }
-	 
+
 	 	public void suspendAccounts(String adminUser, String[] accountsToManage) throws ClassNotFoundException{
 	 		String SUSPEND_ACCOUNT_SQL = "UPDATE Bookstore.Customer SET AccountState=? WHERE UserID=?;";
 
 	        Class.forName("com.mysql.jdbc.Driver");
-	        
+
 	        try (Connection connection = DriverManager
 	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
 	            PreparedStatement preparedStatement = connection
 	            .prepareStatement(SUSPEND_ACCOUNT_SQL)) {
 	            preparedStatement.setString(1, "Suspended");
-	            
+
 	            for(int i = 0; i < accountsToManage.length; i++) {
 	            	if(!adminUser.equals(accountsToManage[i])) {
 	            		preparedStatement.setString(2, accountsToManage[i]);
 		            	preparedStatement.executeUpdate();
 	            	}
 	            }
-	            
+
 	        } catch (SQLException e) {
 	            // process sql exception
 	            printSQLException(e);
 	        }
 	 	}
-	 	
+
 	 	public void unsuspendAccounts(String adminUser, String[] accountsToManage) throws ClassNotFoundException{
 	 		String SUSPEND_ACCOUNT_SQL = "UPDATE Bookstore.Customer SET AccountState=? WHERE UserID=?;";
 
 	        Class.forName("com.mysql.jdbc.Driver");
-	        
+
 	        try (Connection connection = DriverManager
 	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
 	            PreparedStatement preparedStatement = connection
 	            .prepareStatement(SUSPEND_ACCOUNT_SQL)) {
 	            preparedStatement.setString(1, "Active");
-	            
+
 	            for(int i = 0; i < accountsToManage.length; i++) {
 	            	if(!adminUser.equals(accountsToManage[i])) {
 	            		preparedStatement.setString(2, accountsToManage[i]);
 		            	preparedStatement.executeUpdate();
 	            	}
 	            }
-	            
+
 	        } catch (SQLException e) {
 	            // process sql exception
 	            printSQLException(e);
 	        }
 	 	}
-	 	
+
 	 	public void promoteAccounts(String adminUser, String[] accountsToManage) throws ClassNotFoundException{
 	 		String PROMOTE_ACCOUNT_SQL = "UPDATE Bookstore.Customer SET AccountType=? WHERE UserID=?;";
 
 	        Class.forName("com.mysql.jdbc.Driver");
-	        
+
 	        try (Connection connection = DriverManager
 	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
 	            PreparedStatement preparedStatement = connection
 	            .prepareStatement(PROMOTE_ACCOUNT_SQL)) {
-	            
+
 	            for(int i = 0; i < accountsToManage.length; i++) {
 	            	if(!adminUser.equals(accountsToManage[i])) {
 	            		int accountType = getEmployeeAccountType(accountsToManage[i]);
@@ -202,29 +202,29 @@ public class AdminDao {
 		            		accountType = 3;
 		            	}
 		            	preparedStatement.setInt(1, accountType);
-		            	
+
 		            	preparedStatement.setString(2, accountsToManage[i]);
 		            	preparedStatement.executeUpdate();
 	            	}
 	            }
-	            
+
 	        } catch (SQLException e) {
 	            // process sql exception
 	            printSQLException(e);
 	        }
 	 	}
-	 	
+
 	 	public void dePromoteEmployees(String adminUser, String[] employeesToManage) throws ClassNotFoundException{
 	 		String DEPROMOTE_ACCOUNT_SQL = "UPDATE Bookstore.Customer SET AccountType=? WHERE UserID=?;";
 
 	        Class.forName("com.mysql.jdbc.Driver");
-	        
+
 	        try (Connection connection = DriverManager
 	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
 	            PreparedStatement preparedStatement = connection
 	            .prepareStatement(DEPROMOTE_ACCOUNT_SQL)) {
-	            
+
 	            for(int i = 0; i < employeesToManage.length; i++) {
 	            	if(!adminUser.equals(employeesToManage[i])) {
 		            	int accountType = getEmployeeAccountType(employeesToManage[i]);
@@ -235,47 +235,47 @@ public class AdminDao {
 		            		accountType = 2;
 		            	}
 		            	preparedStatement.setInt(1, accountType);
-		            	
+
 		            	preparedStatement.setString(2, employeesToManage[i]);
 		            	preparedStatement.executeUpdate();
 	            	}
 	            }
-	            
+
 	        } catch (SQLException e) {
 	            // process sql exception
 	            printSQLException(e);
 	        }
 	 	}
-	 	
+
 	 	private int getEmployeeAccountType(String employee) throws ClassNotFoundException{
 	 		String GET_EMPLOYEE_SQL = "select * from Bookstore.Customer where UserID = ?;";
-	 		
+
 	 		ResultSet rs;
-	 		
+
 	 		int accountType = -1;
-	 		
+
 	        Class.forName("com.mysql.jdbc.Driver");
-	        
+
 	        try (Connection connection = DriverManager
 	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
 	            PreparedStatement preparedStatement = connection
 	            .prepareStatement(GET_EMPLOYEE_SQL)) {
 	            preparedStatement.setString(1, employee);
-	            
+
 	            rs = preparedStatement.executeQuery();
-	            
+
 	            if(rs.next()) {
 	            	return rs.getInt("AccountType");
 	            }
-	            
+
 	            rs.close();
-	            
+
 	        } catch (SQLException e) {
 	            // process sql exception
 	            printSQLException(e);
 	        }
-	        
+
 	        return accountType;
 	 	}
 
@@ -283,24 +283,24 @@ public class AdminDao {
 	 		String DELETE_PROMOTION_SQL = "DELETE FROM Bookstore.Promotion WHERE PromoID=?;";
 
 	        Class.forName("com.mysql.jdbc.Driver");
-	        
+
 	        try (Connection connection = DriverManager
 	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
 	            PreparedStatement preparedStatement = connection
 	            .prepareStatement(DELETE_PROMOTION_SQL)) {
-	            
+
 	            for(int i = 0; i < promotionsToManage.length; i++) {
 	            	preparedStatement.setString(1, promotionsToManage[i]);
 	            	preparedStatement.executeUpdate();
 	            }
-	            
+
 	        } catch (SQLException e) {
 	            // process sql exception
 	            printSQLException(e);
 	        }
 	 	}
-	 	
+
 	    private void printSQLException(SQLException ex) {
 	        for (Throwable e: ex) {
 	            if (e instanceof SQLException) {
