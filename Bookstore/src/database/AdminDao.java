@@ -131,6 +131,62 @@ public class AdminDao {
 	        return returnData;
 	    }
 	 
+	 public HashMap<String, List<String>> getPromotions() throws ClassNotFoundException {
+		 	
+		 	HashMap<String, List<String>> returnData = new HashMap<>();
+		 	List<String> promoIDData = new ArrayList<>();
+		 	List<String> promoTypeData = new ArrayList<>();
+		 	List<String> promoCodeData = new ArrayList<>();
+		 	List<String> promoAmountData = new ArrayList<>();
+		 	List<String> promoStartDateData = new ArrayList<>();
+		 	List<String> promoEndDateData = new ArrayList<>();
+		 	List<String> totalUsersData = new ArrayList<>();
+		 	
+		 	ResultSet rs;
+
+	        Class.forName("com.mysql.jdbc.Driver");
+	        try (Connection connection = DriverManager
+	            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+
+	            // Step 2:Create a statement using connection object
+	            PreparedStatement preparedStatement = connection
+	            .prepareStatement("select * from Bookstore.Promotion")) {
+
+	            System.out.println(preparedStatement);
+	            rs = preparedStatement.executeQuery();
+	            while(rs.next()) {
+	            	String promoType = "";
+	            	if(rs.getInt("PromoType") == 1) {
+	            		promoType = "Amount";
+	            	}else {
+	            		promoType = "Percentage";
+	            	}
+	            	
+	            	promoIDData.add(rs.getString("PromoID"));
+	            	promoTypeData.add(promoType);
+	            	promoCodeData.add(rs.getString("PromoCode"));
+	            	promoAmountData.add(rs.getString("PromoAmount"));
+	            	promoStartDateData.add(rs.getString("StartDate"));
+	            	promoEndDateData.add(rs.getString("EndDate"));
+	            	totalUsersData.add(rs.getString("TotalUsers"));
+	            }
+	            rs.close();
+	            returnData.put("PromoID", promoIDData);
+	            returnData.put("PromoType", promoTypeData);
+	            returnData.put("PromoCode", promoCodeData);
+	            returnData.put("PromoAmount", promoAmountData);
+	            returnData.put("StartDate", promoStartDateData);
+	            returnData.put("EndDate", promoEndDateData);
+	            returnData.put("TotalUsers", totalUsersData);
+
+	            return returnData;
+	        } catch (SQLException e) {
+	            // process sql exception
+	            printSQLException(e);
+	        }
+	        return returnData;
+	    }
+	 
 	 	public void suspendAccounts(String[] accountsToManage) throws ClassNotFoundException{
 	 		String SUSPEND_ACCOUNT_SQL = "UPDATE Bookstore.Customer SET AccountState=? WHERE UserID=?;";
 
