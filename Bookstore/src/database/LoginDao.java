@@ -22,11 +22,14 @@ public class LoginDao {
 
 	            // Step 2:Create a statement using connection object
 	            PreparedStatement preparedStatement = connection
-	            .prepareStatement("select * from Bookstore.Customer where UserID= ? and Password = ? and (AccountType = ? OR AccountType = ?)")) {
+	            .prepareStatement("select * from Bookstore.Customer where UserID= ? and Password = ? and (AccountType = ? OR AccountType = ?)"
+	            		+ "(AccountState = ? or AccountState = ?)")) {
 	            preparedStatement.setString(1, loginBean.getUsername());
 	            preparedStatement.setString(2, loginBean.getPassword());
 	            preparedStatement.setInt(3, 1);
 	            preparedStatement.setInt(4, 2);
+	            preparedStatement.setString(5, "Active");
+	            preparedStatement.setString(6, "Inactive");
 
 	            System.out.println(preparedStatement);
 	            ResultSet rs = preparedStatement.executeQuery();
@@ -52,10 +55,12 @@ public class LoginDao {
 
 	            // Step 2:Create a statement using connection object
 	            PreparedStatement preparedStatement = connection
-	            .prepareStatement("select * from Bookstore.Customer where UserID= ? and Password = ? and AccountType = ?")) {
+	            .prepareStatement("select * from Bookstore.Customer where UserID= ? and Password = ? and AccountType = ? and (AccountState = ? or AccountState = ?)")) {
 	            preparedStatement.setString(1, loginBean.getUsername());
 	            preparedStatement.setString(2, loginBean.getPassword());
 	            preparedStatement.setInt(3, 3);
+	            preparedStatement.setString(4, "Active");
+	            preparedStatement.setString(5, "Inactive");
 
 	            System.out.println(preparedStatement);
 	            ResultSet rs = preparedStatement.executeQuery();

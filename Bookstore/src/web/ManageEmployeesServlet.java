@@ -33,29 +33,38 @@ public class ManageEmployeesServlet extends HttpServlet {
         String manageAction = request.getParameter("manage-action");
         String[] employeesToManage = request.getParameterValues("employee");
         
-        try {
-        	if(employeesToManage != null) {
-        		if(manageAction.equals("Suspend")) {
-               		adminDao.suspendAccounts(employeesToManage);
-                }else if(manageAction.equals("Unsuspend")) {
-                	adminDao.unsuspendAccounts(employeesToManage);
-                }else if(manageAction.equals("Promote")) {
-                	adminDao.promoteAccounts(employeesToManage);
-                }else if(manageAction.equals("De-promote")) {
-                	adminDao.dePromoteEmployees(employeesToManage);
-                }
-        		//need to do error check if manageAction is null
-        	}
-           	
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("/employees");
+        HttpSession session = request.getSession();
+		String adminUser = (String)session.getAttribute("username");
+        
+        if(adminUser != null) {
+        	try {
+            	if(employeesToManage != null) {
+            		if(manageAction.equals("Suspend")) {
+                   		adminDao.suspendAccounts(adminUser, employeesToManage);
+                    }else if(manageAction.equals("Unsuspend")) {
+                    	adminDao.unsuspendAccounts(adminUser, employeesToManage);
+                    }else if(manageAction.equals("Promote")) {
+                    	adminDao.promoteAccounts(adminUser, employeesToManage);
+                    }else if(manageAction.equals("De-promote")) {
+                    	adminDao.dePromoteEmployees(adminUser, employeesToManage);
+                    }
+            	}
+               	
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("/employees");
+        		if(dispatcher != null) {
+        			dispatcher.forward(request, response);
+        		}
+        		 
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }//if
+        else {
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/sign-out");
     		if(dispatcher != null) {
     			dispatcher.forward(request, response);
     		}
-    		 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
- 
-    }
+    }//doPost
 }

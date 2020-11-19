@@ -131,7 +131,7 @@ public class AdminDao {
 	        return returnData;
 	    }
 	 
-	 	public void suspendAccounts(String[] accountsToManage) throws ClassNotFoundException{
+	 	public void suspendAccounts(String adminUser, String[] accountsToManage) throws ClassNotFoundException{
 	 		String SUSPEND_ACCOUNT_SQL = "UPDATE Bookstore.Customer SET AccountState=? WHERE UserID=?;";
 
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -144,8 +144,10 @@ public class AdminDao {
 	            preparedStatement.setString(1, "Suspended");
 	            
 	            for(int i = 0; i < accountsToManage.length; i++) {
-	            	preparedStatement.setString(2, accountsToManage[i]);
-	            	preparedStatement.executeUpdate();
+	            	if(!adminUser.equals(accountsToManage[i])) {
+	            		preparedStatement.setString(2, accountsToManage[i]);
+		            	preparedStatement.executeUpdate();
+	            	}
 	            }
 	            
 	        } catch (SQLException e) {
@@ -154,7 +156,7 @@ public class AdminDao {
 	        }
 	 	}
 	 	
-	 	public void unsuspendAccounts(String[] accountsToManage) throws ClassNotFoundException{
+	 	public void unsuspendAccounts(String adminUser, String[] accountsToManage) throws ClassNotFoundException{
 	 		String SUSPEND_ACCOUNT_SQL = "UPDATE Bookstore.Customer SET AccountState=? WHERE UserID=?;";
 
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -167,8 +169,10 @@ public class AdminDao {
 	            preparedStatement.setString(1, "Active");
 	            
 	            for(int i = 0; i < accountsToManage.length; i++) {
-	            	preparedStatement.setString(2, accountsToManage[i]);
-	            	preparedStatement.executeUpdate();
+	            	if(!adminUser.equals(accountsToManage[i])) {
+	            		preparedStatement.setString(2, accountsToManage[i]);
+		            	preparedStatement.executeUpdate();
+	            	}
 	            }
 	            
 	        } catch (SQLException e) {
@@ -177,7 +181,7 @@ public class AdminDao {
 	        }
 	 	}
 	 	
-	 	public void promoteAccounts(String[] accountsToManage) throws ClassNotFoundException{
+	 	public void promoteAccounts(String adminUser, String[] accountsToManage) throws ClassNotFoundException{
 	 		String PROMOTE_ACCOUNT_SQL = "UPDATE Bookstore.Customer SET AccountType=? WHERE UserID=?;";
 
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -189,17 +193,19 @@ public class AdminDao {
 	            .prepareStatement(PROMOTE_ACCOUNT_SQL)) {
 	            
 	            for(int i = 0; i < accountsToManage.length; i++) {
-	            	int accountType = getEmployeeAccountType(accountsToManage[i]);
-	            	if(accountType == 1) {
-	            		accountType = 2;
+	            	if(!adminUser.equals(accountsToManage[i])) {
+	            		int accountType = getEmployeeAccountType(accountsToManage[i]);
+		            	if(accountType == 1) {
+		            		accountType = 2;
+		            	}
+		            	else if(accountType == 2) {
+		            		accountType = 3;
+		            	}
+		            	preparedStatement.setInt(1, accountType);
+		            	
+		            	preparedStatement.setString(2, accountsToManage[i]);
+		            	preparedStatement.executeUpdate();
 	            	}
-	            	else if(accountType == 2) {
-	            		accountType = 3;
-	            	}
-	            	preparedStatement.setInt(1, accountType);
-	            	
-	            	preparedStatement.setString(2, accountsToManage[i]);
-	            	preparedStatement.executeUpdate();
 	            }
 	            
 	        } catch (SQLException e) {
@@ -208,7 +214,7 @@ public class AdminDao {
 	        }
 	 	}
 	 	
-	 	public void dePromoteEmployees(String[] employeesToManage) throws ClassNotFoundException{
+	 	public void dePromoteEmployees(String adminUser, String[] employeesToManage) throws ClassNotFoundException{
 	 		String DEPROMOTE_ACCOUNT_SQL = "UPDATE Bookstore.Customer SET AccountType=? WHERE UserID=?;";
 
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -220,17 +226,19 @@ public class AdminDao {
 	            .prepareStatement(DEPROMOTE_ACCOUNT_SQL)) {
 	            
 	            for(int i = 0; i < employeesToManage.length; i++) {
-	            	int accountType = getEmployeeAccountType(employeesToManage[i]);
-	            	if(accountType == 2) {//depromote employee to customer
-	            		accountType = 1;
+	            	if(!adminUser.equals(employeesToManage[i])) {
+		            	int accountType = getEmployeeAccountType(employeesToManage[i]);
+		            	if(accountType == 2) {//depromote employee to customer
+		            		accountType = 1;
+		            	}
+		            	else if(accountType == 3) {//depromote admin to employee
+		            		accountType = 2;
+		            	}
+		            	preparedStatement.setInt(1, accountType);
+		            	
+		            	preparedStatement.setString(2, employeesToManage[i]);
+		            	preparedStatement.executeUpdate();
 	            	}
-	            	else if(accountType == 3) {//depromote admin to employee
-	            		accountType = 2;
-	            	}
-	            	preparedStatement.setInt(1, accountType);
-	            	
-	            	preparedStatement.setString(2, employeesToManage[i]);
-	            	preparedStatement.executeUpdate();
 	            }
 	            
 	        } catch (SQLException e) {

@@ -8,7 +8,6 @@ import javax.mail.internet.*;
 import javax.activation.*;
 import javax.servlet.http.*;
 import javax.servlet.*;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 import database.CustomerDao;
@@ -31,21 +30,29 @@ public class CustomerListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         
-        try {
-        	HashMap<String, List<String>> returnData = adminDao.getCustomers();
-    		request.setAttribute("returnData", returnData);
-    		
-    		//need to do an error check here if no returnData
-    		
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("manage_customers.jsp");
+    	HttpSession session = request.getSession();
+		String adminUser = (String)session.getAttribute("username");
+        
+        if(adminUser != null) {
+	        try {
+	        	HashMap<String, List<String>> returnData = adminDao.getCustomers();
+	    		request.setAttribute("returnData", returnData);
+	    		
+	    		RequestDispatcher dispatcher = request.getRequestDispatcher("manage_customers.jsp");
+	    		if(dispatcher != null) {
+	    			dispatcher.forward(request, response);
+	    		}
+	    		 
+	        } catch (Exception e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+        }//if
+        else {
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/sign-out");
     		if(dispatcher != null) {
     			dispatcher.forward(request, response);
     		}
-    		 
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
- 
     }
 }

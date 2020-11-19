@@ -104,7 +104,7 @@
 			<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-employees" value="Promote" class="button">
 			<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-employees" value="De-promote" class="button"><br/>
 			<input type="submit" formaction="manage_users.jsp" value="Back" class="button">
-			<input type="submit" formaction="homepage.html" value="Sign Out" class="signout">
+			<input type="submit" formaction="${pageContext.request.contextPath}/sign-out" value="Sign Out" class="signout">
 	    </form>
 	</main>
 

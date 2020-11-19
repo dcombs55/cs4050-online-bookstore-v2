@@ -64,7 +64,7 @@
 				<div><input type="submit" formaction="${pageContext.request.contextPath}/employees" value="Manage Employees" class="button"></div>
 				<div><input type="submit" formaction="${pageContext.request.contextPath}/customers" value="Manage Customers" class="button"></div>
 				<div><input type="submit" formaction="admin_hp.html" value="Main Menu" class="button"></div>
-				<div><input type="submit" formaction="homepage.html" value="Sign Out" class="signout"></div>
+				<div><input type="submit" formaction="${pageContext.request.contextPath}/sign-out" value="Sign Out" class="signout"></div>
 			</form>
 		</div>
 	</main>
