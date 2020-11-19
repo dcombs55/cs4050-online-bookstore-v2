@@ -17,6 +17,7 @@ import bean.Address;
 import bean.CreditCard;
 
 @WebServlet("/register")
+
 public class CustomerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -41,6 +42,7 @@ public class CustomerServlet extends HttpServlet {
         String emailAddress = request.getParameter("emailAddress");
         String phoneNumber = request.getParameter("phone");
         phoneNumber = phoneNumber.replaceAll("-", "");
+        String SubscribedtoPromotions = requet.getParameter("SubscribedtoPromotions);
         
         Random r = new Random();
         int activateCode = r.nextInt(8999 + 1) + 1000;
@@ -53,8 +55,14 @@ public class CustomerServlet extends HttpServlet {
         customer.setPassword(password);
         customer.setEmailAddress(emailAddress); 
         customer.setPhoneNumber(phoneNumber);
-        customer.setActivateCode(activateCode);
-        
+        customer.setActivateCode(activateCode);  
+        customer.setSubscribedtoPromotions(SubscribedtoPromotions);
+
+
+
+
+
+package bean;
         Address address = new Address();
         address.setStreet("");
         address.setCity("");
