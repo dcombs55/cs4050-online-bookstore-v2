@@ -89,7 +89,7 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection connection = DriverManager
 .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 Statement s = connection.createStatement();
-String s1 = ("select * from Bookstore.Book");
+String s1 = ("select * from Bookstore.Book where Archived = 'no'");
 ResultSet rs = s.executeQuery(s1);
 %>
 <div id="feat">All Books</div>

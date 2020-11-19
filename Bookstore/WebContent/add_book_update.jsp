@@ -22,7 +22,7 @@ String t = request.getParameter("desc");
 String y = request.getParameter("copies");
 String u = request.getParameter("bookURL");
 if(q!=null && w!=null && e!=null && r!=null && t!=null && y!=null && u!=null){
-	String s1 = "insert into Bookstore.Book (BookName,Author,IBSN,Price,Description,NumOfCopies, PictureURL) values (?,?,?,?,?,?,?)";
+	String s1 = "insert into Bookstore.Book (BookName,Author,IBSN,Price,Description,NumOfCopies, PictureURL,Archived) values (?,?,?,?,?,?,?,'no')";
 	PreparedStatement ps1 = connection.prepareStatement(s1);
 	ps1.setString(1,q);
 	ps1.setString(2,w);

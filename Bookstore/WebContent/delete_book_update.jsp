@@ -15,7 +15,7 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection connection = DriverManager
 .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 String name = request.getParameter("Book_Name");
-String s1 = "delete from Bookstore.Book where BookName='" + name + "'";
+String s1 = "update Bookstore.Book set Archived = 'yes' where BookName ='" + name + "'";
 PreparedStatement ps1 = connection.prepareStatement(s1);
 ps1.executeUpdate();
 response.sendRedirect("AllBooksAdmin.jsp");
