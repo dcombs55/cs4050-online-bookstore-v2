@@ -1,3 +1,4 @@
+
 package bean;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ public class Customer implements Serializable {
     private CreditCard creditCard;
     private Address address;
     private int accountType;
+    private String SubscribedtoPromotions;
 
     public String getFirstName() {
         return firstName;
@@ -52,6 +54,11 @@ public class Customer implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+   public String getSubscribedtoPromotions()//yes or no
+{
+return SubscribedtoPromotions;
+}
+
     public int getActivateCode() {
         return activateCode;
     }
@@ -79,4 +86,5 @@ public class Customer implements Serializable {
     public void setAccountType(int accountType) {
     	this.accountType = accountType;
     }
+
 }
