@@ -156,6 +156,7 @@
 					<label for="reset">Reset Total Users</label>
 					<br>
 					<input type="submit" value="Edit Promotion"/>
+					<input type="submit" value="Delete"/>
 				</form>
 			</div>
 	
