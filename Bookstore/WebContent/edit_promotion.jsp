@@ -129,21 +129,12 @@
 		<div class="errors" id="server_errors">${errors}</div>
 			<div id = "editPromotionsForm"><br>
 				<h2>Edit Promotion</h2>
-				<form name="editPromo" action="${pageContext.request.contextPath}/editPromo" onsubmit="return validateForm()" method="post">
+				<form name="editPromo" action="edit_promotion.jsp" method="post">
 					<label class="required">Promotion Type</label><br>
 					<input type="radio" id="perc" name="promoType" value="perc" required>
 					<label for="perc">Percentage</label><br>
 					<input type="radio" id="amnt" name="promoType" value="amnt" required>
 					<label for="amnt">Amount</label><br>
-					
-					<label for="promoCode">Promo Code</label>
-					<input type="text" name="promoCode" placeholder="Enter promo code">
-					<div class="errors" id="code_error"></div>
-					
-					<details>
-						<summary>Requirements</summary>
-						<p>Promo code must be at least three characters and must not contain any spaces.</p>
-					</details>
 					
 					<label class="required">Amount</label>
 					<input type="number" name="amount" id="amount" min="0" placeholder="Enter number">
@@ -159,7 +150,6 @@
 					<label for="reset">Reset Total Users</label>
 					<br>
 					<input type="submit" value="Edit Promotion"/>
-					<input type="submit" value="Delete"/>
 				</form>
 			</div>
 	

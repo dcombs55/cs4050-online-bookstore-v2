@@ -6,12 +6,43 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import bean.Customer;
 import bean.Promotion;
 
 public class PromotionDao {
-	private void registerPromo(Promotion promo) {
-		// TODO: This
+	public int registerPromo(Promotion promotion) throws ClassNotFoundException {
+		String INSERT_PROMOTIONS_SQL = "INSERT INTO Bookstore.Promotion" + 
+				" (PromoID, PromoType, PromoCode, PromoAmount, TotalUsers, StartDate, EndDate) VALUES " +
+				" (?, ?, ?, ?, ?, ?, ?);"; 
+        /* Encryption
+        String salt = customer.getUsername(); // This is the universal salt formula for all users
+		String key = "321OS"; // This will always be the key
+		String ENCRYPT_PASS = "aes_encrypt" +
+				"('" + customer.getPassword() + salt +"', '" +
+				key + "')";*/
+		int result = 0;
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		try (Connection connection = DriverManager
+			.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+				
+			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PROMOTIONS_SQL)){
+			preparedStatement.setString(1, promotion.getPromoID());
+			preparedStatement.setInt(2, promotion.getType());
+			preparedStatement.setString(3, promotion.getCode());
+			preparedStatement.setDouble(4, promotion.getAmount());
+			preparedStatement.setInt(5, promotion.getTotalUsers());
+			preparedStatement.setString(6, promotion.getStartDate());
+			preparedStatement.setString(7, promotion.getEndDate());
+			
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		
+		return result;
 	}
 	
 	public boolean checkPromoID (Promotion promotion) throws ClassNotFoundException{
