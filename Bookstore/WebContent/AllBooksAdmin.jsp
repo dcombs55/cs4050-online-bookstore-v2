@@ -160,7 +160,7 @@ while(rs.next()){
 				}
 	}
 	%>
-	<div style="text-align:center;"><a href="admin_hp.html" class="back">Go Back</a></div>
+	<div style="text-align:center;"><a href="admin_hp.jsp" class="back">Go Back</a></div>
 	<div style="text-align:center;"><a href="AddBook.jsp" class="back">Add Book</a></div>
 	<div style="text-align:center;"><a href="DeleteBook.jsp" class="back">Delete Book</a></div>
 	<main>

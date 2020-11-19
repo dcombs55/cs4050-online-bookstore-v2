@@ -135,10 +135,10 @@ public class AdminDao {
 
 	 	HashMap<String, List<String>> returnData = new HashMap<>();
 	 	List<String> promoIDData = new ArrayList<>();
-	 	List<Integer> promoTypeData = new ArrayList<>();
+	 	List<String> promoTypeData = new ArrayList<>();
 	 	List<String> promoCodeData = new ArrayList<>();
-	 	List<Double> promoAmountData = new ArrayList<>();
-	 	List<Integer> totalUsersData = new ArrayList<>();
+	 	List<String> promoAmountData = new ArrayList<>();
+	 	List<String> totalUsersData = new ArrayList<>();
 	 	List<String> startDateData = new ArrayList<>();
 	 	List<String> endDateData = new ArrayList<>();
 
@@ -154,16 +154,16 @@ public class AdminDao {
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection
-            .prepareStatement("select * from Bookstore.Promotion) ")) {
+            .prepareStatement("select * from Bookstore.Promotion ")) {
 
             System.out.println(preparedStatement);
             rs = preparedStatement.executeQuery();
             while(rs.next()) {
             	promoIDData.add(rs.getString("PromoID"));
-            	promoTypeData.add(rs.getInt("PromoType"));
+            	promoTypeData.add(rs.getInt("PromoType") + "");
             	promoCodeData.add(rs.getString("PromoCode"));
-            	promoAmountData.add(rs.getDouble("PromoAmount"));
-            	totalUsersData.add(rs.getInt("TotalUsers"));
+            	promoAmountData.add(rs.getDouble("PromoAmount") + "");
+            	totalUsersData.add(rs.getInt("TotalUsers") + "");
             	startDateData.add(rs.getString("StartDate"));
             	endDateData.add(rs.getString("EndDate"));
             }

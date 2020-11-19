@@ -107,7 +107,7 @@
    else if(loginDao.validateAdmin(login)){
  	   String user = login.getUsername();
        session1.setAttribute("username", user);
-		response.sendRedirect("admin_hp.html");
+		response.sendRedirect("admin_hp.jsp");
    }
    else{
 	   response.sendRedirect("invalid.jsp");

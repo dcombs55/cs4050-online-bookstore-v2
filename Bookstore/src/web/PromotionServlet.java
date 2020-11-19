@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import database.PromotionDao;
 import bean.Promotion;
 
-@WebServlet("/addPromo")
+@WebServlet("/add-promo")
 public class PromotionServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -53,7 +53,7 @@ public class PromotionServlet extends HttpServlet {
         	if(validID && validCode && validAmount) {
         		promotionDao.registerPromo(promotion);
         		
-                response.sendRedirect("confirmation.jsp");
+                response.sendRedirect("add_promotion.jsp");
         	}//if
         	else {
         		session = request.getSession();

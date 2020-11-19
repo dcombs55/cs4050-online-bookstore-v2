@@ -102,7 +102,7 @@
 		   	<input type="submit" name="manage-action" formaction="add_promotion.jsp" value="Add" class="button">
 		   	<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-promotions" value="Delete" class="button">
 			<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-promotions" value="Edit" class="button"><br/>
-			<input type="submit" formaction="admin_hp.html" value="Back" class="button">
+			<input type="submit" formaction="admin_hp.jsp" value="Back" class="button">
 			<input type="submit" formaction="${pageContext.request.contextPath}/sign-out" value="Sign Out" class="signout">
 	    </form>
 	</main>

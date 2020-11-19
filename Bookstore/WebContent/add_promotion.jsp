@@ -129,16 +129,16 @@
 		<div class="errors" id="server_errors">${errors}</div>
 			<div id = "addPromotionForm"><br>
 				<h2>Add Promotion</h2>
-				<form name="addPromo" action="${pageContext.request.contextPath}/addPromo" onsubmit="return validateForm()" method="post">
+				<form name="addPromo" action="${pageContext.request.contextPath}/add-promo" onsubmit="return validateForm()" method="post">
 					<label for="promoID">Promo ID</label>
 					<input type="text" name="promoID" placeholder="Enter promo ID">
 					<div class="errors" id="ID_error"></div>
 					
 					<label class="required">Promotion Type</label><br>
-					<input type="radio" id="perc" name="promoType" value="perc" required>
-					<label for="perc">Percentage</label><br>
-					<input type="radio" id="amnt" name="promoType" value="amnt" required>
-					<label for="amnt">Amount</label><br>
+					<input type="radio" id="perc" name="promoType" value="2" required>
+					<label for="2">Percentage</label><br>
+					<input type="radio" id="amnt" name="promoType" value="1" required>
+					<label for="1">Amount</label><br>
 					
 					<label for="promoCode">Promo Code</label>
 					<input type="text" name="promoCode" placeholder="Enter promo code">
@@ -165,7 +165,7 @@
 	
 			<br>
 			<div id="userOptions">
-				<p><a style="color:#DCDCDC" href="admin_hp.html">Cancel</a></p>
+				<p><a style="color:#DCDCDC" href="admin_hp.jsp">Cancel</a></p>
 			</div>
 		</div>
 	</main>
