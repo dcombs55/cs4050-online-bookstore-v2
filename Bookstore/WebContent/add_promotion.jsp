@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Edit Promotion</title>
+	<title>Add Promotion</title>
 	<style>
 		h1 {
 			color:white;
@@ -127,9 +127,13 @@
 	<main>
 	<div class="form-div">
 		<div class="errors" id="server_errors">${errors}</div>
-			<div id = "editPromotionsForm"><br>
-				<h2>Edit Promotion</h2>
-				<form name="editPromo" action="${pageContext.request.contextPath}/editPromo" onsubmit="return validateForm()" method="post">
+			<div id = "addPromotionForm"><br>
+				<h2>Add Promotion</h2>
+				<form name="addPromo" action="${pageContext.request.contextPath}/addPromo" onsubmit="return validateForm()" method="post">
+					<label for="promoID">Promo ID</label>
+					<input type="text" name="promoID" placeholder="Enter promo ID">
+					<div class="errors" id="ID_error"></div>
+					
 					<label class="required">Promotion Type</label><br>
 					<input type="radio" id="perc" name="promoType" value="perc" required>
 					<label for="perc">Percentage</label><br>
@@ -154,12 +158,8 @@
 					
 					<label class="required">End Date</label>
 					<input type="date" name="endDate" id="endDate">
-					
-					<input type="checkbox" id="reset" name="reset" value="reset">
-					<label for="reset">Reset Total Users</label>
 					<br>
-					<input type="submit" value="Edit Promotion"/>
-					<input type="submit" value="Delete"/>
+					<input type="submit" value="Add Promotion"/>
 				</form>
 			</div>
 	

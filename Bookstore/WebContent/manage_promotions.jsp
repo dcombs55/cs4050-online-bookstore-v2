@@ -69,9 +69,9 @@
 		                <th>Promotion ID</th>
 		                <th>Type</th>
 		                <th>Code</th>
-		                <th>Percentage</th>
 		                <th>Amount</th>
-		                <th>Time Limit</th>
+		                <th>Start Date</th>
+		                <th>End Date</th>
 		                <th>Total Users</th>
 		            </tr>
 		            <%
@@ -79,9 +79,9 @@
 		            	List<String> promoID = returnData.get("PromoID");
 		            	List<String> promoType = returnData.get("PromoType");
 		            	List<String> promoCode = returnData.get("PromoCode");
-		            	List<String> promoPerc = returnData.get("PromoPercent");
 		            	List<String> promoAmo = returnData.get("PromoAmount");
-		            	List<String> promoTL = returnData.get("PromoTimeLimit");
+		            	List<String> promoSD = returnData.get("StartDate");
+		            	List<String> promoED = returnData.get("EndDate");
 		            	List<String> totalUsers = returnData.get("TotalUsers");
 		            	
 		            	for(int i = 0; i < promoID.size(); i++){
@@ -91,15 +91,15 @@
 		            	<td><%=promoID.get(i)%></td>
 		            	<td><%=promoType.get(i)%></td>
 		            	<td><%=promoCode.get(i)%></td>
-		            	<td><%=promoPerc.get(i)%></td>
 		            	<td><%=promoAmo.get(i)%></td>
-		            	<td><%=promoTL.get(i)%></td>
+		            	<td><%=promoSD.get(i)%></td>
+		            	<td><%=promoED.get(i)%></td>
 		            	<td><%=totalUsers.get(i)%></td>
 		            </tr>
 		            <%} %>
 		        </table>
 		    </div>
-		   	<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-promotions" value="Add" class="button">
+		   	<input type="submit" name="manage-action" formaction="add_promotion.jsp" value="Add" class="button">
 		   	<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-promotions" value="Delete" class="button">
 			<input type="submit" name="manage-action" formaction="${pageContext.request.contextPath}/manage-promotions" value="Edit" class="button"><br/>
 			<input type="submit" formaction="admin_hp.html" value="Back" class="button">

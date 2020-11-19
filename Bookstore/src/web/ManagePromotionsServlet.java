@@ -33,6 +33,10 @@ public class ManagePromotionsServlet extends HttpServlet {
                 	adminDao.deletePromos(promotionsToManage);
         		// TODO: need to do error check if manageAction is null
         		}
+        		else if(manageAction.equals("Edit")) {
+                	adminDao.editPromos(promotionsToManage);
+        		// TODO: need to do error check if manageAction is null
+        		}        		
 	    		RequestDispatcher dispatcher = request.getRequestDispatcher("/promotions");
 	    		if(dispatcher != null) {
 	    			dispatcher.forward(request, response);
