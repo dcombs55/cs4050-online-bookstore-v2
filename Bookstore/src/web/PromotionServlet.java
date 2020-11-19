@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 
 import database.PromotionDao;
 import bean.Promotion;
+import database.CustomerDao;
+import database.AdminDao;
 
 @WebServlet("/addPromo")
 public class PromotionServlet extends HttpServlet {
@@ -75,6 +77,78 @@ public class PromotionServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+	    
+	 
+                 try
+             {
+                 String stp = customerDao.getSubscribedtoPromotions();
+        	
+        	if(stp=="yes") 
+                       {
+        		customerDao.registerCustomer(customer);
+        		session = request.getSession();
+        		session.setMaxInactiveInterval(600);
+        		session.setAttribute("username", username);
+        		session.setAttribute("emailAddress", emailAddress);
+
+            String result;
+            String from = washingtont.bookstore@gmail.com;
+            String to = emailAddress;
+
+   
+    	   Properties properties = new Properties();
+           properties.put("mail.smtp.auth", "true"); //sets if the email needs to be authenticated
+           properties.put("mail.smtp.starttls.enable", "true");
+           properties.put("mail.smtp.host", "smtp.gmail.com"); //your email host
+           properties.put("mail.smtp.port", "587"); //the port of your email
+ 
+        String myAccountEmail = washingtont.bookstore@gmail.com";
+        String password1 = "softwareengr2";
+       Session mailSession = Session.getInstance(properties, new Authenticator() {
+    		    	@Override
+    		    	protected PasswordAuthentication getPasswordAuthentication() {
+    		    		return new PasswordAuthentication(myAccountEmail, password1);
+    		    	}
+    		    });
+try
+{
+
+
+   ArrayList email= new ArrayList();
+   while(rs.next()) 
+{
+          email.add(rs.getString("Email"));
+      }
+
+
+    MimeMessage message = new MimeMessage(mailSession);
+
+   InternetAddress[] address = new InternetAddress[email.size()];
+    for (int i = 0; i < email.size(); i++) {
+        address[i] = new InternetAddress(email.get(i));
+    }
+     message.setRecipients(Message.RecipientType.TO, address);
+
+  message.SetSubject("Promotion!");
+
+ String messageContent = "<h1>Hi " + firstName + ", <h1>"
+    		        		+ "<center><p> Dear Washington T. Bookstore customer"
+    		        		+ "<br/>Check out our latest promotion"
+    		        		+ "<br/>" + AdminDao.getPromotion()+ "</p></center>";
+    		        
+   message.setContent(messageContent, "text/html");
+
+    Transport.send(message);
+    result = "Sent message successfully....";
+}
+catch(MessagingException mex)
+{
+mex.printStackTrace();
+result  = "Error : unable to send message...";
+}
+
+
+   
  
     }
 }
