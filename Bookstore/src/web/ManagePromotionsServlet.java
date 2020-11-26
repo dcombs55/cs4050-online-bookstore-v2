@@ -37,7 +37,7 @@ public class ManagePromotionsServlet extends HttpServlet {
                 	
         		// TODO: need to do error check if manageAction is null
         		}        		
-	    		RequestDispatcher dispatcher = request.getRequestDispatcher("/promotions");
+	    		RequestDispatcher dispatcher = request.getRequestDispatcher("/promotions-list");
 	    		if(dispatcher != null) {
 	    			dispatcher.forward(request, response);
 	    		}

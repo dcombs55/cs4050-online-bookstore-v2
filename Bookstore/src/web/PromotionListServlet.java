@@ -18,7 +18,7 @@ import bean.Address;
 import bean.CreditCard;
 import java.util.*;
 
-@WebServlet("/manage-promotions")
+@WebServlet("/promotions-list")
 public class PromotionListServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

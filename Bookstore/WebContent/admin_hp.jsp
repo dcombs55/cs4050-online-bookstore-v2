@@ -68,7 +68,7 @@
 	<main>
 		<form class="menu" method="post">
 			<div id="butcon"><input type="submit" formaction="AllBooksAdmin.jsp" class="button" value="Manage Books"></div>
-			<div id="butcon"><input type="submit" formaction="${pageContext.request.contextPath}/manage-promotions" class="button" value="Manage Promotions"></div>
+			<div id="butcon"><input type="submit" formaction="${pageContext.request.contextPath}/promotions-list" class="button" value="Manage Promotions"></div>
 			<div id="butcon"><input type="submit" formaction="manage_users.jsp" class="button" value="Manage Users"></div>
 			<div id="butcon"><input type="submit" formaction="homepage_adminver.html" class="button" value="Customer View"></div>
 			<div id="butcon"><input type="submit" formaction="homepage.html" class="signout" value="Sign Out"></div>
