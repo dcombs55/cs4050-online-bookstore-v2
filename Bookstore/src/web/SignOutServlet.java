@@ -32,15 +32,14 @@ public class SignOutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         
-    	HttpSession session = request.getSession(false);
+    	HttpSession session = request.getSession();
         
-		if(session != null) {
+		if(session != null && session.getAttribute("adminUsername") != null) {
+			session.removeAttribute("adminUsername");
+		}
+		else if(session != null && session.getAttribute("username") != null) {
 			session.removeAttribute("username");
-			//session.invalidate();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("homepage.html");
-    		if(dispatcher != null) {
-    			dispatcher.forward(request, response);
-    		}
-		}	 
+		}
+		response.sendRedirect("homepage.html");
     }
 }

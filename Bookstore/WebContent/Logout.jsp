@@ -4,6 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<%
+	  	response.setHeader("Cache-Control","no-cache");
+	  	response.setHeader("Cache-Control","no-store");
+	 	response.setHeader("Pragma","no-cache");
+	  	response.setDateHeader ("Expires", 0);
+	  
+	%>
 <title>Washington T. Bookstore</title>
 	<style>
 		body{

@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+	<%
+	response.setHeader("Cache-Control","no-cache");
+	response.setHeader("Cache-Control","no-store");
+	response.setHeader("Pragma","no-cache");
+	response.setDateHeader ("Expires", 0);
+	  
+	if(session.getAttribute("adminUsername") == null){
+		response.sendRedirect("logout_error.html");
+	}
+	%>
+	
 	<title>Manage Books</title>
 	<style>
 		body{

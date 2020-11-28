@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
+	<%
+	  	response.setHeader("Cache-Control","no-cache");
+	  	response.setHeader("Cache-Control","no-store");
+	 	response.setHeader("Pragma","no-cache");
+	  	response.setDateHeader ("Expires", 0);
+	  
+		if(session.getAttribute("adminUsername") == null){
+			response.sendRedirect("logout_error.html");
+		}
+	%>
+	
 	<title>Homepage</title>
 	<style>
 		h1 {
@@ -63,7 +75,7 @@
 	<meta charset="UTF-8">
 </head>
 <body>
-	
+
 	<h1>Welcome, admin!</h1>
 	<main>
 		<form class="menu" method="post">
@@ -71,7 +83,7 @@
 			<div id="butcon"><input type="submit" formaction="${pageContext.request.contextPath}/promotions-list" class="button" value="Manage Promotions"></div>
 			<div id="butcon"><input type="submit" formaction="manage_users.jsp" class="button" value="Manage Users"></div>
 			<div id="butcon"><input type="submit" formaction="homepage_adminver.html" class="button" value="Customer View"></div>
-			<div id="butcon"><input type="submit" formaction="homepage.html" class="signout" value="Sign Out"></div>
+			<div id="butcon"><input type="submit" formaction="${pageContext.request.contextPath}/sign-out" class="signout" value="Sign Out"></div>
 		</form>
 	</main>
 

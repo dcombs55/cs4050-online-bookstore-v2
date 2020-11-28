@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
             	}
             	else if(loginDao.validateAdmin(login)){
             		String user = login.getUsername();
-            		session1.setAttribute("username", user);
+            		session1.setAttribute("adminUsername", user);
             		response.sendRedirect("admin_hp.jsp");
             	}
             	else{

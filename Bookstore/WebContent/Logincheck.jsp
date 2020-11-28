@@ -7,6 +7,17 @@
         <html>
 
         <head>
+        	
+		<%
+		  	response.setHeader("Cache-Control","no-cache");
+		  	response.setHeader("Cache-Control","no-store");
+		 	response.setHeader("Pragma","no-cache");
+		  	response.setDateHeader ("Expires", 0);
+		  
+			if(session.getAttribute("username") == null){
+				response.sendRedirect("logout_error.html");
+			}
+		%>
         <title>Washington T. Bookstore</title>
 	<style>
 		body{
@@ -118,7 +129,7 @@
 		<div class="navbar">
 			<a class ="active" href = "homepage.html">HOME</a>
 			<a href = "edit_profile.jsp">EDIT PROFILE</a>
-			<a href = "Logout.jsp">LOGOUT</a>
+			<a href = "Logout.jsp" <%session.removeAttribute("username");%>>LOGOUT</a>
 			<div class ="search">
 				<form action="/booksearch.php">	
 					<input type="text" placeholder="Search for books..." name="search">
