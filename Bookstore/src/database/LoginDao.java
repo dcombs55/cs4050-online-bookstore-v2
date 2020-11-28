@@ -23,7 +23,7 @@ public class LoginDao {
 	            // Step 2:Create a statement using connection object
 	            PreparedStatement preparedStatement = connection
 	            .prepareStatement("select * from Bookstore.Customer where UserID= ? and Password = ? and (AccountType = ? OR AccountType = ?)"
-	            		+ "(AccountState = ? or AccountState = ?)")) {
+	            		+ " and (AccountState = ? OR AccountState = ?)")) {
 	            preparedStatement.setString(1, loginBean.getUsername());
 	            preparedStatement.setString(2, loginBean.getPassword());
 	            preparedStatement.setInt(3, 1);
@@ -72,7 +72,25 @@ public class LoginDao {
 	        }
 	        return status;
 	    }
-
+	 
+	 public boolean resetPassword(String username, String oldPassword, String newPassword) throws ClassNotFoundException {
+		 Class.forName("com.mysql.jdbc.Driver");
+		 try (Connection connection = DriverManager.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+		 	    PreparedStatement ps = connection
+		 	    .prepareStatement("update Bookstore.Customer set Password=? where UserID=? AND Password=?")) {
+		 		ps.setString(3, oldPassword);
+		 	    ps.setString(2, username);
+		 	    ps.setString(1, newPassword);
+		 	    int i = ps.executeUpdate();
+		 	    if(i > 0){
+		 	    	return true;
+		 	    }
+		 } catch (SQLException e) {
+		 	    printSQLException(e);
+		 }
+		 
+		 return false;
+	 }
 
 	    private void printSQLException(SQLException ex) {
 	        for (Throwable e: ex) {

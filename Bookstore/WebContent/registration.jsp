@@ -140,12 +140,17 @@
 	<h1>WASHINGTON T. BOOKSTORE</h1>
 	<div class="navbar">
 		<a href = "homepage.html">HOME</a>
-		<a href = "login.html">LOGIN</a>
+		<a href = "login.jsp">LOGIN</a>
 		<a class ="active" href = "registration.jsp">REGISTER</a>
 		<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
 	</div>
 	<main>
-	<div class="errors" id="server_errors">${errors}</div>
+	<div class="errors" id="server_errors">${errors}
+		
+		<%if(session.getAttribute("errors") != null) {
+			session.removeAttribute("errors");
+		} %>
+	</div>
 		<div id = "accountInfoForm">
 			<h2>Create an Account </h2>
 			<form name="register" action="${pageContext.request.contextPath}/register" onsubmit="return validateForm()" method="post">

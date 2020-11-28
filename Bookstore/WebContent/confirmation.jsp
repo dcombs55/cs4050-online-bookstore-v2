@@ -91,7 +91,7 @@ pageEncoding="ISO-8859-1"%>
 	<h1>WASHINGTON T. BOOKSTORE</h1>
 	<div class="navbar">
 		<a href = "homepage.html">HOME</a>
-		<a href = "login.html">LOGIN</a>
+		<a href = "login.jsp">LOGIN</a>
 		<a class ="active" href = "registration.jsp">REGISTER</a>
 		<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
 	</div>

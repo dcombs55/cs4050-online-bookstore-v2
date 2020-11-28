@@ -94,25 +94,25 @@
             <jsp:useBean id="login" class="bean.LoginBean" />
 
             <jsp:setProperty property="*" name="login" />
-
+			
             <%
-            HttpSession session1 = request.getSession();
-            
-          LoginDao loginDao = new LoginDao();
-   if(loginDao.validateCustomer(login)){
- 	   String user = login.getUsername();
-       session1.setAttribute("username", user);
-       out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
-   }
-   else if(loginDao.validateAdmin(login)){
- 	   String user = login.getUsername();
-       session1.setAttribute("username", user);
-		response.sendRedirect("admin_hp.jsp");
-   }
-   else{
-	   response.sendRedirect("invalid.jsp");
-   }
- %>
+	            //HttpSession session1 = request.getSession();
+	            //LoginDao loginDao = new LoginDao();
+	            //if(loginDao.validateCustomer(login)){
+	            	//String user = login.getUsername();
+	            	//session1.setAttribute("username", user);
+	            	//out.print("<h1>You have logged in successfully " + login.getUsername() + "!</h1>");
+	            //}
+			   	//else if(loginDao.validateAdmin(login)){
+			 	   	//String user = login.getUsername();
+			       	//session1.setAttribute("username", user);
+					//response.sendRedirect("admin_hp.jsp");
+				//}
+			   	//else{
+			   		//response.sendRedirect("invalid.jsp");
+			   	//}
+ 			%>
+ 			${welcomeMessage}
  <h1>WASHINGTON T. BOOKSTORE</h1>
 	<main>
 		<div class="navbar">

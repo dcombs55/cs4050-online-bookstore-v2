@@ -84,7 +84,7 @@ pageEncoding="ISO-8859-1"%>
 	<h1>WASHINGTON T. BOOKSTORE</h1>
 	<div class="navbar">
 		<a href = "homepage.html">HOME</a>
-		<a href = "login.html">LOGIN</a>
+		<a href = "login.jsp">LOGIN</a>
 		<a class ="active" href = "registration.jsp">REGISTER</a>
 		<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
 	</div>
@@ -93,7 +93,7 @@ pageEncoding="ISO-8859-1"%>
 		<p>You can finish setting up your account or start shopping now!</p>		
 		<div id="continueForm">
 			<form action="/Logincheck.jsp" method="post">
-				<input type="submit" formaction="login.html" value="Go Shopping!">
+				<input type="submit" formaction="login.jsp" value="Go Shopping!">
 				<input type="submit" formaction="edit_profile.jsp" value="Edit Profile!">
 			</form>
 		</div>
