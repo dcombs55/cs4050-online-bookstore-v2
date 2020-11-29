@@ -102,6 +102,14 @@ while(rs.next()){
 			URL
 				<input type="text" name="bookURL" value='<%=rs.getString("PictureURL")%>'>
 		</label>
+		<label>
+			Featured (yes/no)
+				<input type="text" name="featured" value='<%=rs.getString("Featured")%>'>
+		</label>
+		<label>
+			Best Seller (yes/no)
+				<input type="text" name="BestSeller" value='<%=rs.getString("BestSeller")%>'>
+		</label>
 		<%
 		}
 		%>

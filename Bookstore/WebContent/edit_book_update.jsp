@@ -21,9 +21,11 @@ String r = request.getParameter("price");
 String t = request.getParameter("desc");
 String y = request.getParameter("copies");
 String u = request.getParameter("bookURL");
+String i = request.getParameter("featured");
+String o = request.getParameter("BestSeller");
 String id = request.getParameter("ID");
 if(q!=null && w!=null && e!=null && r!=null && t!=null && y!=null && u!=null){
-	String s1 = "update Bookstore.Book set BookName=?,Author=?,IBSN=?,Price=?,Description=?,NumOfCopies=?,PictureURL=? where BookID='" + id + "'";
+	String s1 = "update Bookstore.Book set BookName=?,Author=?,IBSN=?,Price=?,Description=?,NumOfCopies=?,PictureURL=?,Featured=?,BestSeller=? where BookID='" + id + "'";
 	PreparedStatement ps1 = connection.prepareStatement(s1);
 	ps1.setString(1,q);
 	ps1.setString(2,w);
@@ -31,7 +33,9 @@ if(q!=null && w!=null && e!=null && r!=null && t!=null && y!=null && u!=null){
 	ps1.setString(4,r);
 	ps1.setString(5,t);
 	ps1.setString(6,y);
-	ps1.setString(7,u);
+	ps1.setString(7,i);
+	ps1.setString(8,o);
+	ps1.setString(9,u);
 	ps1.executeUpdate();
 	response.sendRedirect("AllBooksAdmin.jsp");
 }
