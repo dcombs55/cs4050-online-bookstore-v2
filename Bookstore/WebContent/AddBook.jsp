@@ -89,6 +89,14 @@
 			URL
 				<input type="text" name="bookURL">
 		</label>
+		<label>
+			Featured (yes/no)
+				<input type="text" name="featured">
+		</label>
+		<label>
+			Best Seller (yes/no)
+				<input type="text" name="BestSeller">
+		</label>
 	<input type="submit" value = "Add Book"></input>
 	<a href = "AllBooksAdmin.jsp"><button type = "button">Exit</button></a>
 	</form>
