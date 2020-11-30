@@ -146,7 +146,7 @@ while(rs.next()){
 			<div class= "row">
 				<div class= "column">
 					<tr id>
-						<td><a href ="EditBook.jsp?u=<%=rs.getString("BookID")%>"><div id="book"><img border="0" src="<%=rs.getString("PictureURL")%>" width="125" height="200"></div></td>
+						<td><a href ="BookDetails.jsp?u=<%=rs.getString("BookID")%>"><div id="book"><img border="0" src="<%=rs.getString("PictureURL")%>" width="125" height="200"></div></td>
 					</tr>
 					<tr id ="booktitle">
 						<td><a style="text-decoration:none; color:black"><%=rs.getString("BookName")%></a></td>
@@ -165,7 +165,7 @@ while(rs.next()){
 				%>
 				<div class= "column">
 					<tr>
-						<th><a href = "EditBook.jsp?u=<%=rs.getString("BookID")%>"><div id="book"><img border="0" src="<%=rs.getString("PictureURL")%>" width="125" height="200"></div></th>
+						<th><a href = "BookDetails.jsp?u=<%=rs.getString("BookID")%>"><div id="book"><img border="0" src="<%=rs.getString("PictureURL")%>" width="125" height="200"></div></th>
 					</tr>
 					<tr id ="booktitle">
 						<td><a style="text-decoration:none; color:black"><%=rs.getString("BookName")%></a></td>
@@ -185,7 +185,7 @@ while(rs.next()){
 				%>
 				<div class= "column">
 					<tr>
-						<th><a href = "EditBook.jsp?u=<%=rs.getString("BookID")%>"><div id="book"><img border="0" src="<%=rs.getString("PictureURL")%>" width="125" height="200"></div></th>
+						<th><a href = "BookDetails.jsp?u=<%=rs.getString("BookID")%>"><div id="book"><img border="0" src="<%=rs.getString("PictureURL")%>" width="125" height="200"></div></th>
 					</tr>
 					<tr id ="booktitle">
 						<td><a style="text-decoration:none; color:black"><%=rs.getString("BookName")%></a></td>
