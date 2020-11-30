@@ -62,7 +62,6 @@ ps2.executeUpdate();
 Statement s = connection.createStatement();
 String s1 = ("select * from Bookstore.ShoppingCart where Customer_UserID ='" + s5 +"'");
 PreparedStatement ps1 = connection.prepareStatement(s1);
-String s3;
 ResultSet rs = s.executeQuery(s1);
 double total = 0.00;
 int count = 0;
@@ -74,20 +73,45 @@ count++;
 total += Double.parseDouble(rs.getString("BookPrice"));
 }
 %>
+<form>
 <b>Order Details:</b>
 <p>Price: <%=Double.toString(total)%></p>
 <p>Total Books: <%=Integer.toString(count)%></p>
 <p>Active Promotions: N/A</p>
 <b>Payment Info</b>
-<p>Show Saved Info Here...(if any)</p>
-<a href = "edit_profile.html"><button type = "button">Edit Payment Info</button><br></a>
+<%
+Statement s2 = connection.createStatement();
+String s3 = ("select * from Bookstore.CreditCard where UserID ='" + s5 +"'");
+PreparedStatement ps3 = connection.prepareStatement(s3);
+ResultSet rs1 = s.executeQuery(s3);
+while(rs1.next()){
+	%>
+<p>Card Type: <%=rs1.getString("CardType")%></p>
+<p>Card #: <%=rs1.getString("CardNum")%></p>
+<p>Expiration Date: <%=rs1.getString("ExpDate")%></p>
+<%
+}
+%>
+<a href = "edit_profile.jsp"><button type = "button">Edit Payment Info</button><br></a>
 <b>Shipping Info</b>
-<p>Show Saved Info Here...(if any)</p>
-<a href = "edit_profile.html"><button type = "button">Edit Shipping Info</button><br><br></a>
-
-<a href = "book_details.html"><button type = "button">Back</button></a>
+<%
+Statement s8 = connection.createStatement();
+String s7 = ("select * from Bookstore.Address where Customer_UserID ='" + s5 +"'");
+PreparedStatement ps4 = connection.prepareStatement(s7);
+ResultSet rs2 = s.executeQuery(s7);
+while(rs2.next()){
+	%>
+<p>Street: <%=rs2.getString("Street")%></p>
+<p>City: <%=rs2.getString("City")%></p>
+<p>State: <%=rs2.getString("State")%></p>
+<%
+}
+%>
+<a href = "edit_profile.jsp"><button type = "button">Edit Shipping Info</button><br><br></a>
+<a href = "homepage.jsp"><button type = "button">Back</button></a>
 <a href = "book1_emptycart.html"><button type = "button">Remove Item(s) from Cart</button></a>
 <a href = "checkout.html"><button type = "button">Checkout</button></a>
+</form>
 </body>
 
 </html>
