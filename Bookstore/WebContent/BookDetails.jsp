@@ -62,8 +62,12 @@ String s3;
 ResultSet rs = s.executeQuery(s1);
 while(rs.next()){
 %>
+	<form action="ShoppingCart.jsp?u=<%=session.getAttribute("username")%>" method = "post">
 	<input type="hidden" name="ID" value='<%=rs.getString("BookID")%>'></input>
-	<book id="book"><img border="0" src="<%=rs.getString("PictureURL")%>" width="375" height="600"></book>
+	<input type="hidden" value="<%=rs.getString("BookName")%>" name="title"></input>
+	<input type="hidden"  value="<%=rs.getString("PictureURL")%>" name="picture"></input>
+	<input type="hidden" value="<%=rs.getString("Price")%>" name="price"></input>
+	<book name="book"><img border="0" src="<%=rs.getString("PictureURL")%>" width="375" height="600"></book>
 	<details>
 		<d1>Title: <%=rs.getString("BookName")%></d1><br>
 		<d1>Author: <%=rs.getString("Author")%></d1><br>
@@ -71,8 +75,9 @@ while(rs.next()){
 		<d1>Price: <%=rs.getString("Price")%></d1><br>
 	</details>
 	<a href = "homepage.jsp"><button type = "button">Back</button></a>
-	<a href = "book1_cart.html"><button type = "button">Add to Cart</button></a>
+	<input type ="submit" value = "Add to Cart"></input>
 	<button>Checkout</button>
+	</form>
 	<%
 }
 	%>
