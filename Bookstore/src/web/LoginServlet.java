@@ -18,6 +18,7 @@ import bean.LoginBean;
 import bean.Customer;
 import bean.Address;
 import bean.CreditCard;
+import bean.Encryption;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -43,10 +44,12 @@ public class LoginServlet extends HttpServlet {
     	if(loginAction != null && loginAction.equals("Login")) {
     		
     	   	String username = request.getParameter("username");
-            String password = request.getParameter("password");
+            String password = request.getParameter("password");  
+            String generatedSecurePassword = Encryption.getSecurePassword(password, username);
+            
             LoginBean login = new LoginBean();
             login.setUsername(username);
-            login.setPassword(password);
+            login.setPassword(generatedSecurePassword);
             
     		try {
         		if(loginDao.validateCustomer(login)){

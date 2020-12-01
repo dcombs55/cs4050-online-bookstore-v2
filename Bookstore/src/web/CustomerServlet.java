@@ -15,6 +15,7 @@ import database.CustomerDao;
 import bean.Customer;
 import bean.Address;
 import bean.CreditCard;
+import bean.Encryption;
 
 @WebServlet("/register")
 public class CustomerServlet extends HttpServlet {
@@ -75,6 +76,10 @@ public class CustomerServlet extends HttpServlet {
             boolean passwordsMatch = password.equals(confirmPassword);
             
         	if(validUsername && validEmail && passwordsMatch) {
+        		//using username to generate salt for encryption
+        		String securePassword = Encryption.getSecurePassword(password, username);
+        		customer.setPassword(securePassword);
+        		
         		customerDao.registerCustomer(customer);
         		session = request.getSession();
         		session.setMaxInactiveInterval(600);
