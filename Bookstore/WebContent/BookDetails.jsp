@@ -74,7 +74,17 @@ while(rs.next()){
 		<d1>Description: <%=rs.getString("Description")%></d1><br>
 		<d1>Price: <%=rs.getString("Price")%></d1><br>
 	</details>
-	<a href = "homepage.jsp"><button type = "button">Back</button></a>
+	<%
+	String back = "";
+	if(session.getAttribute("username") != null){
+		back = "Logincheck.jsp";
+	}
+	else{
+		back = "homepage.jsp";
+	}
+		%>
+	
+	<a href = "<%=back%>"><button type = "button">Back</button></a>
 	<input type ="submit" value = "Add to Cart"></input>
 	<button>Checkout</button>
 	</form>
