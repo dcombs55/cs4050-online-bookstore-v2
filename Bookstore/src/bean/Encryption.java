@@ -32,7 +32,7 @@ public class Encryption {
 		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
         //byte[] salt = new byte[16];
 		byte[] salt = userSalt.getBytes();
-        sr.nextBytes(salt);
+        //sr.nextBytes(salt);
         return salt;
 	}
 }
