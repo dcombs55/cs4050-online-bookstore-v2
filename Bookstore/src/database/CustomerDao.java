@@ -11,7 +11,8 @@ import bean.Customer;
 import bean.CreditCard; 
 import bean.Address;
 
-public class CustomerDao {
+public class CustomerDao 
+{
 	/*	COMMAND TO DECRYPT -------------------------------------------------------------------------------------
 	String salt = customer.getUsername() + "NaCl";
   	String DECRYPT_CARDNUM = "replace(cast(aes_decrypt" +
@@ -19,8 +20,8 @@ public class CustomerDao {
  */
 	public int registerCustomer(Customer customer) throws ClassNotFoundException{
 		String INSERT_CUSTOMERS_SQL = "INSERT INTO Bookstore.Customer" + 
-				" (UserID, FirstName, LastName, Email, PhoneNumber, Password, ActivateCode, AccountState, AccountType) VALUES " +
-				" (?, ?, ?, ?, ?, ?, ?, ?, ?);"; 
+				" (UserID, FirstName, LastName, Email, PhoneNumber, Password, ActivateCode, AccountState, AccountType,SubscribedtoPromotions) VALUES " +
+				" (?, ?, ?, ?, ?, ?, ?, ?, ?,?);"; 
         /* Encryption
         String salt = customer.getUsername(); // This is the universal salt formula for all users
 		String key = "321OS"; // This will always be the key
@@ -45,6 +46,7 @@ public class CustomerDao {
 			preparedStatement.setInt(7, customer.getActivateCode());
 			preparedStatement.setString(8, "Inactive");
 			preparedStatement.setInt(9, 1);
+                        preparedStatement.setString(10,customer.getSubscribedtoPromotions());//added this column to database for promotions
 			
 			System.out.println(preparedStatement);
 			result = preparedStatement.executeUpdate();
@@ -58,7 +60,9 @@ public class CustomerDao {
 		
 		return result;
 	}
-	
+
+
+
 	public int setCustomerAddress(Address customerAddress) throws ClassNotFoundException{
 		String INSERT_ADDRESS_SQL = "INSERT INTO Bookstore.Address" + 
 				" (Street, City, State, Customer_UserID) VALUES " +
