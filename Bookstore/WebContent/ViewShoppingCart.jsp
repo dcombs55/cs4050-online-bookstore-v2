@@ -50,17 +50,10 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection connection = DriverManager
 .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
-Statement s4 = connection.createStatement();
+
 String s5 = request.getParameter("u");
-String t = request.getParameter("title");
-String p = request.getParameter("price");
-String pic = request.getParameter("picture");
-String s6 = ("insert into Bookstore.ShoppingCart (BookName,Customer_UserID,BookPrice,BookURL) values ('" + t +"','" + s5 + "','" +
-		p +"','" + pic + "')");
-PreparedStatement ps2 = connection.prepareStatement(s6);
-ps2.executeUpdate();
 Statement s = connection.createStatement();
-String s1 = ("select * from Bookstore.ShoppingCart where Customer_UserID ='" + s5 +"'");
+String s1 = ("select * from Bookstore.ShoppingCart where Customer_UserID ='" + session.getAttribute("username") +"'");
 PreparedStatement ps1 = connection.prepareStatement(s1);
 ResultSet rs = s.executeQuery(s1);
 double total = 0.00;
@@ -85,7 +78,7 @@ total += Double.parseDouble(rs.getString("BookPrice"));
 <b>Payment Info</b>
 <%
 Statement s2 = connection.createStatement();
-String s3 = ("select * from Bookstore.CreditCard where UserID ='" + s5 +"'");
+String s3 = ("select * from Bookstore.CreditCard where UserID ='" + session.getAttribute("username") +"'");
 PreparedStatement ps3 = connection.prepareStatement(s3);
 ResultSet rs1 = s.executeQuery(s3);
 while(rs1.next()){
@@ -105,7 +98,7 @@ lastFour = fullCard.substring(fullCard.length()-4);
 <b>Shipping Info</b>
 <%
 Statement s8 = connection.createStatement();
-String s7 = ("select * from Bookstore.Address where Customer_UserID ='" + s5 +"'");
+String s7 = ("select * from Bookstore.Address where Customer_UserID ='" + session.getAttribute("username") +"'");
 PreparedStatement ps4 = connection.prepareStatement(s7);
 ResultSet rs2 = s.executeQuery(s7);
 while(rs2.next()){

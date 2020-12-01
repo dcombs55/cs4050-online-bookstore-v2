@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
      <%@page import="database.*"%>
     <%@page import="java.sql.*"%>
+     <%@page import="java.util.*"%>
+    <%@page import="javax.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Edit Profile</title>
+<title>Create An Account</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -61,8 +63,9 @@
 <main>
 	<form action="edit_profile_update.jsp" method= "post">
 	  <%
-	  HttpSession session1 = request.getSession();
-	String user = session1.getAttribute("username").toString();
+	  //HttpSession session1 = request.getSession();
+	String user = session.getAttribute("username").toString();
+	System.out.println(user);
 Class.forName("com.mysql.jdbc.Driver");
 Connection connection = DriverManager
 .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
@@ -85,21 +88,17 @@ while(rs.next()){
 		}
 		%>
 		<label>
-			Password (To change your password, you must enter your password)
-			<input type="password" name = "OldPassword" required>
-		</label>
-		<label for = "Password1">
-			New password (New password must not be same as old password)
-				<input type="password" name = "Password1" required>
+			Change password (New password must not be same as old password)
+				<input type="password" name="pass1">
 		</label>
 		<details>
-			<summary>Requirements</summary>
-			<p>Password must be at least 8 characters long and include at least one uppercase
-			letter, lower case letter and number.</p>
-		</details>
-		<label for = "Password2"">
+					<summary>Requirements</summary>
+					<p>Password must be at least 8 characters long and include at least one uppercase
+					letter, lower case letter and number.</p>
+				</details>
+		<label>
 			Confirm new password (must match new password)
-			<input type="password" name = "Password2" required>
+				<input type="password" name="pass2">
 		</label>
 		<%
 		ResultSet rs3 = s.executeQuery(s3);
@@ -147,7 +146,7 @@ while(rs.next()){
 		}
 		%>
 	<input type="submit" value = "Save Changes"></input>
-	<a href = "homepage.html"><button type = "button">Exit</button></a>
+	<a href = "Logincheck.jsp"><button type = "button">Exit</button></a>
 	</form>
 </main>
 </body>
