@@ -10,6 +10,7 @@ public class Customer implements Serializable {
     private String password;
     private String emailAddress;
     private String phoneNumber;
+    private String subscribed;
     private int activateCode;
     private CreditCard creditCard;
     private Address address;
@@ -52,6 +53,14 @@ public class Customer implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+    public String getSubscribed() {
+    	return subscribed;
+    }
+    public void setSubscribed(String subscribed) {
+    	this.subscribed = subscribed;
+    }
+    
+    
     public int getActivateCode() {
         return activateCode;
     }
@@ -79,4 +88,5 @@ public class Customer implements Serializable {
     public void setAccountType(int accountType) {
     	this.accountType = accountType;
     }
+	
 }

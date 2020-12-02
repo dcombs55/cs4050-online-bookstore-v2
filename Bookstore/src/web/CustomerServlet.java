@@ -40,6 +40,7 @@ public class CustomerServlet extends HttpServlet {
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
         String emailAddress = request.getParameter("emailAddress");
+        String subscribed = request.getParameter("subscribed");
         String phoneNumber = request.getParameter("phone");
         phoneNumber = phoneNumber.replaceAll("-", "");
         
@@ -55,6 +56,7 @@ public class CustomerServlet extends HttpServlet {
         customer.setEmailAddress(emailAddress); 
         customer.setPhoneNumber(phoneNumber);
         customer.setActivateCode(activateCode);
+        customer.setSubscribed(subscribed);
         
         Address address = new Address();
         address.setStreet("");
