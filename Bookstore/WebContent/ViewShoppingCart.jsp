@@ -111,7 +111,7 @@ while(rs2.next()){
 %>
 <a href = "edit_profile.jsp?u=<%=session.getAttribute("username")%>"><button type = "button">Edit Shipping Info</button><br><br></a>
 <a href = "Logincheck.jsp?u=<%=session.getAttribute("username")%>"><button type = "button">Back</button></a>
-<a href = "checkout.html?u=<%=session.getAttribute("username")%>"><button type = "button">Checkout</button></a>
+<a href = "Checkout.jsp?u=<%=session.getAttribute("username")%>"><button type = "button">Checkout</button></a>
 </form>
 </body>
 

@@ -86,7 +86,6 @@ while(rs.next()){
 	
 	<a href = "<%=back%>"><button type = "button">Back</button></a>
 	<input type ="submit" value = "Add to Cart"></input>
-	<button>Checkout</button>
 	</form>
 	<%
 }
