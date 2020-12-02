@@ -140,6 +140,7 @@
 		<div class="navbar">
 			<a class ="active" href = "Logincheck.jsp">HOME</a>
 			<a href = "edit_profile.jsp">EDIT PROFILE</a>
+			<a href = "prev_orders.jsp">ORDER HISTORY</a>
 			<a href = "Logout.jsp">LOGOUT</a>
 			<div class ="search">
 				<form action="/booksearch.php">	
