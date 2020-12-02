@@ -73,7 +73,7 @@
 	/* The Modal (background) */
 	.modal {
 	
-	  <% if (session.getAttribute("error") != null) { %>
+	  <% if (session.getAttribute("error") != null || session.getAttribute("success") != null) { %>
     	display: block;
     	<% session.removeAttribute("error"); %>
 	  <% } else { %> 
@@ -158,7 +158,14 @@
 		<!-- Modal content -->
 	  	<div class="modal-content">
 	    <span class="close">&times;</span>
-	    <p>Unsuccessful login. Please try again.</p>
+	    <% if (session.getAttribute("error") != null){ %>
+	  	<p>Unable to reset password. Please try again!</p>
+	    <% session.removeAttribute("error"); 
+	   	}
+	    else if(session.getAttribute("success") != null){ %>
+	   	<p>Password was successfully reset!</p>
+	    <% session.removeAttribute("success"); 
+	    }%>
 	</div>
 	
 	<script>

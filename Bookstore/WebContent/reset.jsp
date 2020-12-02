@@ -96,21 +96,12 @@
 		}
 		
 		function validateForm(){
-			var oldPassword = document.reset.OldPassword;
 			var password = document.reset.Password1;
 			var confirmPassword = document.reset.Password2;
 			var password_confirm_error = document.getElementById('password_confirm_error');
 			var password_error = document.getElementById('password_error');
-			var old_password_error = document.getElementById('old_password_error');
 			password_confirm_error.innerHTML = "";
 			password_error.innerHTML = "";
-			old_password_error.innerHTML = "";
-		
-			if(!checkPassword(oldPassword.value)){
-				old_password.style.border = "1px solid red";
-				old_password_error.innerHTML = "Password entered is not valid!";
-				return false;
-			}
 			
 			if(password.value === confirmPassword.value){
 				if(!checkPassword(password.value)){
@@ -138,11 +129,6 @@
 			Username
 			<input type="text" name = "Username" placeholder="Enter existing username" required>
 		</label>
-		<label>
-			Password
-			<input type="password" name = "OldPassword" required>
-		</label>
-		<div class="errors" id="old_password_error"><br/></div>
 		
 		<label for = "Password1">
 			New password (New password must not be same as old password)
@@ -177,8 +163,7 @@
 	   <% session.removeAttribute("error"); 
 	   } 
 	   else if(session.getAttribute("success") != null){ %>
-	   	<p>Password was successfully reset!</p>
-	   <% session.removeAttribute("success");
+	   <% response.sendRedirect("login.jsp");
 	   }%>
 	</div>
 	

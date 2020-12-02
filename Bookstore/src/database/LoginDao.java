@@ -73,14 +73,14 @@ public class LoginDao {
 	        return status;
 	    }
 	 
-	 public boolean resetPassword(String username, String oldPassword, String newPassword) throws ClassNotFoundException {
+	 public boolean resetPassword(String username, String newPassword) throws ClassNotFoundException {
 		 Class.forName("com.mysql.jdbc.Driver");
 		 try (Connection connection = DriverManager.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 		 	    PreparedStatement ps = connection
-		 	    .prepareStatement("update Bookstore.Customer set Password=? where UserID=? AND Password=?")) {
-		 		ps.setString(3, oldPassword);
-		 	    ps.setString(2, username);
-		 	    ps.setString(1, newPassword);
+		 	    .prepareStatement("update Bookstore.Customer set Password=? where UserID=? and Password !=? ")) {
+			 	ps.setString(1, newPassword);
+			 	ps.setString(2, username);
+			 	ps.setString(3, newPassword);
 		 	    int i = ps.executeUpdate();
 		 	    if(i > 0){
 		 	    	return true;

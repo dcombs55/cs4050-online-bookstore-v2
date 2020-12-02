@@ -80,10 +80,11 @@ public class LoginServlet extends HttpServlet {
     		String user = request.getParameter("Username");
     		String pass1 = request.getParameter("Password1");
     		String pass2 = request.getParameter("Password2");
-    		String oldPass = request.getParameter("OldPassword");
+    		String securePassword = Encryption.getSecurePassword(pass2, user);
+    		
     		if(pass1.equals(pass2)) {
     			try {
-    				if(!loginDao.resetPassword(user, oldPass, pass2)) {
+    				if(!loginDao.resetPassword(user, securePassword)) {
     					session1.setAttribute("error", "reset error");
     				}else {
     					session1.setAttribute("success", "success");
