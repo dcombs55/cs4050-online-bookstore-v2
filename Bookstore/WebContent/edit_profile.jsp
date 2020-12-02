@@ -84,6 +84,13 @@ while(rs.next()){
 			Last Name
 				<input type="text" name="Last_Name" value='<%=rs.getString("LastName")%>' />
 		</label>
+		  
+		   <label>
+		   Do you want to stay subscribed to Promotions?
+		    <input type ="text" name ="subscribed" value ='<%=rs.getString("Subscribed") %>' />
+		   
+		   </label>
+				
 		<%
 		}
 		%>

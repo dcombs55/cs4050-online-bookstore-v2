@@ -170,9 +170,7 @@
 				<label class="required">Username</label>
 				<input type="text" name="username" placeholder="Enter Username" required>
 				
-			    <label class ="required">SubscribedtoPromotions</label>
-			    <input type ="text" name="subscribed" placeholder="Enter yes or no" required>
-				
+			 
 				<label class="required">Password</label>
 				<input type="password" name="password" placeholder="Enter Password" required>
 				<div class="errors" id="password_error"><br/></div>
@@ -187,6 +185,10 @@
 				<label class="required">Confirm Password</label>
 				<input type="password" name="confirmPassword" placeholder="Re-enter Password" required>
 				<div class="errors" id="password_confirm_error"></div>
+				
+				<label class ="required">Do you want to Subscribe to Promotions?</label>
+			    <input type ="text" name="subscribed" placeholder="Enter yes or no" required>
+				
 				
 				<input type="submit" value="Create Account"/>
 			</form>
