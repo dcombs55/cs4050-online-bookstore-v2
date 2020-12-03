@@ -33,9 +33,9 @@ if(q!=null && w!=null && e!=null && r!=null && t!=null && y!=null && u!=null){
 	ps1.setString(4,r);
 	ps1.setString(5,t);
 	ps1.setString(6,y);
-	ps1.setString(7,i);
-	ps1.setString(8,o);
-	ps1.setString(9,u);
+	ps1.setString(7,u);
+	ps1.setString(8,i);
+	ps1.setString(9,o);
 	ps1.executeUpdate();
 	response.sendRedirect("AllBooksAdmin.jsp");
 }
