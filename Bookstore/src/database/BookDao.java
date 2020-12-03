@@ -55,6 +55,53 @@ public class BookDao {
         return returnData;
     }
 	
+	public HashMap<String, List<String>> getBooks(String bookTitle, String author, String isbn) throws ClassNotFoundException {
+
+	 	HashMap<String, List<String>> returnData = new HashMap<>();
+	 	List<String> bookIDData = new ArrayList<>();
+	 	List<String> bookNameData = new ArrayList<>();
+	 	List<String> authorData = new ArrayList<>();
+	 	List<String> isbnData = new ArrayList<>();
+	 	List<String> pictureURLData = new ArrayList<>();
+	 	ResultSet rs;
+
+        Class.forName("com.mysql.jdbc.Driver");
+        try (Connection connection = DriverManager
+            .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
+
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection
+            .prepareStatement("select * from Bookstore.Book where BookName=? or Author=? or IBSN=?")) {
+        	preparedStatement.setString(1, bookTitle);
+            preparedStatement.setString(2, author);
+            preparedStatement.setString(3, isbn);
+            
+            System.out.println(preparedStatement);
+            
+            rs = preparedStatement.executeQuery();
+            while(rs.next()) {
+            	bookIDData.add(rs.getString("BookID"));
+            	bookNameData.add(rs.getString("BookName"));
+            	authorData.add(rs.getString("Author"));
+            	isbnData.add(rs.getString("IBSN"));
+            	pictureURLData.add(rs.getString("PictureURL"));
+            }
+            rs.close();
+            returnData.put("BookID", bookIDData);
+            returnData.put("BookName", bookNameData);
+            returnData.put("Author", authorData);
+            returnData.put("ISBN", isbnData);
+            returnData.put("PictureURL", pictureURLData);
+
+            return returnData;
+        } catch (SQLException e) {
+            // process sql exception
+            printSQLException(e);
+        }
+        return returnData;
+    }
+	
+	
 	private void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {

@@ -123,7 +123,7 @@
 	</nav>
 	
 	<div class="navbar">
-		<a href="homepage.html">HOME</a> <a href="login.jsp">LOGIN</a> 
+		<a href="homepage.jsp">HOME</a> <a href="login.jsp">LOGIN</a> 
 		<a href="registration.jsp">REGISTER</a> 
 		<a href="admin_hp.html">*DEMO ADMIN ACCESS*</a>
 	</div>

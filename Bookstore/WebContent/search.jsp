@@ -124,7 +124,7 @@
 	<h1>WASHINGTON T. BOOKSTORE</h1>
 
 	<div class="navbar">
-		<a href = "homepage.html">HOME</a>
+		<a href = "homepage.jsp">HOME</a>
 		<a href = "login.jsp">LOGIN</a>
 		<a href = "registration.jsp">REGISTER</a>
 		<a href = "admin_hp.html">*DEMO ADMIN ACCESS*</a>
@@ -150,18 +150,15 @@
 			</div>
 			
 			<div id="results">Search for </div>
-			<form>
+			<form action="${pageContext.request.contextPath}/book-search" method="post">
 				<label>Book Title</label>
-				<input type="text" value="Book Title">
+				<input type="text" name="title" placeholder="Book Title">
 				
 				<label>by</label>
-				<input type="text" value="Author">
-				
-				<label>Subject</label>
-				<input type="text" value="Subject">
+				<input type="text" name="author" placeholder="Author">
 				
 				<label>ISBN</label>
-				<input type="text" value="ISBN">	
+				<input type="text" name="isbn" placeholder="ISBN">	
 				
 				<input type="submit" value="Submit">	
 			</form>
@@ -169,6 +166,7 @@
 			<%
 	           	HashMap<String, List<String>> returnData = (HashMap<String, List<String>>)request.getAttribute("returnData");
 				if(returnData == null){
+					request.setAttribute("no-search", "no-search");
 					request.getRequestDispatcher("book-search").forward(request, response);
 				}else{
 					List<String> bookIDData = returnData.get("BookID");

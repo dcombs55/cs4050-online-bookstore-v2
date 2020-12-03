@@ -32,12 +32,20 @@ public class BookServlet extends HttpServlet {
     throws ServletException, IOException {
         
     	HttpSession session = request.getSession();
+    	HashMap<String, List<String>> returnData;
         try {
-        	HashMap<String, List<String>> returnData = bookDao.getAllBooks();
-    		request.setAttribute("returnData", returnData);
-    		request.setAttribute("resultsOfSearch", "results");
-    		
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("search.jsp");
+        	if(request.getAttribute("no-search") != null) {
+        		returnData = bookDao.getAllBooks();
+        		request.removeAttribute("no-search");
+        	}else {
+        		String bookName = request.getParameter("title");
+                String author = request.getParameter("author");
+                String isbn = request.getParameter("isbn");
+                returnData = bookDao.getBooks(bookName, author, isbn);
+        	}
+        	
+        	request.setAttribute("returnData", returnData);
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("search.jsp");
     		if(dispatcher != null) {
     			dispatcher.forward(request, response);
     		}
