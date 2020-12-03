@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@page language="java" import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,6 +104,11 @@
   		.errors{
   			color:red;
   		}
+		table{
+			color:white;
+			margin-bottom: 20px;
+			width: 100%;
+		}
 		
 	</style>
 </head>
@@ -140,12 +145,47 @@
 	<div class="form-div">
 		<div class="errors" id="server_errors">${errors}</div>
 			<div id = "editPromotionsForm"><br>
-				<h2>Edit Promotion</h2>
+				<h2>Edit Promotions</h2>
 				<form name="editPromo" action="${pageContext.request.contextPath}/manage-promotions" method="post">
-					<label for="promoID">ID of Promo to be Changed</label>
-					<input type="text" name="promoID" placeholder="Enter promo ID">
-					<div class="errors" id="ID_error"></div>
-					
+					<div align="center">
+				        <table border="1">
+				            <tr>
+				                <th></th>
+				                <th>Promotion ID</th>
+				                <th>Type</th>
+				                <th>Code</th>
+				                <th>Amount</th>
+				                <th>Start Date</th>
+				                <th>End Date</th>
+				                <th>Total Users</th>
+				            </tr>
+				            <%
+				            	HashMap<String, List<String>> returnData = (HashMap<String, List<String>>)request.getAttribute("returnData");
+				            	List<String> promoID = returnData.get("PromoID");
+				            	List<String> promoType = returnData.get("PromoType");
+				            	List<String> promoCode = returnData.get("PromoCode");
+				            	List<String> promoAmo = returnData.get("PromoAmount");
+				            	List<String> promoSD = returnData.get("StartDate");
+				            	List<String> promoED = returnData.get("EndDate");
+				            	List<String> totalUsers = returnData.get("TotalUsers");
+				            	
+				            	for(int i = 0; i < promoID.size(); i++){
+				            %>
+				            <tr>
+				            	<td><input type="checkbox" name="promotion" value=<%=promoID.get(i)%>></td>
+				            	<td><%=promoID.get(i)%></td>
+				            	<td><%=promoType.get(i)%></td>
+				            	<td><%=promoCode.get(i)%></td>
+				            	<td><%=promoAmo.get(i)%></td>
+				            	<td><%=promoSD.get(i)%></td>
+				            	<td><%=promoED.get(i)%></td>
+				            	<td><%=totalUsers.get(i)%></td>
+				            </tr>
+				            <%} %>
+				        </table>
+				    </div>
+				    
+				    <br>
 					<label for="promoCode">Promo Code</label>
 					<input type="text" name="promoCode" placeholder="Enter promo code">
 					<div class="errors" id="code_error"></div>
@@ -174,7 +214,7 @@
 					<input type="checkbox" id="reset" name="reset" value="reset">
 					<label for="reset">Reset Total Users</label>
 					<br>
-					<input type="submit" value="Edit"/>
+					<input type="submit" name="manage-action" value="Edit"/>
 				</form>
 			</div>
 	

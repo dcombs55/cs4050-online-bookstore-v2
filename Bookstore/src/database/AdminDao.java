@@ -356,7 +356,7 @@ public class AdminDao {
 	 	}
  	
  	public void editPromos(String[] promotionsToManage, String[] newData) throws ClassNotFoundException{
- 		int codeInd = 0, amntInd = 0, restInd = 0, stDtInd = 0, edDtInd = 0, promInd = 0; // Index values of the parameters
+ 		int codeInd = 0, amntInd = 0, restInd = 0, stDtInd = 0, edDtInd = 0, promInd = 1; // Index values of the parameters
  		
  		String EDIT_PROMOTION_SQL = "UPDATE Bookstore.Promotion SET "; // This statement will be built depending on null values
 				//"PromoType=?, PromoCode=?, PromoAmount=?, TotalUsers=?, StartDate=?, EndDate=? WHERE PromoCode=?";
@@ -371,6 +371,7 @@ public class AdminDao {
  		}
  		if(newData[1] != null && promotionsToManage.length == 1) { // No more than one promotion may have a particular code
  	 		EDIT_PROMOTION_SQL = EDIT_PROMOTION_SQL.concat("PromoCode=?, ");
+ 	 		codeInd++;
  	 		amntInd++;
  	 		restInd++;
  	 		stDtInd++;
@@ -379,6 +380,7 @@ public class AdminDao {
  		}
  		if(newData[2] != null) {
  	 		EDIT_PROMOTION_SQL = EDIT_PROMOTION_SQL.concat("PromoAmount=?, ");
+ 	 		amntInd++;
  	 		restInd++;
  	 		stDtInd++;
  	 		edDtInd++;
@@ -386,25 +388,34 @@ public class AdminDao {
  		}
  		if(newData[3] != null) {
  	 		EDIT_PROMOTION_SQL = EDIT_PROMOTION_SQL.concat("TotalUsers=?, ");
+ 	 		restInd++;
  	 		stDtInd++;
  	 		edDtInd++;
  	 		promInd++;
  		}
  		if(newData[4] != null) {
  	 		EDIT_PROMOTION_SQL = EDIT_PROMOTION_SQL.concat("StartDate=?, ");
+ 	 		stDtInd++;
  	 		edDtInd++;
  	 		promInd++;
  		}
  		if(newData[5] != null) {
  	 		EDIT_PROMOTION_SQL = EDIT_PROMOTION_SQL.concat("EndDate=?,");
+ 	 		edDtInd++;
  	 		promInd++;
  		}
  		EDIT_PROMOTION_SQL = EDIT_PROMOTION_SQL.substring(0,EDIT_PROMOTION_SQL.lastIndexOf(","));
- 		EDIT_PROMOTION_SQL = EDIT_PROMOTION_SQL.concat(" WHERE PromoCode=?");
+ 		EDIT_PROMOTION_SQL = EDIT_PROMOTION_SQL.concat(" WHERE PromoID=?");
  		if(edDtInd == 0 || promotionsToManage.length == 0) // If this index never updated, everything was null
  			return;
  		Class.forName("com.mysql.jdbc.Driver");
-
+ 		System.out.println(EDIT_PROMOTION_SQL);
+ 		System.out.println(newData[0] + " index: " + 1);
+ 		System.out.println(newData[1] + " index: " + codeInd);
+ 		System.out.println(newData[2] + " index: " + amntInd);
+ 		System.out.println(newData[3] + " index: " + restInd);
+ 		System.out.println(newData[4] + " index: " + stDtInd);
+ 		System.out.println(newData[5] + " index: " + edDtInd);
         try (Connection connection = DriverManager
             .getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");
 
