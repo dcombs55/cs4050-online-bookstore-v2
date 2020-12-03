@@ -141,12 +141,25 @@
 		<div class="errors" id="server_errors">${errors}</div>
 			<div id = "editPromotionsForm"><br>
 				<h2>Edit Promotion</h2>
-				<form name="editPromo" action="edit_promotion.jsp" method="post">
+				<form name="editPromo" action="${pageContext.request.contextPath}/manage-promotions" method="post">
+					<label for="promoID">ID of Promo to be Changed</label>
+					<input type="text" name="promoID" placeholder="Enter promo ID">
+					<div class="errors" id="ID_error"></div>
+					
+					<label for="promoCode">Promo Code</label>
+					<input type="text" name="promoCode" placeholder="Enter promo code">
+					<div class="errors" id="code_error"></div>
+					
+					<details>
+						<summary>Requirements</summary>
+						<p>Promo code must be at least three characters and must not contain any spaces.</p>
+					</details>
+					
 					<label class="required">Promotion Type</label><br>
-					<input type="radio" id="perc" name="promoType" value="perc" required>
-					<label for="perc">Percentage</label><br>
-					<input type="radio" id="amnt" name="promoType" value="amnt" required>
-					<label for="amnt">Amount</label><br>
+					<input type="radio" id="perc" name="promoType" value="2" required>
+					<label for="2">Percentage</label><br>
+					<input type="radio" id="amnt" name="promoType" value="1" required>
+					<label for="1">Amount</label><br>
 					
 					<label class="required">Amount</label>
 					<input type="number" name="amount" id="amount" min="0" placeholder="Enter number">
@@ -161,13 +174,13 @@
 					<input type="checkbox" id="reset" name="reset" value="reset">
 					<label for="reset">Reset Total Users</label>
 					<br>
-					<input type="submit" value="Edit Promotion"/>
+					<input type="submit" value="Edit"/>
 				</form>
 			</div>
 	
 			<br>
 			<div id="userOptions">
-				<p><a style="color:#DCDCDC" href="admin_hp.html">Cancel</a></p>
+				<p><a style="color:#DCDCDC" href="manage_promotions.html">Cancel</a></p>
 			</div>
 		</div>
 	</main>

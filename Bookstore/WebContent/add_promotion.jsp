@@ -176,7 +176,7 @@
 	
 			<br>
 			<div id="userOptions">
-				<p><a style="color:#DCDCDC" href="admin_hp.jsp">Cancel</a></p>
+				<p><a style="color:#DCDCDC" href="manage_promotions.jsp">Cancel</a></p>
 			</div>
 		</div>
 	</main>

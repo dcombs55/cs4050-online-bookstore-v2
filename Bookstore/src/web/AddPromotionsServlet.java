@@ -69,7 +69,7 @@ public class AddPromotionsServlet extends HttpServlet {
         		}
         		errors = errors + "</ul>";
             	session.setAttribute("errors", errors);
-            	response.sendRedirect("add_promotion.jsp");
+            	response.sendRedirect("manage_promotions.jsp");
         	}//else
         } catch (Exception e) {
             // TODO Auto-generated catch block
