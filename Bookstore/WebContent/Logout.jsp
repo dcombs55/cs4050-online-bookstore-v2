@@ -122,7 +122,7 @@ response.sendRedirect("homepage.jsp");
 			<div class ="search">
 				<form action="/booksearch.php">	
 					<input type="text" placeholder="Search for books..." name="search">
-					<button formaction="search.html" type="submit">&#128269;</button>
+					<button formaction="search.jsp" type="submit">&#128269;</button>
 				</form>
 			</div>
 		</div>
