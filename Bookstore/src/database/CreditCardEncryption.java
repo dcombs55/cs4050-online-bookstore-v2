@@ -29,11 +29,17 @@ public class CreditCardEncryption {
 				" (UserID, CardNum, CardType, ExpDate, CCV) VALUES " +
 				" (?, ?, ?, ?, ?);";
 		String ENCRYPT_CARDNUM = "aes_encrypt" +
-				"('" + cardNum + salt +"'), '" +
+				"('" + cardNum + "'), '" +
 				key + "');";
+//		String ENCRYPT_CARDNUM = "aes_encrypt" +
+//				"('" + cardNum + salt +"'), '" +
+//				key + "');";
 		String ENCRYPT_CCV = "aes_encrypt" +
-				"('" + CCV + salt +"'), '" +
+				"('" + CCV +"'), '" +
 				key + "');";
+//		String ENCRYPT_CCV = "aes_encrypt" +
+//				"('" + CCV + salt +"'), '" +
+//				key + "');";
 		
 		try (Connection connection = DriverManager
 				.getConnection("jdbc:mysql://cs4050-online-bookstore.cmosf0873dbb.us-east-2.rds.amazonaws.com:3306/Bookstore?serverTimezone=UTC", "bookstoreAdmin", "Gogobookstore1");

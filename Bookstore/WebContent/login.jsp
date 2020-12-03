@@ -75,7 +75,6 @@
 	
 	  <% if (session.getAttribute("error") != null || session.getAttribute("success") != null) { %>
     	display: block;
-    	<% session.removeAttribute("error"); %>
 	  <% } else { %> 
 	  	display: none;
 	  <% } %>
