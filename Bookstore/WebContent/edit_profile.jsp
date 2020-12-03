@@ -206,6 +206,14 @@ while(rs.next()){
 			
 		%>
 		<label>
+			Card Type
+			<%if(rs2.getString("CardType") == ""){ %>
+				<input type="text" name="Type">
+			<%}else{ %>
+				<input type="text" name="Type" value="<%=rs2.getString("CardType")%>">
+			<%} %>
+		</label>
+		<label>
 			Credit Card Number
 			<%if(rs2.getString("CardNum") == ""){ %>
 				<input type="text" name="CCNum">

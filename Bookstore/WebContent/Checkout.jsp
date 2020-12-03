@@ -12,6 +12,7 @@
      <%@page import ="javax.servlet.ServletException"%>
       <%@page import ="javax.servlet.annotation.WebServlet"%>
        <%@page import ="javax.servlet.http.*"%>
+       <%@page import="bean.Encryption"%>
        
 <html>
 <head>
@@ -84,7 +85,7 @@ PreparedStatement ps8 = connection.prepareStatement(s9);
 ResultSet rs7 = s.executeQuery(s9);
 String lastFour1= "";
 while(rs7.next()){
-String fullCard = rs7.getString("CardNum");
+String fullCard = Encryption.decrypt(rs7.getString("CardNum"),s5);
 lastFour1 = fullCard.substring(fullCard.length()-4);
 
 }
@@ -129,7 +130,8 @@ try{
         		+ "<center><p>Your order is currently being processed and will be sent to you in 3-5 business days"
         		+ "<br/>This order will be sent to " + street + " " + city + " " + state
         		+ "<br/>The card ending in " +lastFour1 +" will be charged"
-        		+ "<br/>Thank you for shopping with Washington T. Bookstore!";
+        		+ "<br/>Thank you for shopping with Washington T. Bookstore!"
+        		+ "<br/>For more details, view your previous orders when logged in!";
         
         message.setContent(messageContent, "text/html");
         
@@ -202,7 +204,7 @@ while(rs3.next()){
 %>
 <p>Card ending in: <%
 String lastFour= "";
-String fullCard = rs3.getString("CardNum");
+String fullCard = Encryption.decrypt(rs3.getString("CardNum"),s5);
 lastFour = fullCard.substring(fullCard.length()-4);
 %>
 <%=lastFour%> has been charged: <%=total%></p>
@@ -217,6 +219,7 @@ while(rs4.next()){
 <%
 }
 %>
+<p> Your Order ID is: <%=count2%></p>
 <b> Thank you for shopping with Washington T. Bookstore!</p>
 <%
 	String s6 = "delete from Bookstore.ShoppingCart where Customer_UserID ='" + s5 +"'";

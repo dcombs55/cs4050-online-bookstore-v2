@@ -4,6 +4,7 @@
     <%@page import="java.util.*"%>
     <%@page import="javax.*"%>
     <%@page import="java.sql.*"%>
+    <%@page import="bean.Encryption"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +87,7 @@ while(rs1.next()){
 <p>Card Type: <%=rs1.getString("CardType")%></p>
 <p>Card #: Ending in <%
 String lastFour= "";
-String fullCard = rs1.getString("CardNum");
+String fullCard = Encryption.decrypt(rs1.getString("CardNum"),s5);
 lastFour = fullCard.substring(fullCard.length()-4);
 %>
 <%=lastFour%>

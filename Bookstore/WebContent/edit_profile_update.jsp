@@ -27,6 +27,7 @@ String r = request.getParameter("city");
 String t = request.getParameter("state");
 
 String y = request.getParameter("CCNum");
+String a = request.getParameter("Type");
 if(y != null){
 	encryptedCCNum = Encryption.encrypt(y, user);
 }
@@ -69,19 +70,21 @@ ps2.executeUpdate();
 String s3;
 PreparedStatement ps3;
 if(y==null && u==null && i==null){
-	s3 = "update Bookstore.CreditCard set CardNum=?,ExpDate=?,CCV=?,userID=?";
+	s3 = "update Bookstore.CreditCard set CardNum=?,CardType=?,ExpDate=?,CCV=?,userID=?";
 	ps3 =connection.prepareStatement(s3);
 	ps3.setString(1,y);
-	ps3.setString(2,u);
-	ps3.setString(3,i);
-	ps3.setString(4,user);
+	ps3.setString(2,a);
+	ps3.setString(3,u);
+	ps3.setString(4,i);
+	ps3.setString(5,user);
 }
 else{
-	s3 = "update Bookstore.CreditCard set CardNum=?,ExpDate=?,CCV=? where UserID= " + "'" + user+ "'";
+	s3 = "update Bookstore.CreditCard set CardNum=?,CardType=?,ExpDate=?,CCV=? where UserID= " + "'" + user+ "'";
 	 ps3 =connection.prepareStatement(s3);
 	ps3.setString(1,encryptedCCNum);
-	ps3.setString(2,u);
-	ps3.setString(3,encryptedCCV);
+	ps3.setString(2,a);
+	ps3.setString(3,u);
+	ps3.setString(4,encryptedCCV);
 }
 ps3.executeUpdate();
 String s4;
